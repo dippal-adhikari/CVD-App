@@ -22,14 +22,4 @@ public class ScriptActivity extends AppCompatActivity {
             }
         });
 
-        // Handle add new button click (implement functionality as needed)
-        TextView btnAddNew = findViewById(R.id.btnAddNew);
-        btnAddNew.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Implement the add new functionality here
-                // e.g., open a new activity or show a dialog
-            }
-        });
-    }
-}
+        // Handle add new button click (i

@@ -159,7 +159,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="20dp"
-                    android:text="Videos"
+                    android:text="Test Videos"
                     android:textSize="20sp" />
 
                 <TextView
