@@ -104,6 +104,7 @@
             android:background="@color/backgroundColor">
 
             <RelativeLayout
+                android:id="@+id/btnScripts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -148,6 +149,7 @@
             android:background="@color/backgroundColor">
 
             <RelativeLayout
+                android:id="@+id/btnVideos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -214,7 +216,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:text="View & Edit" />
+                android:text="View &amp; Edit" />
         </RelativeLayout>
     </LinearLayout>
 
