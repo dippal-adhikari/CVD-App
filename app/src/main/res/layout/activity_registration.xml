@@ -13,23 +13,33 @@
         android:text="← Back"
         android:textColorLink="@color/theme" />
 
-    <!-- Login Title -->
+    <!-- Registration Title -->
     <TextView
         android:id="@+id/tvLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="Sign Up"
         android:textSize="32sp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"/>
+
+    <!-- Name Input -->
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvLogin"
+        android:hint="Enter your name"
+        android:inputType="text"
+        android:layout_marginTop="16dp"/>
 
     <!-- Email Input -->
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvLogin"
-        android:hint="Insert email address"
+        android:layout_below="@id/etName"
+        android:hint="Enter your email address"
         android:inputType="textEmailAddress"
         android:layout_marginTop="16dp"/>
 
@@ -38,9 +48,19 @@
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Insert your password"
+        android:hint="Enter your password"
         android:inputType="textPassword"
         android:layout_below="@id/etEmail"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Password Input -->
+    <EditText
+        android:id="@+id/etConfirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Confirm your password"
+        android:inputType="textPassword"
+        android:layout_below="@id/etPassword"
         android:layout_marginTop="16dp"/>
 
     <!-- Login Button -->
@@ -48,28 +68,19 @@
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/etPassword"
+        android:layout_below="@id/etConfirmPassword"
         android:layout_marginTop="20dp"
-        android:text="Login"
+        android:text="Register"
         android:textColorLink="@color/theme" />
 
-    <!-- Forgot Password -->
-    <TextView
-        android:id="@+id/tvForgotPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="I forgot my password"
-        android:layout_below="@id/btnLogin"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"/>
 
     <!-- Sign Up -->
     <TextView
         android:id="@+id/tvSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don't have an account? Sign Up"
-        android:layout_below="@id/tvForgotPassword"
+        android:text="Already have an account? LogIn"
+        android:layout_below="@id/btnLogin"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"/>
 
