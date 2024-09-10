@@ -31,19 +31,22 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-
-        firebaseAuth = FirebaseAuth.getInstance();
+//
+//        firebaseAuth = FirebaseAuth.getInstance();
         Button btnLogout = findViewById(R.id.btnLogout);
-        EditText etEmail = findViewById(R.id.etEmail);
-        firebaseUser = firebaseAuth.getCurrentUser();
-        if (firebaseUser == null){
-            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-            startActivity(intent);
-            finish();
-        }
-        else {
-            etEmail.setText(firebaseUser.getEmail());
-        }
+//        EditText etEmail = findViewById(R.id.etEmail);
+//        firebaseUser = firebaseAuth.getCurrentUser();
+
+
+//        if (firebaseUser == null){
+//            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
+//        else {
+//            etEmail.setText(firebaseUser.getEmail());
+//        }
+
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
