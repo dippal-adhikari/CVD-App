@@ -2,6 +2,7 @@ package com.example.cvd_draft_1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,20 +33,22 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
 //
-//        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         Button btnLogout = findViewById(R.id.btnLogout);
-//        EditText etEmail = findViewById(R.id.etEmail);
-//        firebaseUser = firebaseAuth.getCurrentUser();
+        TextView tvEmail = findViewById(R.id.tvEmail);
+        firebaseUser = firebaseAuth.getCurrentUser();
 
 
-//        if (firebaseUser == null){
-//            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }
-//        else {
-//            etEmail.setText(firebaseUser.getEmail());
-//        }
+        if (firebaseUser == null){
+            Log.d("ProfileActivity", "User not signed in, redirecting to Login");
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        else {
+            Log.d("ProfileActivity", "User signed in: " + firebaseUser.getEmail());
+            tvEmail.setText(firebaseUser.getEmail());
+        }
 
 
         btnLogout.setOnClickListener(new View.OnClickListener() {

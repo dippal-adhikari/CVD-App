@@ -59,6 +59,15 @@ public class LoginActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.etPassword);
         buttonLogin = findViewById(R.id.btnLogin);
 
+        // back button
+        TextView btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // Closes the current activity and returns to the previous one
+            }
+        });
+
         TextView textViewSignup = findViewById(R.id.tvSignUp);
         textViewSignup.setOnClickListener(new View.OnClickListener() {
             @Override
