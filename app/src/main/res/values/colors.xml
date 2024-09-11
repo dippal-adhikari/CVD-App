@@ -4,4 +4,5 @@
     <color name="gray">#919191</color>
     <color name="theme">#009689</color>
     <color name="black">#FF000000</color>
+    <color name="border_color">#FF0000</color>
 </resources>
