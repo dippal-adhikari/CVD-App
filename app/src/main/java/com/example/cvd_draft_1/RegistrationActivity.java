@@ -122,29 +122,4 @@ public class RegistrationActivity extends AppCompatActivity {
                                     userData.put("username", username);
                                     userData.put("email", email);
 
-                                    db.collection("users").document(user.getUid())
-                                            .set(userData)
-                                            .addOnSuccessListener(aVoid -> {
-                                                Toast.makeText(RegistrationActivity.this, "Registration successful.",
-                                                        Toast.LENGTH_SHORT).show();
-
-                                                // Navigate to main activity
-                                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                                startActivity(intent);
-                                                finish();
-                                            })
-                                            .addOnFailureListener(e -> {
-                                                Toast.makeText(RegistrationActivity.this, "Failed to save user data.",
-                                                        Toast.LENGTH_SHORT).show();
-                                            });
-                                } else {
-                                    // If sign in fails, display a message to the user
-                                    Toast.makeText(RegistrationActivity.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-            }
-        });
-    }
-}
+                                    db.collection("users").document(user.getUid
