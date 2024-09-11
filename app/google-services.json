@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "318479227048",
+    "project_id": "cvdapp-f36ef",
+    "storage_bucket": "cvdapp-f36ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:318479227048:android:38cef8238b5828d70f4a9d",
+        "android_client_info": {
+          "package_name": "com.example.cvd_draft_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBd_BPfxRRLUe6DUeRrVptrgsBwEXPPgvc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
