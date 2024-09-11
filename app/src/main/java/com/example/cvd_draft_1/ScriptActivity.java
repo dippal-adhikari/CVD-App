@@ -1,12 +1,12 @@
 package com.example.cvd_draft_1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.ArrayList;
 
 public class ScriptActivity extends AppCompatActivity {
@@ -30,20 +30,20 @@ public class ScriptActivity extends AppCompatActivity {
         btnPrevious = findViewById(R.id.btnPrevious);
         btnGenerateScript = findViewById(R.id.btnGenerateScript);
 
-        // Initialize questions and answers
+        // Initialize question and answer lists
         questions = new ArrayList<>();
         answers = new ArrayList<>();
 
-        // Add targeted questions for video script
+        // Add questions
         questions.add("Introduce yourself.");
         questions.add("What is your professional background?");
         questions.add("What are your key skills?");
         questions.add("Describe a project or achievement you are proud of.");
         questions.add("What are your career goals?");
 
-        // Initialize empty answers list
+        // Initialize empty answers
         for (int i = 0; i < questions.size(); i++) {
-            answers.add(""); // Initially empty answers
+            answers.add(""); // Empty answers initially
         }
 
         // Display the first question
@@ -56,7 +56,7 @@ public class ScriptActivity extends AppCompatActivity {
                 // Save the current answer
                 saveAnswer();
 
-                // Move to the next question if there is one
+                // Move to the next question if possible
                 if (currentQuestionIndex < questions.size() - 1) {
                     currentQuestionIndex++;
                     updateQuestion();
@@ -83,11 +83,16 @@ public class ScriptActivity extends AppCompatActivity {
         btnGenerateScript.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Save the last answer and generate the final script
+                // Save the current answer
                 saveAnswer();
+
+                // Generate the script
                 String generatedScript = generateVideoScript();
-                // Display the script (you can use a new activity or a dialog)
-                displayScript(generatedScript);
+
+                // Pass the script to the new activity and display it
+                Intent intent = new Intent(ScriptActivity.this, ScriptDisplayActivity.class);
+                intent.putExtra("GENERATED_SCRIPT", generatedScript);
+                startActivity(intent);
             }
         });
     }
@@ -96,7 +101,7 @@ public class ScriptActivity extends AppCompatActivity {
     private void updateQuestion() {
         questionTextView.setText(questions.get(currentQuestionIndex));
         answerEditText.setText(answers.get(currentQuestionIndex));
-        btnPrevious.setEnabled(currentQuestionIndex > 0); // Disable the "Previous" button on the first question
+        btnPrevious.setEnabled(currentQuestionIndex > 0); // Disable "Previous" on first question
     }
 
     // Save the current answer
@@ -105,7 +110,7 @@ public class ScriptActivity extends AppCompatActivity {
         answers.set(currentQuestionIndex, currentAnswer);
     }
 
-    // Generate the final video script using the answers provided by the user
+    // Generate the video script by combining all the user's answers
     private String generateVideoScript() {
         StringBuilder script = new StringBuilder();
 
@@ -125,13 +130,5 @@ public class ScriptActivity extends AppCompatActivity {
         script.append(answers.get(4)).append("\n\n");
 
         return script.toString();
-    }
-
-    // Display the generated script (you can customize how this is shown to the user)
-    private void displayScript(String script) {
-        // For example, print to console or show it in a dialog for now
-        System.out.println(script);
-        // You can open a new activity or dialog to show the script to the user
-        // Alternatively, you can save the script as a file or show it in a TextView
     }
 }
