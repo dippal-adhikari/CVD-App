@@ -2,41 +2,59 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@android:color/white">
+    android:padding="16dp">
 
-    <!-- Back Button -->
+    <!-- Question -->
     <TextView
-        android:id="@+id/btnBack"
+        android:id="@+id/questionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Question?" />
+
+    <!-- Answer Input -->
+    <EditText
+        android:id="@+id/answerEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/questionTextView"
+        android:layout_marginTop="16dp"
+        android:padding="10dp"
+        android:hint="Enter your answer"
+        android:inputType="textMultiLine"
+        android:minHeight="100dp" />
+
+    <!-- Previous Button -->
+    <Button
+        android:id="@+id/btnPrevious"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="8dp"
-        android:padding="8dp"
-        android:text="← Back"
-        android:textColor="@color/theme"
-        android:textSize="16sp" />
+        android:layout_below="@id/answerEditText"
+        android:layout_marginTop="16dp"
+        android:text="Previous" />
 
-    <!-- Add new Button -->
-    <TextView
-        android:id="@+id/btnAddNew"
+    <!-- Next Button -->
+    <Button
+        android:id="@+id/btnNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="8dp"
-        android:padding="8dp"
-        android:text="Add new"
-        android:textColor="@color/theme"
-        android:textSize="16sp" />
+        android:layout_below="@id/answerEditText"
+        android:layout_marginTop="16dp"
+        android:text="Next" />
 
-    <!-- Title -->
-    <TextView
+    <!-- Generate Script Button -->
+    <Button
+        android:id="@+id/btnGenerateScript"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Scripts"
-        android:textSize="32sp"
-        android:textStyle="bold"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp" />
+        android:layout_below="@id/btnNext"
+        android:layout_marginTop="32dp"
+        android:text="Generate Script" />
 
 </RelativeLayout>
