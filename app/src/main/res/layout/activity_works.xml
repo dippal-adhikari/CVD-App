@@ -15,11 +15,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:text="How it works"
         android:textSize="32sp"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp" />
+        android:textStyle="bold" />
 
     <View
         android:layout_width="match_parent"
@@ -43,7 +43,7 @@
         android:id="@+id/btnJob"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="18dp"
         android:backgroundTint="@color/theme"
         android:text="looking for a job"
         android:textColor="@android:color/white" />
