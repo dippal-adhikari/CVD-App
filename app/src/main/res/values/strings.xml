@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">CVD - Draft -1</string>
+    <string name="change_language">Change Language</string>
+    <string name="how_it_works">How it works</string>
+    <string name="looking_for_a_job">looking for a job</string>
 
 </resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CVD - Draft -1</string>
+    <string name="change_language">Changer de langue</string>
+    <string name="how_it_works">Comment ça marche</string>
+    <string name="looking_for_a_job">à la recherche d\'un emploi</string>
+</resources>
