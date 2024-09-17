@@ -1,5 +1,6 @@
 package com.example.cvd_draft_1;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,6 +21,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import androidx.annotation.NonNull;
+
 
 import java.net.URI;
 
@@ -113,7 +120,13 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-
+        // Edit password click listener
+        iconEditPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPasswordResetDialog();
+            }
+        });
 
 
 
@@ -191,6 +204,45 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
-    
+    // Method to show a confirmation dialog for resetting the password
+    private void showPasswordResetDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Reset Password")
+                .setMessage("Are you sure you want to reset your password? An email will be sent to reset it.")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        sendPasswordResetEmail();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
+    // Method to send the password reset email
+    private void sendPasswordResetEmail() {
+        if (firebaseUser != null) {
+            String emailAddress = firebaseUser.getEmail();
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+
+            auth.sendPasswordResetEmail(emailAddress)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(ProfileActivity.this, "Password reset email sent.", Toast.LENGTH_SHORT).show();
+                                FirebaseAuth.getInstance().signOut();
+                                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Toast.makeText(ProfileActivity.this, "Failed to send reset email.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        } else {
+            Toast.makeText(this, "User not signed in.", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 }
