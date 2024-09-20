@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Simple base theme for your app -->
+    <style name="Theme.CVDDraft1" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here -->
+        <item name="android:windowBackground">@color/backgroundColor</item>
+        <item name="colorPrimary">@color/theme</item>
+        <item name="colorPrimaryDark">@color/gray</item>
+        <item name="colorAccent">@color/theme</item>
+    </style>
+</resources>
