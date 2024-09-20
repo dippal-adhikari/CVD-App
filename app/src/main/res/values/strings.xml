@@ -4,5 +4,7 @@
     <string name="how_it_works">How it works</string>
     <string name="looking_for_a_job">looking for a job</string>
     <string name="i_forgot_my_password" />
+    <string name="client_id" translatable="false">318479227048-26r85giu4825cs9al5mmglrdl8vfegj9.apps.googleusercontent.com</string>
+
 
 </resources>

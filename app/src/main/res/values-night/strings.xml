@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">CVD - Draft -1</string>
+    <string name="change_language">Change Language</string>
+    <string name="how_it_works">How it works</string>
+    <string name="looking_for_a_job">looking for a job</string>
     <string name="i_forgot_my_password" />
 </resources>
