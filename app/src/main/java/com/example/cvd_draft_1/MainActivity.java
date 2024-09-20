@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Videos button click listener
-        RelativeLayout btnVideos = findViewById(R.id.btnVideos);
+        LinearLayout btnVideos = findViewById(R.id.btnVideos);
         btnVideos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

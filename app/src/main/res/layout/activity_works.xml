@@ -38,16 +38,17 @@
         android:background="@android:color/darker_gray" />
 
     <!-- ViewPager2 for Swiping through images -->
+
+
+    <!-- Additional Options -->
+
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="325dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp" />
-
-
-    <!-- Additional Options -->
-
 
     <Button
         android:id="@+id/btnJob"
@@ -71,6 +72,28 @@
         android:backgroundTint="@color/theme"
         android:text="@string/change_language"
         android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/tvPartners"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="12dp"
+        android:text="Our Partners"
+        android:textSize="16sp" />
+
+
+    <ImageView
+        android:id="@+id/osky_logo"
+        android:layout_width="match_parent"
+        android:layout_height="107dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="13dp"
+        android:contentDescription="OSKY Logo"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:src="@drawable/osky" />
 
 
 </LinearLayout>
