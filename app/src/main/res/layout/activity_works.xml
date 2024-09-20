@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@android:color/white">
+  >
 
 <LinearLayout
 
@@ -14,13 +14,15 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="341dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
+        android:fontFamily="@font/dmsans_bold"
         android:text="@string/how_it_works"
-        android:textSize="32sp"
-        android:textStyle="bold" />
+        android:textColor="@android:color/black"
+        android:textSize="32sp" />
 
     <View
         android:layout_width="match_parent"
@@ -28,14 +30,21 @@
         android:background="@android:color/darker_gray" />
 
 
-
-
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/darker_gray" />
+
+    <!-- ViewPager2 for Swiping through images -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="325dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp" />
+
 
     <!-- Additional Options -->
 
@@ -44,6 +53,8 @@
         android:id="@+id/btnJob"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="18dp"
         android:backgroundTint="@color/theme"
         android:text="@string/looking_for_a_job"
@@ -54,10 +65,13 @@
         android:id="@+id/btnChangeLanguage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="18dp"
         android:backgroundTint="@color/theme"
         android:text="@string/change_language"
         android:textColor="@android:color/white" />
 
+
 </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>
