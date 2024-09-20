@@ -2,11 +2,9 @@
 <project version="4">
   <component name="deploymentTargetSelector">
     <selectionStates>
-      <SelectionState runConfigName="app">
+      <SelectionState runConfigName="CVD">
         <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="ScriptActivity">
-        <option name="selectionMode" value="DROPDOWN" />
+
       </SelectionState>
     </selectionStates>
   </component>
