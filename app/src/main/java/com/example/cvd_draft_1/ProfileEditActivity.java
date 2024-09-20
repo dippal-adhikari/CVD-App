@@ -1,13 +1,7 @@
 package com.example.cvd_draft_1;
 
 import android.os.Bundle;
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,8 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ProfileEditActivity extends AppCompatActivity {
@@ -28,8 +20,6 @@ public class ProfileEditActivity extends AppCompatActivity {
     private EditText etName, etPhone, etAddress;
     private Button btnSaveChanges;
     private FirebaseFirestore db;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +36,10 @@ public class ProfileEditActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         firebaseUser = mAuth.getCurrentUser();
 
-
         // Retrieve data passed from ProfileActivity
         String name = getIntent().getStringExtra("name");
         String phone = getIntent().getStringExtra("phone");
         String address = getIntent().getStringExtra("address");
-        String postcode = getIntent().getStringExtra("postcode");
 
         // Pre-fill the EditText fields with the user data
         etName.setText(name);
@@ -59,12 +47,7 @@ public class ProfileEditActivity extends AppCompatActivity {
         etAddress.setText(address);
 
         // Handle Save button click
-        btnSaveChanges.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveUserDetails();
-            }
-        });
+        btnSaveChanges.setOnClickListener(v -> saveUserDetails());
 
         // Handle back button
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
@@ -95,6 +78,4 @@ public class ProfileEditActivity extends AppCompatActivity {
                 })
                 .addOnFailureListener(e -> Toast.makeText(ProfileEditActivity.this, "Failed to update details", Toast.LENGTH_SHORT).show());
     }
-
-
 }

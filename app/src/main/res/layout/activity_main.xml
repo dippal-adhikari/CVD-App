@@ -86,7 +86,7 @@
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/script_library"
+                android:src="@drawable/horizontal_icon"
                 android:layout_marginStart="16dp"
                 android:contentDescription="Script Image" />
         </LinearLayout>
