@@ -43,6 +43,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -68,6 +69,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();  // Initialize Firestore
+        editTextUsername = findViewById(R.id.etName);
         editTextEmail = findViewById(R.id.etEmail);
         editTextPassword = findViewById(R.id.etPassword);
 
@@ -146,45 +148,74 @@ public class RegistrationActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     // Sign in success, get Firebase user
                                     FirebaseUser user = mAuth.getCurrentUser();
+                                    if (user != null) {
+                                        // Now check if the user data exists in Firestore
+                                        DocumentReference docRef = db.collection("users").document(user.getUid());
+                                        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    DocumentSnapshot document = task.getResult();
+                                                    if (document != null && document.exists()) {
+                                                        // User data already exists, update only missing fields
+                                                        Map<String, Object> updatedFields = new HashMap<>();
 
-                                    // Store user data in Firestore
-                                    Map<String, Object> userData = new HashMap<>();
-                                    userData.put("username", username);
-                                    userData.put("email", email);
-                                    userData.put("phone", "");
-                                    userData.put("address", "");
-                                    userData.put("finalScript", "");
+                                                        if (!document.contains("phone")) {
+                                                            updatedFields.put("phone", "");
+                                                        }
 
+                                                        if (!document.contains("address")) {
+                                                            updatedFields.put("address", "");
+                                                        }
 
-                                    db.collection("users").document(user.getUid())
-                                            .set(userData)
-                                            .addOnSuccessListener(aVoid -> {
-                                                Toast.makeText(RegistrationActivity.this, "Registration successful.",
-                                                        Toast.LENGTH_SHORT).show();
+                                                        // Update only if there are fields to update
+                                                        if (!updatedFields.isEmpty()) {
+                                                            db.collection("users").document(user.getUid())
+                                                                    .update(updatedFields)
+                                                                    .addOnSuccessListener(aVoid -> {
+                                                                        Toast.makeText(RegistrationActivity.this, "Fields updated successfully.", Toast.LENGTH_SHORT).show();
+                                                                    })
+                                                                    .addOnFailureListener(e -> {
+                                                                        Toast.makeText(RegistrationActivity.this, "Failed to update fields.", Toast.LENGTH_SHORT).show();
+                                                                    });
+                                                        }
+                                                    } else {
+                                                        // If user data doesn't exist, create a new document with defaults
+                                                        Map<String, Object> userData = new HashMap<>();
+                                                        userData.put("username", user.getDisplayName());
+                                                        userData.put("email", user.getEmail());
+                                                        userData.put("phone", "");
+                                                        userData.put("address", "");
+                                                        userData.put("finalScript", "");
 
-                                                // Navigate to main activity
-                                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                                startActivity(intent);
-                                                finish();
-                                            })
-                                            .addOnFailureListener(e -> {
-                                                Toast.makeText(RegistrationActivity.this, "Failed to save user data.",
-                                                        Toast.LENGTH_SHORT).show();
-                                            });
+                                                        db.collection("users").document(user.getUid())
+                                                                .set(userData)
+                                                                .addOnSuccessListener(aVoid -> {
+                                                                    Toast.makeText(RegistrationActivity.this, "User data saved successfully.", Toast.LENGTH_SHORT).show();
+                                                                })
+                                                                .addOnFailureListener(e -> {
+                                                                    Toast.makeText(RegistrationActivity.this, "Failed to save user data.", Toast.LENGTH_SHORT).show();
+                                                                });
+                                                    }
+                                                } else {
+                                                    Toast.makeText(RegistrationActivity.this, "Failed to check user data.", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                                    }
                                 } else {
-                                    // If sign in fails, display a message to the user
-                                    Toast.makeText(RegistrationActivity.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RegistrationActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
+
             }
-        });
+            });
     }
 
 
 
-
+    // google signup
     private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {
@@ -199,37 +230,82 @@ public class RegistrationActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 // Sign in success, get Firebase user
                                 FirebaseUser user = mAuth.getCurrentUser();
+                                if (user != null) {
+                                    // Reference to the user document in Firestore
+                                    DocumentReference docRef = db.collection("users").document(user.getUid());
 
-                                // Store user data in Firestore
-                                Map<String, Object> userData = new HashMap<>();
-                                userData.put("username", mAuth.getCurrentUser().getDisplayName());
-                                userData.put("email", mAuth.getCurrentUser().getEmail());
-                                userData.put("phone", "");
-                                userData.put("address", "");
-                                userData.put("finalScript", "");
+                                    // Check if the user's document already exists
+                                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                DocumentSnapshot document = task.getResult();
+                                                if (document.exists()) {
+                                                    // Document exists, update only missing fields
+                                                    Map<String, Object> updatedFields = new HashMap<>();
 
+                                                    // Check for missing fields and add them to the map
+                                                    if (!document.contains("username")) {
+                                                        updatedFields.put("username", user.getDisplayName());
+                                                    }
+                                                    if (!document.contains("email")) {
+                                                        updatedFields.put("email", user.getEmail());
+                                                    }
+                                                    // Add any other fields that should be updated if missing
+                                                    // e.g., phone, address, finalScript, etc.
 
-                                db.collection("users").document(user.getUid())
-                                        .set(userData)
-                                        .addOnSuccessListener(aVoid -> {
-                                            Toast.makeText(RegistrationActivity.this, "Registration successful.",
-                                                    Toast.LENGTH_SHORT).show();
+                                                    // Update only if there are fields to update
+                                                    if (!updatedFields.isEmpty()) {
+                                                        docRef.update(updatedFields)
+                                                                .addOnSuccessListener(aVoid -> {
+                                                                    Toast.makeText(RegistrationActivity.this, "Fields updated successfully.", Toast.LENGTH_SHORT).show();
+                                                                    // Navigate to main activity
+                                                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                                    startActivity(intent);
+                                                                    finish();
+                                                                })
+                                                                .addOnFailureListener(e -> {
+                                                                    Toast.makeText(RegistrationActivity.this, "Failed to update user data.", Toast.LENGTH_SHORT).show();
+                                                                });
+                                                    } else {
+                                                        // Navigate to main activity if no fields needed to be updated
+                                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                        startActivity(intent);
+                                                        finish();
+                                                    }
+                                                } else {
+                                                    // Document doesn't exist, create new data
+                                                    Map<String, Object> userData = new HashMap<>();
+                                                    userData.put("username", user.getDisplayName());
+                                                    userData.put("email", user.getEmail());
+                                                    userData.put("phone", ""); // Add default or empty values
+                                                    userData.put("address", "");
+                                                    userData.put("finalScript", "");
 
-                                            // Navigate to main activity
-                                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                            startActivity(intent);
-                                            finish();
-                                        })
-                                        .addOnFailureListener(e -> {
-                                            Toast.makeText(RegistrationActivity.this, "Failed to save user data.",
-                                                    Toast.LENGTH_SHORT).show();
-                                        });
+                                                    docRef.set(userData)
+                                                            .addOnSuccessListener(aVoid -> {
+                                                                Toast.makeText(RegistrationActivity.this, "Registration successful.", Toast.LENGTH_SHORT).show();
+                                                                // Navigate to main activity
+                                                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                                startActivity(intent);
+                                                                finish();
+                                                            })
+                                                            .addOnFailureListener(e -> {
+                                                                Toast.makeText(RegistrationActivity.this, "Failed to save user data.", Toast.LENGTH_SHORT).show();
+                                                            });
+                                                }
+                                            } else {
+                                                Toast.makeText(RegistrationActivity.this, "Failed to check user data.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+                                }
                             } else {
-                                // If sign in fails, display a message to the user
-                                Toast.makeText(RegistrationActivity.this, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
+                                // If sign-in fails, display a message to the user
+                                Toast.makeText(RegistrationActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                             }
                         }
+
                     });
                 } catch (ApiException e) {
                     e.printStackTrace();
