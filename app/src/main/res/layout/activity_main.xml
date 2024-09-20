@@ -15,11 +15,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true">
 
+        <!-- Image aligned to the top left -->
         <ImageView
             android:id="@+id/appLogo"
-            android:layout_width="wrap_content"
+            android:layout_width="92dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo" />
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="1dp"
+            android:src="@drawable/horizontal_icon" />
 
     </RelativeLayout>
 
@@ -29,14 +33,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/topBar"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:elevation="4dp"
         app:cardCornerRadius="8dp"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            >
+        <!-- Text Section -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
@@ -55,16 +70,25 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 android:text="Answer questions and generate your script"
-                android:textSize="20sp" />
+                android:textSize="16dp" />
 
             <ProgressBar
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="100dp"
+                style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:progress="25"
-                style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="20dp"
+                android:progress="25" />
+        </LinearLayout>
+            <!-- Image Section (on the right) -->
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/horizontal_icon"
+                android:layout_marginStart="16dp"
+                android:contentDescription="Script Image" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -74,7 +98,9 @@
         android:layout_height="1dp"
         android:layout_below="@+id/progressSection"
         android:layout_marginTop="16dp"
-        android:background="@color/gray" />
+        android:background="@color/gray"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"/>
 
     <!-- Library Section -->
     <LinearLayout
@@ -82,7 +108,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/progressSection"
         android:orientation="vertical"
-        android:paddingTop="16dp">
+        android:paddingTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -106,41 +135,44 @@
             <RelativeLayout
                 android:id="@+id/btnScripts"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
 
                 <TextView
                     android:id="@+id/tvScripts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="20dp"
                     android:text="Scripts"
                     android:textSize="20sp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
+                    android:layout_width="267dp"
+                    android:layout_height="33dp"
                     android:layout_below="@id/tvScripts"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="20dp"
-                    android:text="Create new scripts and edit existing ones"
+                    android:text="Create new scripts and edit \nexisting ones"
                     android:textColor="@color/gray" />
 
                 <ImageView
                     android:id="@+id/iconScripts"
-                    android:layout_width="wrap_content"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_script" />
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="12dp"
+                    android:src="@drawable/add_script" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
         <!-- Videos Section -->
         <androidx.cardview.widget.CardView
             android:id="@+id/videoSection"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="4dp"
@@ -148,45 +180,54 @@
             app:cardCornerRadius="8dp"
             android:background="@color/backgroundColor">
 
-            <RelativeLayout
+            <!-- Using a horizontal LinearLayout to align text and image horizontally -->
+            <LinearLayout
                 android:id="@+id/btnVideos"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-                <TextView
-                    android:id="@+id/tvVideos"
-                    android:layout_width="wrap_content"
+                <!-- Text section -->
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="20dp"
-                    android:text="Test Videos"
-                    android:textSize="20sp" />
+                    android:orientation="vertical"
+                    android:layout_weight="1">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvVideos"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="20dp"
-                    android:text="Create new videos and edit existing ones"
-                    android:textColor="@color/gray" />
+                    <TextView
+                        android:id="@+id/tvVideos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Test Videos"
+                        android:textSize="20sp" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:text="Create new videos and\nedit existing ones"
+                        android:textColor="@color/gray" />
+                </LinearLayout>
+
+                <!-- Image section -->
                 <ImageView
                     android:id="@+id/iconVideos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_video" />
-            </RelativeLayout>
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="25dp"
+                    android:src="@drawable/video_library" />
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Divider Line -->
-        <View
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray" />
+
+
     </LinearLayout>
 
     <!-- Profile Section -->
@@ -196,7 +237,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/bottomNavigation"
         android:orientation="vertical"
-        android:paddingTop="16dp">
+        android:paddingTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -230,7 +273,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/white"
         app:menu="@menu/bottom_navigation_menu" />
+
+
 </RelativeLayout>
 
 

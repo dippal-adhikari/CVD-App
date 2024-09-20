@@ -2,12 +2,16 @@ package com.example.cvd_draft_1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,10 +19,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Enable edge-to-edge layout
-        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
-
+        EdgeToEdge.enable(this);  // Ensure EdgeToEdge is correctly defined
         setContentView(R.layout.activity_main);
 
         // Apply window insets
@@ -28,11 +29,38 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        // View/Edit Profile button click listener
+        Button btnViewEditProfile = findViewById(R.id.btnViewEditProfile);
+        btnViewEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
         // Script button click listener
         RelativeLayout btnScripts = findViewById(R.id.btnScripts);
-        btnScripts.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, ScriptActivity.class);
-            startActivity(intent);
+        btnScripts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ScriptActivity.class);
+                startActivity(intent);
+            }
         });
+
+        // Videos button click listener
+        LinearLayout btnVideos = findViewById(R.id.btnVideos);
+        btnVideos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, VideoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
     }
 }
