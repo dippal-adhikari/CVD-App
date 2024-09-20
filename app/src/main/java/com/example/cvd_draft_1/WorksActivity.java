@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.viewpager2.widget.ViewPager2;
 import android.content.res.Configuration;
 import java.util.Locale;
 
@@ -24,6 +25,23 @@ import com.google.firebase.auth.FirebaseUser;
 public class WorksActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
 
+    // Images for each step
+    private int[] images = {
+            R.drawable.step1,
+            R.drawable.step2,
+            R.drawable.step3
+    };
+
+
+    // Titles for each step
+    private String[] stepTitles = {"Step 1", "Step 2", "Step 3"};
+
+    // Descriptions for each step
+    private String[] stepDescriptions = {
+            "Answer your chosen questions for an AI to generate a script that fits your needs",
+            "Follow the editing steps to refine the script",
+            "Record your video pitch with the generated script"
+    };
 
 
     @Override
@@ -55,6 +73,11 @@ public class WorksActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Setup ViewPager2 with adapter for image and text swiping
+        ViewPager2 viewPager = findViewById(R.id.viewPager);
+        ImagePagerAdapter adapter = new ImagePagerAdapter(images, stepTitles, stepDescriptions);
+        viewPager.setAdapter(adapter);
 
         Button btnJob = findViewById(R.id.btnJob);
         btnJob.setOnClickListener(new View.OnClickListener() {
