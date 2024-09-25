@@ -51,7 +51,9 @@ import java.util.Map;
 import java.util.Objects;
 
 
+
 public class RegistrationActivity extends AppCompatActivity {
+
 
 
     EditText editTextEmail, editTextPassword, editTextUsername;
@@ -61,6 +63,19 @@ public class RegistrationActivity extends AppCompatActivity {
     GoogleSignInClient googleSignInClient;
     ShapeableImageView imageView;
     TextView name, mail;
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,9 +189,17 @@ public class RegistrationActivity extends AppCompatActivity {
                                                                     .update(updatedFields)
                                                                     .addOnSuccessListener(aVoid -> {
                                                                         Toast.makeText(RegistrationActivity.this, "Fields updated successfully.", Toast.LENGTH_SHORT).show();
+                                                                        // Navigate to main activity
+                                                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                                        startActivity(intent);
+                                                                        finish();
                                                                     })
                                                                     .addOnFailureListener(e -> {
                                                                         Toast.makeText(RegistrationActivity.this, "Failed to update fields.", Toast.LENGTH_SHORT).show();
+                                                                        // Navigate to main activity
+                                                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                                        startActivity(intent);
+                                                                        finish();
                                                                     });
                                                         }
                                                     } else {
@@ -191,10 +214,10 @@ public class RegistrationActivity extends AppCompatActivity {
                                                         db.collection("users").document(user.getUid())
                                                                 .set(userData)
                                                                 .addOnSuccessListener(aVoid -> {
-                                                                    Toast.makeText(RegistrationActivity.this, "User data saved successfully.", Toast.LENGTH_SHORT).show();
+                                                                    Toast.makeText(RegistrationActivity.this, "Registration successful.", Toast.LENGTH_SHORT).show();
                                                                 })
                                                                 .addOnFailureListener(e -> {
-                                                                    Toast.makeText(RegistrationActivity.this, "Failed to save user data.", Toast.LENGTH_SHORT).show();
+                                                                    Toast.makeText(RegistrationActivity.this, "Unsuccessful registration.", Toast.LENGTH_SHORT).show();
                                                                 });
                                                     }
                                                 } else {

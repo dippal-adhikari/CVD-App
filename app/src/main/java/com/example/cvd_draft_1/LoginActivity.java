@@ -79,6 +79,13 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
             startActivity(intent);
         });
+
+        // Navigate to ForgotPasswordActivity
+        TextView tvForgotPassword = findViewById(R.id.tvForgotPassword);
+        tvForgotPassword.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+            startActivity(intent);
+        });
     }
 
     // Email and password login

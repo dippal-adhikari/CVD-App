@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    tools:context=".CreateVideoActivity">
+
+        <!-- Camera Preview -->
+        <androidx.camera.view.PreviewView
+            android:id="@+id/previewView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:contentDescription="@string/preview_view_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <!-- Teleprompter Layout -->
+        <LinearLayout
+            android:id="@+id/teleprompter_layout"
+            android:layout_width="match_parent"
+            android:layout_height="154dp"
+            android:alpha="0.8"
+            android:background="@color/primaryDarkColor"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/previewView">
+
+            <TextView
+                android:id="@+id/script_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="@string/sample_script"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:importantForAccessibility="yes"
+                android:accessibilityLiveRegion="polite" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_decrease_speed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/primaryColor"
+                    android:contentDescription="@string/decrease_speed"
+                    android:text="-"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:importantForAccessibility="yes" />
+
+                <Button
+                    android:id="@+id/btn_increase_speed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/primaryColor"
+                    android:contentDescription="@string/increase_speed"
+                    android:text="+"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:importantForAccessibility="yes" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Floating Action Button for Recording -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_recording"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/start_recording"
+            android:src="@drawable/ic_record"
+            android:tint="@android:color/white"
+            app:backgroundTint="@color/secondaryColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.9"
+            android:importantForAccessibility="yes" />
+
+        <TextView
+            android:id="@+id/recording_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="@id/recording_progress_bar"
+            app:layout_constraintEnd_toEndOf="@id/recording_progress_bar"
+            app:layout_constraintStart_toStartOf="@id/recording_progress_bar"
+            app:layout_constraintTop_toTopOf="@id/recording_progress_bar" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/recording_progress_bar"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/fab_recording"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:importantForAccessibility="yes"
+            app:indicatorSize="80dp"
+            app:trackThickness="8dp"
+            app:indicatorColor="@color/secondaryColor"
+            app:trackColor="@color/primaryColor" />
+
+        <!-- Button to Show Bottom Sheet -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/show_bottom_sheet_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/show_settings"
+            android:src="@drawable/ic_settings"
+            android:tint="@android:color/white"
+            app:backgroundTint="@color/secondaryColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.8"
+            android:importantForAccessibility="yes" />
+
+        <!-- Bottom Sheet for Additional Controls -->
+        <LinearLayout
+            android:id="@+id/bottom_sheet"
+            android:layout_width="match_parent"
+            android:layout_height="278dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/primaryLightColor"
+            android:orientation="vertical"
+            android:padding="0dp"
+            app:behavior_hideable="true"
+            app:behavior_peekHeight="0dp"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Settings Heading -->
+                    <TextView
+                        android:id="@+id/settings_heading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/settings_heading"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:importantForAccessibility="yes" />
+
+                    <!-- Rotate Camera Button -->
+                    <Button
+                        android:id="@+id/rotateButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        android:backgroundTint="@color/secondaryColor"
+                        android:contentDescription="@string/rotate_camera"
+                        android:text="@string/rotate_camera"
+                        android:textColor="@color/white"
+                        android:importantForAccessibility="yes" />
+
+                    <!-- Flashlight Toggle Button -->
+                    <Button
+                        android:id="@+id/toggle_flashlight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        android:backgroundTint="@color/secondaryColor"
+                        android:contentDescription="@string/flashlight"
+                        android:text="@string/flashlight"
+                        android:textColor="@color/white"
+                        android:importantForAccessibility="yes" />
+
+                    <!-- Change Background Button -->
+                    <Button
+                        android:id="@+id/change_background"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        android:backgroundTint="@color/secondaryColor"
+                        android:contentDescription="@string/change_background"
+                        android:text="@string/change_background"
+                        android:textColor="@color/white"
+                        android:importantForAccessibility="yes" />
+
+                    <!-- Video Quality Spinner -->
+                    <Spinner
+                        android:id="@+id/video_quality"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        android:backgroundTint="@color/secondaryColor"
+                        android:contentDescription="@string/video_quality"
+                        android:importantForAccessibility="yes" />
+
+                    <!-- Manual Focus -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/manual_focus"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="16sp"
+                        android:importantForAccessibility="yes" />
+
+                    <SeekBar
+                        android:id="@+id/manual_focus"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        android:max="100"
+                        android:progressTint="@color/secondaryColor"
+                        android:thumbTint="@color/primaryColor"
+                        android:importantForAccessibility="yes" />
+
+                    <!-- Zoom Level -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/zoom_level"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="16sp"
+                        android:importantForAccessibility="yes" />
+
+                    <SeekBar
+                        android:id="@+id/zoomSeekBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        android:max="100"
+                        android:progress="0"
+                        android:progressTint="@color/secondaryColor"
+                        android:thumbTint="@color/primaryColor"
+                        android:importantForAccessibility="yes" />
+
+                    <Button
+                        android:id="@+id/reset_zoom_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        android:backgroundTint="@color/secondaryColor"
+                        android:contentDescription="@string/reset_zoom"
+                        android:text="@string/reset_zoom"
+                        android:textColor="@color/white"
+                        android:importantForAccessibility="yes" />
+
+                    <!-- Exposure Control -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/exposure_control"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="16sp"
+                        android:importantForAccessibility="yes" />
+
+                    <SeekBar
+                        android:id="@+id/exposure_control"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        android:max="100"
+                        android:progressTint="@color/secondaryColor"
+                        android:thumbTint="@color/primaryColor"
+                        android:importantForAccessibility="yes" />
+
+                    <Button
+                        android:id="@+id/reset_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        android:backgroundTint="@color/secondaryColor"
+                        android:contentDescription="@string/reset_exposure"
+                        android:text="@string/reset_exposure"
+                        android:textColor="@color/white"
+                        android:importantForAccessibility="yes" />
+
+                    <!-- Video Stabilization Button -->
+                    <Button
+                        android:id="@+id/toggle_stabilization"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        android:backgroundTint="@color/secondaryColor"
+                        android:contentDescription="@string/stabilization"
+                        android:text="@string/stabilization"
+                        android:textColor="@color/white"
+                        android:importantForAccessibility="yes" />
+
+                    <!-- Grid Overlay Button -->
+                    <Button
+                        android:id="@+id/toggle_grid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        android:backgroundTint="@color/secondaryColor"
+                        android:contentDescription="@string/grid"
+                        android:text="@string/grid"
+                        android:textColor="@color/white"
+                        android:importantForAccessibility="yes" />
+
+                    <!-- Timer Button -->
+                    <Button
+                        android:id="@+id/toggle_timer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        android:backgroundTint="@color/secondaryColor"
+                        android:contentDescription="@string/timer"
+                        android:text="@string/timer"
+                        android:textColor="@color/white"
+                        android:importantForAccessibility="yes" />
+
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

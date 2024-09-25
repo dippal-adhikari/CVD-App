@@ -11,11 +11,7 @@
     android:src="@drawable/osky"
     android:contentDescription="OSKY Logo"/>
 
-    <!-- Back Button -->
 
-    <!-- Login Title -->
-
-    <!-- Email Label -->
 
     <Button
         android:id="@+id/btnBack"
@@ -119,6 +115,8 @@
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"/>
 
+
+
     <!-- Sign Up -->
     <TextView
         android:id="@+id/tvSignUp"
@@ -149,7 +147,6 @@
         android:gravity="center"
         android:layout_marginTop="16dp">
 
-        <!-- LinkedIn, Google, Apple logos (Assuming images are in drawable) -->
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

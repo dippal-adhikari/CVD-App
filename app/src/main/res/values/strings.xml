@@ -3,8 +3,43 @@
     <string name="change_language">Change Language</string>
     <string name="how_it_works">How it works</string>
     <string name="looking_for_a_job">looking for a job</string>
-    <string name="i_forgot_my_password" />
+    <string name="i_forgot_my_password">I forgot my password</string>
     <string name="client_id" translatable="false">318479227048-26r85giu4825cs9al5mmglrdl8vfegj9.apps.googleusercontent.com</string>
 
+    <string name="preview_view_description">Camera Preview</string>
+    <string name="sample_script">This is a sample script for the teleprompter.</string>
+    <string name="start_recording">Start Recording</string>
+    <string name="stop_recording">Stop Recording</string>
+    <string name="show_settings">Show Settings</string>
+    <string name="settings_heading">Settings</string>
+    <string name="rotate_camera">Rotate Camera</string>
+    <string name="flashlight">Flashlight</string>
+    <string name="change_background">Change Background</string>
+    <string name="manual_focus">Manual Focus</string>
+    <string name="zoom_level">Zoom Level</string>
+    <string name="reset_zoom">Reset Zoom</string>
+    <string name="exposure_control">Exposure Control</string>
+    <string name="reset_exposure">Reset Exposure</string>
+    <string name="stabilization">Stabilization</string>
+    <string name="grid">Grid</string>
+    <string name="timer">Timer</string>
+    <string name="decrease_speed">Decrease Speed</string>
+    <string name="increase_speed">Increase Speed</string>
+    <string name="video_quality">Video Quality</string>
+    <string name="zoom_out">Zoom Out</string>
+    <string name="zoom_in">Zoom In</string>
+    <string name="enter_file_name">Enter file name</string>
+    <string name="file_name_empty">File name cannot be empty</string>
+    <string name="recording_saved">Recording saved: %1$s</string>
+    <string name="recording_error">Recording error: %1$s</string>
+    <string name="camera_permission_denied">Camera permission denied</string>
 
+    <string-array name="video_quality_options">
+        <item>Lowest</item>
+        <item>SD</item>
+        <item>HD</item>
+        <item>FHD</item>
+        <item>UHD</item>
+        <item>Highest</item>
+    </string-array>
 </resources>
