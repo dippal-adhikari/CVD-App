@@ -1,15 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/scriptTextView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:padding="16dp" />
+        android:orientation="vertical">
 
-</LinearLayout>
+        <!-- Editable script field -->
+        <EditText
+            android:id="@+id/editTextScript"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Generated Script"
+            android:inputType="textMultiLine"
+            android:minHeight="300dp"
+            android:gravity="top"
+            android:padding="10dp" />
+
+        <!-- Save button to save the edited script -->
+        <Button
+            android:id="@+id/btnSaveScript"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save Script"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp" />
+
+    </LinearLayout>
+</ScrollView>

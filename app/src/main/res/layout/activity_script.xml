@@ -1,60 +1,127 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- Question -->
-    <TextView
-        android:id="@+id/questionTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="Question?" />
-
-    <!-- Answer Input -->
-    <EditText
-        android:id="@+id/answerEditText"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/questionTextView"
-        android:layout_marginTop="16dp"
-        android:padding="10dp"
-        android:hint="Enter your answer"
-        android:inputType="textMultiLine"
-        android:minHeight="100dp" />
+        android:orientation="vertical">
 
-    <!-- Previous Button -->
-    <Button
-        android:id="@+id/btnPrevious"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/answerEditText"
-        android:layout_marginTop="16dp"
-        android:text="Previous" />
+        <!-- Question Selection -->
+        <LinearLayout
+            android:id="@+id/questionContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    <!-- Next Button -->
-    <Button
-        android:id="@+id/btnNext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@id/answerEditText"
-        android:layout_marginTop="16dp"
-        android:text="Next" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Questions"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
 
-    <!-- Generate Script Button -->
-    <Button
-        android:id="@+id/btnGenerateScript"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/btnNext"
-        android:layout_marginTop="32dp"
-        android:text="Generate Script" />
+        </LinearLayout>
 
-</RelativeLayout>
+        <!-- Submit Button after all questions -->
+        <Button
+            android:id="@+id/btnSubmitQuestions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:text="Submit" />
+
+        <!-- Question and Answer Section -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/questionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Question"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:layout_marginBottom="16dp" />
+
+            <EditText
+                android:id="@+id/answerEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your answer"
+                android:inputType="textMultiLine"
+                android:minHeight="100dp"
+                android:visibility="gone"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Navigation Buttons -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btnPrevious"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Previous"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/btnNext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Next"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Script Style Selection -->
+        <CheckBox
+            android:id="@+id/checkBoxCasual"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Casual"
+            android:visibility="gone"
+            android:layout_marginTop="16dp" />
+
+        <CheckBox
+            android:id="@+id/checkBoxProfessional"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Professional"
+            android:visibility="gone"
+            android:layout_marginTop="8dp" />
+
+        <CheckBox
+            android:id="@+id/checkBoxFriendly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Friendly"
+            android:visibility="gone"
+            android:layout_marginTop="8dp" />
+
+        <!-- Generate Script Button -->
+        <Button
+            android:id="@+id/btnGenerateScript"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Generate Script"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"
+            android:layout_marginTop="32dp" />
+
+    </LinearLayout>
+
+</ScrollView>
