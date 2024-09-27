@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +33,8 @@ public class ScriptActivity extends AppCompatActivity {
     private Button btnSubmitQuestions, btnNext, btnPrevious, btnGenerateScript;
     private TextView questionTextView;
     private EditText answerEditText;
-    private CheckBox checkBoxCasual, checkBoxProfessional, checkBoxFriendly;
+    private RadioGroup radioGroupStyle;
+    private RadioButton radioCasual, radioProfessional, radioFriendly;
 
     private ArrayList<String> selectedQuestions;
     private ArrayList<String> answers;
@@ -51,9 +54,10 @@ public class ScriptActivity extends AppCompatActivity {
         btnGenerateScript = findViewById(R.id.btnGenerateScript);
         questionTextView = findViewById(R.id.questionTextView);
         answerEditText = findViewById(R.id.answerEditText);
-        checkBoxCasual = findViewById(R.id.checkBoxCasual);
-        checkBoxProfessional = findViewById(R.id.checkBoxProfessional);
-        checkBoxFriendly = findViewById(R.id.checkBoxFriendly);
+        radioGroupStyle = findViewById(R.id.radioGroupStyle);
+        radioCasual = findViewById(R.id.radioCasual);
+        radioProfessional = findViewById(R.id.radioProfessional);
+        radioFriendly = findViewById(R.id.radioFriendly);
 
         // Set up questions and checkboxes
         ArrayList<String> questions = new ArrayList<>();
@@ -142,19 +146,19 @@ public class ScriptActivity extends AppCompatActivity {
         btnNext.setVisibility(View.GONE);
         btnPrevious.setVisibility(View.GONE);
 
-        checkBoxCasual.setVisibility(View.VISIBLE);
-        checkBoxProfessional.setVisibility(View.VISIBLE);
-        checkBoxFriendly.setVisibility(View.VISIBLE);
+        radioGroupStyle.setVisibility(View.VISIBLE);
         btnGenerateScript.setVisibility(View.VISIBLE);
     }
 
     private void generateScript() {
+        int selectedStyleId = radioGroupStyle.getCheckedRadioButtonId();
         String selectedStyle = "";
-        if (checkBoxCasual.isChecked()) {
+
+        if (selectedStyleId == R.id.radioCasual) {
             selectedStyle = "Casual";
-        } else if (checkBoxProfessional.isChecked()) {
+        } else if (selectedStyleId == R.id.radioProfessional) {
             selectedStyle = "Professional";
-        } else if (checkBoxFriendly.isChecked()) {
+        } else if (selectedStyleId == R.id.radioFriendly) {
             selectedStyle = "Friendly";
         }
 

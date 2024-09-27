@@ -87,30 +87,34 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Script Style Selection -->
-        <CheckBox
-            android:id="@+id/checkBoxCasual"
+        <!-- Script Style Selection (RadioGroup with RadioButtons) -->
+        <RadioGroup
+            android:id="@+id/radioGroupStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Casual"
             android:visibility="gone"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
 
-        <CheckBox
-            android:id="@+id/checkBoxProfessional"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Professional"
-            android:visibility="gone"
-            android:layout_marginTop="8dp" />
+            <RadioButton
+                android:id="@+id/radioCasual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Casual" />
 
-        <CheckBox
-            android:id="@+id/checkBoxFriendly"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Friendly"
-            android:visibility="gone"
-            android:layout_marginTop="8dp" />
+            <RadioButton
+                android:id="@+id/radioProfessional"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Professional" />
+
+            <RadioButton
+                android:id="@+id/radioFriendly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Friendly" />
+
+        </RadioGroup>
 
         <!-- Generate Script Button -->
         <Button
