@@ -3,39 +3,55 @@ package com.example.cvd_draft_1;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 public class ScriptDisplayActivity extends AppCompatActivity {
 
-    private EditText editTextScript;
-    private Button btnSaveScript;
+    private LinearLayout scriptContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_script_display);
 
-        // Initialize views
-        editTextScript = findViewById(R.id.editTextScript);
-        btnSaveScript = findViewById(R.id.btnSaveScript);
+        scriptContainer = findViewById(R.id.scriptContainer);
 
-        // Get the generated script from the intent
-        String generatedScript = getIntent().getStringExtra("GENERATED_SCRIPT");
+        // Retrieve the passed questions and answers from the Intent
+        ArrayList<String> questions = getIntent().getStringArrayListExtra("QUESTIONS");
+        ArrayList<String> answers = getIntent().getStringArrayListExtra("ANSWERS");
 
-        // Display the script in the editable EditText
-        if (generatedScript != null) {
-            editTextScript.setText(generatedScript);
-        }
-
-        // Handle save button click (optional: Save functionality to be added)
-        btnSaveScript.setOnClickListener(v -> {
-            // Here you could save the edited script, for now, we'll just show a message
-            String editedScript = editTextScript.getText().toString().trim();
-            if (!editedScript.isEmpty()) {
-                // Save the script or perform any desired operation here
-                // Example: save to local storage or send it back to a server
-                finish(); // Close activity after saving
+        if (questions != null && answers != null && questions.size() == answers.size()) {
+            for (int i = 0; i < questions.size(); i++) {
+                String question = questions.get(i);
+                String answer = answers.get(i);
+                addScriptEditText(question, answer);
             }
-        });
+        }
+    }
+
+    // Method to add an EditText for each question and answer
+    private void addScriptEditText(String question, String answer) {
+        // Create a TextView for the question label
+        TextView questionLabel = new TextView(this);
+        questionLabel.setText(question);  // Display the question as a label
+        questionLabel.setTextSize(16);
+        questionLabel.setPadding(16, 16, 16, 8);
+
+        // Create an EditText for the answer
+        EditText editText = new EditText(this);
+        editText.setText(answer);  // Set the answer as the initial text
+        editText.setTextSize(16);
+        editText.setPadding(16, 16, 16, 16);
+
+        // Add the question label and the editable answer field to the layout
+        scriptContainer.addView(questionLabel);
+        scriptContainer.addView(editText);
     }
 }
