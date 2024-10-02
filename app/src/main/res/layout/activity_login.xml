@@ -11,7 +11,7 @@
     android:src="@drawable/osky"
     android:contentDescription="OSKY Logo"/>
 
-
+22
 
     <Button
         android:id="@+id/btnBack"
@@ -22,6 +22,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/theme"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/white"
         android:text="←" />
 
     <TextView
@@ -93,19 +95,22 @@
         android:padding="12dp"/>
 
     <!-- Login Button -->
+
+    <!-- Forgot Password -->
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/etPassword"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="21dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/white"
 
-        android:text="Login"
-        android:backgroundTint="@color/theme" />
+        android:backgroundTint="@color/theme"
+        android:text="Login" />
 
-    <!-- Forgot Password -->
     <TextView
         android:id="@+id/tvForgotPassword"
         android:layout_width="wrap_content"
@@ -126,6 +131,7 @@
         android:layout_below="@id/tvForgotPassword"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"/>
+
 
 
     <com.google.android.gms.common.SignInButton
@@ -157,10 +163,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/google_icon"/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/apple_icon"/>
+
     </LinearLayout>
 
     <!-- Our Partners Section -->

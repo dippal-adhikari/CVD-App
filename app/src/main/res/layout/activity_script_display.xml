@@ -31,32 +31,7 @@
         android:id="@+id/tvReviewText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Go through all the questions and edit them as you would like to."
-        android:textSize="15sp"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="8dp"
-        android:layout_below="@id/tvReview" />
-    <View
-        android:id="@+id/lineBelowProfile"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        android:layout_below="@id/tvReviewText"
-        android:layout_marginBottom="20dp"/>
 
-
-    <!-- The LinearLayout will dynamically populate with TextViews for each question and answer -->
-
-    <Button
-        android:id="@+id/btnNext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="18dp"
-        android:backgroundTint="@color/theme"
-        android:text="Next"
-        android:textColor="@android:color/white"/>
 </LinearLayout>
 
     <!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
@@ -91,3 +66,4 @@
 
     <!--    </LinearLayout>-->
     <!--</ScrollView>-->
+
