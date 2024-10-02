@@ -1,32 +1,93 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scriptContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="16dp">
+    <TextView
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="←"
+        android:textColor="@color/theme"
+        android:textSize="16sp"
+        android:layout_alignParentStart="true" />
 
-    <LinearLayout
+    <!-- Profile Title -->
+    <TextView
+        android:id="@+id/tvReview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:text="Review your script"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@id/btnBack" />
 
-        <!-- Editable script field -->
-        <EditText
-            android:id="@+id/editTextScript"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Generated Script"
-            android:inputType="textMultiLine"
-            android:minHeight="300dp"
-            android:gravity="top"
-            android:padding="10dp" />
+    <TextView
+        android:id="@+id/tvReviewText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Go through all the questions and edit them as you would like to."
+        android:textSize="15sp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@id/tvReview" />
+    <View
+        android:id="@+id/lineBelowProfile"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@id/tvReviewText"
+        android:layout_marginBottom="20dp"/>
 
-        <!-- Save button to save the edited script -->
-        <Button
-            android:id="@+id/btnSaveScript"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Save Script"
-            android:layout_gravity="center"
-            android:layout_marginTop="24dp" />
 
-    </LinearLayout>
-</ScrollView>
+    <!-- The LinearLayout will dynamically populate with TextViews for each question and answer -->
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="18dp"
+        android:backgroundTint="@color/theme"
+        android:text="Next"
+        android:textColor="@android:color/white"/>
+</LinearLayout>
+
+    <!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="match_parent"-->
+    <!--    android:padding="16dp">-->
+
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="vertical">-->
+
+    <!--        &lt;!&ndash; Editable script field &ndash;&gt;-->
+    <!--        <EditText-->
+    <!--            android:id="@+id/editTextScript"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:hint="Generated Script"-->
+    <!--            android:inputType="textMultiLine"-->
+    <!--            android:minHeight="300dp"-->
+    <!--            android:gravity="top"-->
+    <!--            android:padding="10dp" />-->
+
+    <!--        &lt;!&ndash; Save button to save the edited script &ndash;&gt;-->
+    <!--        <Button-->
+    <!--            android:id="@+id/btnSaveScript"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="Save Script"-->
+    <!--            android:layout_gravity="center"-->
+    <!--            android:layout_marginTop="24dp" />-->
+
+    <!--    </LinearLayout>-->
+    <!--</ScrollView>-->

@@ -11,7 +11,8 @@ import retrofit2.http.POST;
 public interface OpenAIAPIService {
     @Headers({
             "Content-Type: application/json",
-            "Authorization: Bearer "
+            "Authorization: Bearer"
+//            sk-gq-DIT3IKmuR64-K9JeYQfyUoK4syK_C9LXc8ooMxmT3BlbkFJsOQc1a97vuBiji8fVHRN-wTfkyDRXSo6t2_D7AqSsA
     })
     @POST("v1/chat/completions")  // Updated to the correct endpoint for chat models
     Call<OpenAIResponse> createCompletion(@Body OpenAIRequest body);
