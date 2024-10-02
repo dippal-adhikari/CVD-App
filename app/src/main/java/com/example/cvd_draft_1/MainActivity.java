@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -60,6 +61,13 @@ public class MainActivity extends AppCompatActivity {
         // Script button click listener
         RelativeLayout btnScripts = findViewById(R.id.btnScripts);
         btnScripts.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ScriptListActivity.class);
+            startActivity(intent);
+        });
+
+        // Script cardview click listener
+        CardView progressSection = findViewById(R.id.progressSection);
+        progressSection.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, ScriptActivity.class);
             startActivity(intent);
         });
