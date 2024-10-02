@@ -27,26 +27,49 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Get started"
-            android:textSize="32sp"
-            android:textStyle="bold"
+            android:textSize="20dp"
             android:gravity="center"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="16dp"
+            android:textColor="@android:color/black"
+            android:fontFamily="@font/dmsans_regular"/>
 
-        <!-- Horizontal Divider -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp" />
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:src="@drawable/step2"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="Illustration Image"
+            android:scaleType="centerInside"
+            android:layout_marginTop="-20dp"/>
+
+        <!-- Subtitle Text -->
+        <!-- Description Text -->
+
 
         <!-- Signup Button -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/dmsans_bold"
+            android:gravity="center"
+            android:padding="16dp"
+            android:layout_marginTop="-40dp"
+            android:text="Create professional \nvideos of yourself easily \nwith CVD"
+            android:textColor="@android:color/black"
+            android:textSize="26dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="The app helps you generate a script and edits the video following your preferences."
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:fontFamily="@font/dmsans_medium"/>
+
         <Button
             android:id="@+id/btnSignup"
             android:layout_width="match_parent"
@@ -61,7 +84,7 @@
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             android:backgroundTint="@color/theme"
             android:text="Already have an account? Login"
             android:textColor="@android:color/white" />

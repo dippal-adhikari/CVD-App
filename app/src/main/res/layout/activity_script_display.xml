@@ -9,24 +9,28 @@
         android:orientation="vertical">
 
         <!-- Editable script field -->
+
+        <!-- Save button to save the edited script -->
+
         <EditText
             android:id="@+id/editTextScript"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="top"
             android:hint="Generated Script"
             android:inputType="textMultiLine"
             android:minHeight="300dp"
-            android:gravity="top"
             android:padding="10dp" />
 
-        <!-- Save button to save the edited script -->
         <Button
             android:id="@+id/btnSaveScript"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Save Script"
             android:layout_gravity="center"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="24dp"
+            android:background="@drawable/rounded_button"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 </ScrollView>
