@@ -59,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Script button click listener
-        RelativeLayout btnScripts = findViewById(R.id.btnScripts);
-        btnScripts.setOnClickListener(v -> {
+        CardView CVScripts = findViewById(R.id.CVScripts);
+        CVScripts.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, ScriptListActivity.class);
             startActivity(intent);
         });

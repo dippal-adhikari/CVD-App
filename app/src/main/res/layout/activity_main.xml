@@ -124,6 +124,7 @@
 
         <!-- Scripts Section -->
         <androidx.cardview.widget.CardView
+            android:id="@+id/CVScripts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -202,7 +203,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="20dp"
-                        android:text="Test Videos"
+                        android:text="Videos"
                         android:textSize="20sp" />
 
                     <TextView

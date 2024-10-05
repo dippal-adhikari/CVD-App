@@ -13,7 +13,7 @@ public class ScriptListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video);
+        setContentView(R.layout.activity_script_list);
 
         // Handle back button click
         TextView btnBack = findViewById(R.id.btnBack);
