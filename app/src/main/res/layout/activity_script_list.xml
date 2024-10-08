@@ -27,8 +27,7 @@
         android:padding="8dp"
         android:text="Add new"
         android:textColor="@color/theme"
-        android:textSize="16sp"
-        />
+        android:textSize="16sp" />
 
     <!-- Title -->
     <TextView
@@ -39,7 +38,16 @@
         android:textSize="32sp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        />
+        android:layout_marginTop="32dp" />
+
+    <!-- RecyclerView for Script Items -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvScripts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tvScript"
+        android:layout_marginTop="16dp"
+        android:paddingTop="8dp"
+        android:clipToPadding="false" />
 
 </RelativeLayout>

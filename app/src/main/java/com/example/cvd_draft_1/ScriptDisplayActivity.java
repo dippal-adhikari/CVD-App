@@ -15,8 +15,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class ScriptDisplayActivity extends AppCompatActivity {
@@ -110,7 +113,14 @@ public class ScriptDisplayActivity extends AppCompatActivity {
         Map<String, Object> scriptData = new HashMap<>();
         scriptData.put("questions", questionsList);  // Save questions as a list
         scriptData.put("answers", answersList);      // Save answers as a list
-        scriptData.put("createdAt", System.currentTimeMillis());
+//        scriptData.put("createdAt", System.currentTimeMillis());
+
+        // Convert the timestamp to a readable string format
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
+        String createdAt = sdf.format(new Date(System.currentTimeMillis())); // Store as String
+        scriptData.put("createdAt", createdAt);       // Save createdAt as String
+
+
 
         // Reference to the user's scripts collection
         DocumentReference userDocRef = db.collection("users").document(currentUser.getUid());
