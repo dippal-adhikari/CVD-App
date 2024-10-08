@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -105,26 +106,13 @@ public class ScriptAdapter extends RecyclerView.Adapter<ScriptAdapter.ScriptView
 
         // Set onClick listener for Record Video button
         holder.btnRecordVideo.setOnClickListener(v -> {
-            Intent intent = new Intent(context, VideoActivity.class); // Navigate to your recording activity
+            Intent intent = new Intent(context, ScriptDisplayActivity.class);
             intent.putExtra("SCRIPT_ID", script.getId());
+            intent.putStringArrayListExtra("QUESTIONS", new ArrayList<>(script.getQuestions()));
+            intent.putStringArrayListExtra("ANSWERS", new ArrayList<>(script.getAnswers()));
             context.startActivity(intent);
         });
 
-//        // Set onClick listener for delete button
-//        holder.btnDelete.setOnClickListener(v -> {
-//            // Delete the script from Firestore
-//            db.collection("users")
-//                    .document("YOUR_USER_ID") // Replace with the user ID
-//                    .collection("scripts")
-//                    .document(script.getId())
-//                    .delete()
-//                    .addOnSuccessListener(aVoid -> {
-//                        Toast.makeText(context, "Script deleted!", Toast.LENGTH_SHORT).show();
-//                        scriptList.remove(position);
-//                        notifyItemRemoved(position);
-//                    })
-//                    .addOnFailureListener(e -> Toast.makeText(context, "Failed to delete script.", Toast.LENGTH_SHORT).show());
-//        });
 
         holder.btnDelete.setOnClickListener(v -> {
             // Get the current user's ID dynamically

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Script {
     private String id;
-    private Long createdAt; // Change to Long type for Firestore compatibility
+    private String createdAt;
     private List<String> questions;
     private List<String> answers;
 
@@ -12,7 +12,7 @@ public class Script {
     public Script() {}
 
     // Constructor with fields
-    public Script(String id, Long createdAt, List<String> questions, List<String> answers) {
+    public Script(String id, String createdAt, List<String> questions, List<String> answers) {
         this.id = id;
         this.createdAt = createdAt;
         this.questions = questions;
@@ -28,11 +28,11 @@ public class Script {
         this.id = id;
     }
 
-    public Long getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Long createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 

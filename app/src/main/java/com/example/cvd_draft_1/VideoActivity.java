@@ -29,7 +29,7 @@ public class VideoActivity extends AppCompatActivity {
         btnAddNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(VideoActivity.this, CreateVideoActivity.class);
+                Intent intent = new Intent(VideoActivity.this, ScriptListActivity.class);
                 startActivity(intent);
                 finish();
             }
