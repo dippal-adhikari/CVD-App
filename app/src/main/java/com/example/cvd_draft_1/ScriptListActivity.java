@@ -2,6 +2,7 @@ package com.example.cvd_draft_1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,11 +31,19 @@ public class ScriptListActivity extends AppCompatActivity {
 
     private FirebaseFirestore db;
     private FirebaseUser currentUser;
+    ImageButton btnBack;  // Declare the back button
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_script_list);
+
+
+        // Initialize the ImageButton for the back button
+        btnBack = findViewById(R.id.btnBack);
+
+        // Set click listener for the back button to finish the current activity
+        btnBack.setOnClickListener(v -> finish());
 
         // Initialize Firebase Firestore and Auth
         db = FirebaseFirestore.getInstance();
@@ -43,8 +52,7 @@ public class ScriptListActivity extends AppCompatActivity {
         // Initialize UI elements
         recyclerViewScripts = findViewById(R.id.rvScripts);
         recyclerViewScripts.setLayoutManager(new LinearLayoutManager(this));
-
-        TextView btnBack = findViewById(R.id.btnBack);
+        
         TextView btnAddNew = findViewById(R.id.btnAddNew);
 
         // Set click listeners for navigation
