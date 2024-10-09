@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class VideoActivity extends AppCompatActivity {
+public class ScriptListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class VideoActivity extends AppCompatActivity {
         btnAddNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(VideoActivity.this, CreateVideoActivity.class);
+                Intent intent = new Intent(ScriptListActivity.this, ScriptActivity.class);
                 startActivity(intent);
                 finish();
             }
