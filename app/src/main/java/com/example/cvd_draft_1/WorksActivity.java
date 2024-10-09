@@ -32,7 +32,6 @@ public class WorksActivity extends AppCompatActivity {
             R.drawable.step3
     };
 
-
     // Titles for each step
     private String[] stepTitles = {"Step 1", "Step 2", "Step 3"};
 
