@@ -6,8 +6,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ImageButton;
+
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -35,11 +38,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
+    // Declare the ImageButton variable
+    private ImageButton btnBack;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private GoogleSignInClient googleSignInClient;
     private EditText editTextEmail, editTextPassword;
+    private ImageButton backButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextEmail = findViewById(R.id.etEmail);
         editTextPassword = findViewById(R.id.etPassword);
         Button buttonLogin = findViewById(R.id.btnLogin);
+
 
         // Email and password login
         buttonLogin.setOnClickListener(view -> loginWithEmail());
@@ -70,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         // Back button
-        TextView btnBack = findViewById(R.id.btnBack);
+        ImageButton btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(v -> finish());
 
         // Navigate to RegistrationActivity

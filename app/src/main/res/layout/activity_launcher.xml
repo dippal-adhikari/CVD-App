@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,17 +14,20 @@
         android:gravity="center_horizontal">
 
         <!-- Back Button -->
-        <Button
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="← Back"
-            android:backgroundTint="@color/theme"
-            android:textColor="@android:color/white"
-            android:layout_gravity="start"
-            android:background="@drawable/rounded_button"/>
-
         <!-- Title -->
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            tools:ignore="TouchTargetSizeCheck"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back"
+            android:padding="0dp"
+            android:scaleType="centerInside"
+            android:layout_marginStart="-165dp"
+            android:src="@drawable/back_key" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
