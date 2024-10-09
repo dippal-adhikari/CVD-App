@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_edittext_border"
+    android:padding="16dp"
+    android:layout_marginTop="16dp">
+
+    <!-- Script Created Date -->
+    <TextView
+        android:id="@+id/tvCreatedAt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_alignParentStart="true" />
+
+    <!-- Delete Button -->
+    <ImageView
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_delete"
+        android:contentDescription="Delete"
+        android:paddingRight="8dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@id/tvCreatedAt" />
+
+    <!-- Container for displaying questions dynamically -->
+    <LinearLayout
+        android:id="@+id/questionContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/tvCreatedAt"
+        android:layout_marginTop="8dp" />
+
+    <!-- Record Video Button Positioned Below Questions -->
+    <Button
+        android:id="@+id/btnRecordVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Record video"
+        android:layout_below="@id/questionContainer"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp" />
+
+</RelativeLayout>

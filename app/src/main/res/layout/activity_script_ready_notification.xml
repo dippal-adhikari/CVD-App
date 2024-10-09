@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:id="@+id/main">
+
+<!-- Back Button -->
+<TextView
+    android:id="@+id/btnBack"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:text="←"
+    android:textColor="@color/theme"
+    android:textSize="16sp"
+    android:layout_alignParentStart="true" />
+
+<!-- Profile Title -->
+    <TextView
+        android:id="@+id/tvReview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your script is ready!\nWould you like to record your\nvideo now?"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/textPrimary"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@id/btnBack" />
+
+
+
+
+<!-- Fixed Next Button at the bottom -->
+<Button
+    android:id="@+id/btnRecordNow"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Record Now"
+    android:layout_marginTop="50px"
+    android:textSize="20sp"
+
+    android:textColor="@android:color/white"
+    android:background="@drawable/rounded_button"
+    android:backgroundTint="@color/theme" />
+
+    <TextView
+        android:id="@+id/tvRecordLater"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Record later"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:selectAllOnFocus="true"
+        android:linksClickable="true"
+        android:autoLink="all"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@id/btnBack" />
+</LinearLayout>
+
+
+
+
+
+
