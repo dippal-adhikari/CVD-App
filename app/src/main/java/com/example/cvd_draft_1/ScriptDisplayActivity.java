@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,8 @@ public class ScriptDisplayActivity extends AppCompatActivity {
     private ArrayList<String> questionsList = new ArrayList<>();
     private ArrayList<String> answersList = new ArrayList<>();
     private ArrayList<EditText> answerFields = new ArrayList<>();  // Store references to answer EditTexts
+    ImageButton btnBack;  // Declare the back button
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +47,13 @@ public class ScriptDisplayActivity extends AppCompatActivity {
         // Initialize Firebase Firestore and Auth
         db = FirebaseFirestore.getInstance();
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        // Initialize the ImageButton for the back button
+        btnBack = findViewById(R.id.btnBack);
 
-        // Handle Back Button Click
-        btnBack.setOnClickListener(v -> finish());  // Close current activity and go back
+        // Set click listener for the back button to finish the current activity
+        btnBack.setOnClickListener(v -> finish());
+
+
 
         // Handle Next Button Click
         btnNext.setOnClickListener(v -> {
