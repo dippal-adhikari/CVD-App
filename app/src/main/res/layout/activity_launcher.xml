@@ -20,7 +20,8 @@
             android:text="← Back"
             android:backgroundTint="@color/theme"
             android:textColor="@android:color/white"
-            android:layout_gravity="start" />
+            android:layout_gravity="start"
+            android:background="@drawable/rounded_button"/>
 
         <!-- Title -->
         <TextView
@@ -77,6 +78,8 @@
             android:layout_marginBottom="8dp"
             android:backgroundTint="@color/theme"
             android:text="Sign Up"
+            android:background="@drawable/rounded_button"
+
             android:textColor="@android:color/white" />
 
         <!-- Login Button -->
@@ -87,7 +90,8 @@
             android:layout_marginBottom="16dp"
             android:backgroundTint="@color/theme"
             android:text="Already have an account? Login"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:background="@drawable/rounded_button"/>
 
     </LinearLayout>
 </ScrollView>

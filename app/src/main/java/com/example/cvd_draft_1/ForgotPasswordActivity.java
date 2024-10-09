@@ -42,7 +42,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
         emailEditText = findViewById(R.id.etEmail);
         submitButton = findViewById(R.id.submitButton);
-        Button backButton = findViewById(R.id.btnBack);
+        ImageButton backButton = findViewById(R.id.btnBack);
 
         // Back button action
         backButton.setOnClickListener(new View.OnClickListener() {
