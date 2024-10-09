@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,20 +35,21 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
     FirebaseFirestore db;
     EditText etEmail, etName, etAddress, etPhone;
+    ImageButton btnBack;  // Declare the back button
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_profile);
 
-        // Handle back button click
-        TextView btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish(); // Closes the current activity and returns to the previous one
-            }
-        });
+        // Initialize the ImageButton for the back button
+        btnBack = findViewById(R.id.btnBack);
+
+        // Set click listener for the back button to finish the current activity
+        btnBack.setOnClickListener(v -> finish());
+
+
 
         // Initialize Firebase Auth and Firestore
         firebaseAuth = FirebaseAuth.getInstance();

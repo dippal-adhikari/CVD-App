@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LauncherActivity extends AppCompatActivity {
@@ -13,10 +15,10 @@ public class LauncherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
 
-        Button backButton = findViewById(R.id.btnBack);
+        ImageButton backButton = findViewById(R.id.btnBack);
 
         // Back button action
-        backButton.setOnClickListener(new View.OnClickListener() {
+         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();  // Closes this activity and goes back to the previous one
