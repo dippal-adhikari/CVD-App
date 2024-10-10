@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -50,6 +51,8 @@ import androidx.camera.video.Recording;
 import androidx.camera.video.VideoCapture;
 import androidx.camera.video.VideoRecordEvent;
 
+
+
 public class CreateVideoActivity extends AppCompatActivity {
 
     // UI Elements
@@ -67,7 +70,7 @@ public class CreateVideoActivity extends AppCompatActivity {
     private Camera camera;
     private CameraManager cameraManager;
     private Handler handler;
-    private Runnable updateRecordingTimeRunnable;
+    private Runnable updateRecordingTimeRunnable, scriptScrollRunnable;
     private long startTime;
     private boolean isBackCamera = true;
     private boolean isFlashlightOn = false;
@@ -81,6 +84,13 @@ public class CreateVideoActivity extends AppCompatActivity {
     private List<String> answers;
     private int currentClipIndex = 0;
     private List<File> recordedClips = new ArrayList<>();
+
+    private int currentScrollY = 0; // Track current scroll position
+    private int scrollSpeed = 5; // Adjust scroll speed as needed
+    private ScrollView scriptScrollView; // ScrollView for the script
+
+
+    TextView speedPercentageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +111,7 @@ public class CreateVideoActivity extends AppCompatActivity {
         }
 
         // Initialize UI elements
+
         scriptTextView = findViewById(R.id.script_text);
         recordingTime = findViewById(R.id.recording_time);
         recordingProgressBar = findViewById(R.id.recording_progress_bar);
@@ -110,15 +121,70 @@ public class CreateVideoActivity extends AppCompatActivity {
         Button toggleStabilizationButton = findViewById(R.id.toggle_stabilization);
         FloatingActionButton showBottomSheetButton = findViewById(R.id.show_bottom_sheet_button);
         LinearLayout bottomSheet = findViewById(R.id.bottom_sheet);
+        scriptScrollView = findViewById(R.id.script_scroll_view);
 
         // Camera Controls
         zoomSeekBar = findViewById(R.id.zoomSeekBar);
         exposureSeekBar = findViewById(R.id.exposure_control);
         videoQualitySpinner = findViewById(R.id.video_quality);
 
+
+        // Speed control buttons and TextView
+        Button btnDecreaseSpeed = findViewById(R.id.btn_decrease_speed);
+        Button btnIncreaseSpeed = findViewById(R.id.btn_increase_speed);
+        speedPercentageView = findViewById(R.id.speed_percentage);
+
+        // Display initial speed percentage
+//        speedPercentageView.setText(scrollSpeed + "%");
+
+        // Decrease speed button click listener
+        btnDecreaseSpeed.setOnClickListener(v -> {
+            if (scrollSpeed > 1) {  // Limit to 10%
+                scrollSpeed -= 1;  // Decrease by 10%
+                updateSpeedDisplay();
+            }
+        });
+
+// Increase speed button click listener
+        btnIncreaseSpeed.setOnClickListener(v -> {
+            if (scrollSpeed < 10) {  // Limit to 100%
+                scrollSpeed += 1;  // Increase by 10%
+                updateSpeedDisplay();
+            }
+        });
+
+
+
+        handler = new Handler(Looper.getMainLooper());
+        updateRecordingTimeRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (isRecording) {
+                    long elapsedTime = System.currentTimeMillis() - startTime;
+                    int seconds = (int) (elapsedTime / 1000) % 60;
+                    int minutes = (int) (elapsedTime / (1000 * 60)) % 60;
+                    int hours = (int) (elapsedTime / (1000 * 60 * 60)) % 24;
+                    recordingTime.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
+                    recordingProgressBar.setProgress((int) (elapsedTime / 1000));
+                    handler.postDelayed(this, 1000);
+                }
+            }
+        };
+
+        scriptScrollRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (isRecording) {
+                    currentScrollY += scrollSpeed;
+                    scriptScrollView.scrollTo(0, currentScrollY);
+                    handler.postDelayed(this, 100); // Adjust the delay to control scroll speed
+                }
+            }
+        };
+
         fabRecording.setOnClickListener(v -> {
             if (isRecording) {
-//                stopRecording();
+                stopRecording();
             } else {
                 startRecording();
             }
@@ -181,6 +247,12 @@ public class CreateVideoActivity extends AppCompatActivity {
         displayNextScript(); // Display the first script question and answer
     }
 
+    // Method to update the speed percentage display
+    private void updateSpeedDisplay() {
+        int percentage = (scrollSpeed * 10);  // Convert speed to percentage
+        speedPercentageView.setText(percentage + "%");  // Display the percentage
+    }
+
     private void toggleFlashlight() {
         if (camera != null) {
             camera.getCameraControl().enableTorch(!isFlashlightOn);
@@ -202,9 +274,11 @@ public class CreateVideoActivity extends AppCompatActivity {
                         isRecording = true;
                         startTime = System.currentTimeMillis();
                         handler.post(updateRecordingTimeRunnable);
+                        startScrollingScript();
                     } else if (videoRecordEvent instanceof VideoRecordEvent.Finalize) {
                         isRecording = false;
                         handler.removeCallbacks(updateRecordingTimeRunnable);
+                        handler.removeCallbacks(scriptScrollRunnable); // Stop scrolling when recording ends
                         if (!((VideoRecordEvent.Finalize) videoRecordEvent).hasError()) {
                             recordedClips.add(clipFile);
                             currentClipIndex++;  // Move to the next question
@@ -212,20 +286,19 @@ public class CreateVideoActivity extends AppCompatActivity {
                         }
                     }
                 });
-//        startScrollingScript();
     }
 
-//    private void stopRecording() {
-//        if (recording != null) {
-//            recording.stop();
-//            recording = null;
-//        }
-//        handler.removeCallbacks(scriptScrollRunnable);
-//    }
-//
-//    private void startScrollingScript() {
-//        handler.post(scriptScrollRunnable);
-//    }
+    private void stopRecording() {
+        if (recording != null) {
+            recording.stop();
+            recording = null;
+        }
+        handler.removeCallbacks(scriptScrollRunnable);
+    }
+
+    private void startScrollingScript() {
+        handler.post(scriptScrollRunnable);
+    }
 
 
 

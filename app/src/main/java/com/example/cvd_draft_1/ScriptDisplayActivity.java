@@ -1,9 +1,11 @@
 package com.example.cvd_draft_1;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,13 +36,14 @@ public class ScriptDisplayActivity extends AppCompatActivity {
     // Firebase-related fields
     private String scriptId;
 
+    ImageButton btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_script_display);
 
         scriptContainer = findViewById(R.id.scriptContainer);
-        TextView btnBack = findViewById(R.id.btnBack);
+        btnBack= findViewById(R.id.btnBack);
         Button btnNext = findViewById(R.id.btnNext);  // Button to handle "Next" action
 
         // Initialize Firebase Firestore and Auth
