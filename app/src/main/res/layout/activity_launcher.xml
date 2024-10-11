@@ -83,7 +83,8 @@
             android:backgroundTint="@color/theme"
             android:text="Sign Up"
             android:background="@drawable/rounded_button"
-
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:textColor="@android:color/white" />
 
         <!-- Login Button -->
@@ -93,9 +94,35 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:backgroundTint="@color/theme"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:text="Already have an account? Login"
             android:textColor="@android:color/white"
             android:background="@drawable/rounded_button"/>
+
+        <TextView
+            android:id="@+id/tvPartners"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="Our Partners"
+            android:textSize="16sp" />
+
+
+        <ImageView
+            android:id="@+id/osky_logo"
+            android:layout_width="match_parent"
+            android:layout_height="107dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="13dp"
+            android:contentDescription="OSKY Logo"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:src="@drawable/osky" />
+
 
     </LinearLayout>
 </ScrollView>

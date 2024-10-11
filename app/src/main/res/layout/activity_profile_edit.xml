@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="@android:color/white">
 
     <!-- Back Button -->
-    <TextView
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:text="← Back"
-        android:textColor="@color/theme"
-        android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <!-- Title -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        tools:ignore="MissingConstraints"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Back"
+        android:padding="0dp"
+        android:scaleType="centerInside"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/back_key" />
+
     <TextView
         android:id="@+id/tvHeading"
         android:layout_width="wrap_content"
@@ -28,7 +32,11 @@
         android:textStyle="bold"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/btnBack"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/dmsans_regular"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/black"/>
 
     <!-- Name Input Field -->
     <com.google.android.material.textfield.TextInputLayout
@@ -45,7 +53,10 @@
             android:layout_height="wrap_content"
             android:hint="Name"
             android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:fontFamily="@font/dmsans_regular"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Phone Input Field -->
@@ -61,10 +72,13 @@
             android:id="@+id/etPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/dmsans_regular"
             android:hint="Phone"
+            android:inputType="phone"
             android:textColor="@android:color/black"
             android:textSize="16sp"
-            android:inputType="phone" />
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Address -->
@@ -82,7 +96,10 @@
             android:layout_height="wrap_content"
             android:hint="Address"
             android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:fontFamily="@font/dmsans_regular"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Save Button -->
@@ -95,6 +112,8 @@
         android:backgroundTint="@color/theme"
         android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@id/tvAddress"
-        android:background="@drawable/rounded_button"/>
+        android:background="@drawable/rounded_button"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

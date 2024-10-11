@@ -41,14 +41,14 @@ public class ScriptDisplayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_script_display);
 
         scriptContainer = findViewById(R.id.scriptContainer);
-        TextView btnBack = findViewById(R.id.btnBack);
+
         Button btnNext = findViewById(R.id.btnNext);  // Button to handle "Next" action
 
         // Initialize Firebase Firestore and Auth
         db = FirebaseFirestore.getInstance();
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         // Initialize the ImageButton for the back button
-        btnBack = findViewById(R.id.btnBack);
+        ImageButton btnBack = findViewById(R.id.btnBack);
 
         // Set click listener for the back button to finish the current activity
         btnBack.setOnClickListener(v -> finish());
