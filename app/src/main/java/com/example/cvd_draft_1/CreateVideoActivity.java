@@ -121,6 +121,7 @@ public class CreateVideoActivity extends AppCompatActivity {
         Button toggleStabilizationButton = findViewById(R.id.toggle_stabilization);
         FloatingActionButton showBottomSheetButton = findViewById(R.id.show_bottom_sheet_button);
         LinearLayout bottomSheet = findViewById(R.id.bottom_sheet);
+        bottomSheet.setVisibility(View.GONE);
         scriptScrollView = findViewById(R.id.script_scroll_view);
 
         // Camera Controls
