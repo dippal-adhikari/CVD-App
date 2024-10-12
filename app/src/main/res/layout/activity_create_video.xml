@@ -22,17 +22,71 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <!-- Teleprompter Layout -->
+    <ScrollView
+        android:id="@+id/script_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="154dp"
+        android:alpha="0.7"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/previewView">
+
         <LinearLayout
             android:id="@+id/teleprompter_layout"
             android:layout_width="match_parent"
-            android:layout_height="154dp"
-            android:alpha="0.8"
-            android:background="@color/primaryDarkColor"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/previewView">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Speed: "
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    />
+                <Button
+                    android:id="@+id/btn_decrease_speed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_background"
+                    android:contentDescription="@string/decrease_speed"
+                    android:text="-"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    android:importantForAccessibility="yes" />
+
+                <TextView
+                    android:id="@+id/speed_percentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50%"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    />
+
+                <Button
+                    android:id="@+id/btn_increase_speed"
+                    android:layout_width="wrap_content"
+                    android:background="@drawable/rounded_background"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/increase_speed"
+                    android:text="+"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    android:importantForAccessibility="yes" />
+            </LinearLayout>
             <TextView
                 android:id="@+id/script_text"
                 android:layout_width="match_parent"
@@ -44,38 +98,11 @@
                 android:textSize="24sp"
                 android:importantForAccessibility="yes"
                 android:accessibilityLiveRegion="polite" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_decrease_speed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/primaryColor"
-                    android:contentDescription="@string/decrease_speed"
-                    android:text="-"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:importantForAccessibility="yes" />
-
-                <Button
-                    android:id="@+id/btn_increase_speed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/primaryColor"
-                    android:contentDescription="@string/increase_speed"
-                    android:text="+"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:importantForAccessibility="yes" />
-            </LinearLayout>
         </LinearLayout>
+    </ScrollView>
 
-        <!-- Floating Action Button for Recording -->
+
+    <!-- Floating Action Button for Recording -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_recording"
             android:layout_width="wrap_content"
@@ -138,7 +165,7 @@
             android:layout_width="match_parent"
             android:layout_height="278dp"
             android:layout_marginBottom="5dp"
-            android:background="@color/primaryLightColor"
+            android:background="@color/black"
             android:orientation="vertical"
             android:padding="0dp"
             app:behavior_hideable="true"
@@ -167,7 +194,7 @@
                         android:layout_gravity="center"
                         android:layout_marginBottom="16dp"
                         android:text="@string/settings_heading"
-                        android:textColor="@color/textColorPrimary"
+                        android:textColor="@color/white"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         android:importantForAccessibility="yes" />
