@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,6 +64,8 @@ public class RegistrationActivity extends AppCompatActivity {
     GoogleSignInClient googleSignInClient;
     ShapeableImageView imageView;
     TextView name, mail;
+    ImageButton btnBack;  // Declare the back button
+
 
 
     @Override
@@ -113,13 +116,13 @@ public class RegistrationActivity extends AppCompatActivity {
         }
 
 // Back button
-        TextView btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        ImageButton btnBack = findViewById(R.id.btnBack);
+        // Initialize the ImageButton for the back button
+        btnBack = findViewById(R.id.btnBack);
+
+        // Set click listener for the back button to finish the current activity
+        btnBack.setOnClickListener(v -> finish());
+
 
         // Navigate to LoginActivity
         TextView textViewLogin = findViewById(R.id.tvLog);

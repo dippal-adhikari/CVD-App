@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+
         // Script button click listener
         CardView CVScripts = findViewById(R.id.CVScripts);
         CVScripts.setOnClickListener(v -> {

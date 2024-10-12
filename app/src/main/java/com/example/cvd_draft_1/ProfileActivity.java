@@ -44,7 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         // Initialize the ImageButton for the back button
-        btnBack = findViewById(R.id.btnBack);
+       ImageButton btnBack = findViewById(R.id.btnBack);
 
         // Set click listener for the back button to finish the current activity
         btnBack.setOnClickListener(v -> finish());
