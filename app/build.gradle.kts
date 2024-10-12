@@ -86,6 +86,8 @@ dependencies {
     implementation ("androidx.camera:camera-video:1.0.0")
     implementation ("com.google.android.material:material:1.4.0")
 
+    implementation ("com.arthenica:ffmpeg-kit-full:4.5.LTS") //ffmpeg for video editing
+
     //
 
 }
