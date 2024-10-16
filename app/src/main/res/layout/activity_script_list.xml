@@ -34,17 +34,19 @@
         android:textSize="16sp" />
 
     <!-- Title -->
+
+    <!-- RecyclerView for Script Items -->
     <TextView
         android:id="@+id/tvScript"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
         android:text="Scripts"
         android:textSize="32sp"
         android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp" />
+        android:layout_marginStart="16dp"
+        android:textColor="@color/black"/>
 
-    <!-- RecyclerView for Script Items -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvScripts"
         android:layout_width="match_parent"
@@ -52,6 +54,8 @@
         android:layout_below="@id/tvScript"
         android:layout_marginTop="16dp"
         android:paddingTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:clipToPadding="false" />
 
 </RelativeLayout>

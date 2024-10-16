@@ -19,14 +19,26 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Select Questions"
+                android:text="Create a script"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="16dp" />
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/dmsans_bold"
+                android:textColor="@color/black"/>
+
+            <!-- Page Description -->
+            <TextView
+                android:id="@+id/tvPageDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pick the questions you would like to answer in your video."
+                android:textSize="16sp"
+                android:paddingBottom="16dp" />
 
         </LinearLayout>
 
         <!-- Submit Button after all questions -->
+
+        <!-- Question and Answer Section -->
         <Button
             android:id="@+id/btnSubmitQuestions"
             android:layout_width="wrap_content"
@@ -34,9 +46,9 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:background="@drawable/rounded_button"
-            android:text="Submit" />
+            android:text="next"
+            android:textColor="@color/white"/>
 
-        <!-- Question and Answer Section -->
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -50,6 +62,7 @@
                 android:text="Question"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                android:fontFamily="@font/dmsans_medium"
                 android:visibility="gone"
                 android:layout_marginBottom="16dp" />
 

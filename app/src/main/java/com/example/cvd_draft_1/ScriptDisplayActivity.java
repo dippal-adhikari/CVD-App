@@ -1,6 +1,7 @@
 package com.example.cvd_draft_1;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,28 +33,31 @@ public class ScriptDisplayActivity extends AppCompatActivity {
     private ArrayList<String> questionsList = new ArrayList<>();
     private ArrayList<String> answersList = new ArrayList<>();
     private ArrayList<EditText> answerFields = new ArrayList<>();  // Store references to answer EditTexts
-    ImageButton btnBack;  // Declare the back button
+    // Firebase-related fields
+    private String scriptId;
 
-
+    ImageButton btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_script_display);
 
         scriptContainer = findViewById(R.id.scriptContainer);
-        TextView btnBack = findViewById(R.id.btnBack);
+
         Button btnNext = findViewById(R.id.btnNext);  // Button to handle "Next" action
 
         // Initialize Firebase Firestore and Auth
         db = FirebaseFirestore.getInstance();
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
         // Initialize the ImageButton for the back button
-        btnBack = findViewById(R.id.btnBack);
+        ImageButton btnBack = findViewById(R.id.btnBack);
 
         // Set click listener for the back button to finish the current activity
         btnBack.setOnClickListener(v -> finish());
 
-
+        // Handle Back Button Click
+        btnBack.setOnClickListener(v -> finish());  // Close current activity and go back
 
         // Handle Next Button Click
         btnNext.setOnClickListener(v -> {
@@ -127,7 +131,10 @@ public class ScriptDisplayActivity extends AppCompatActivity {
         String createdAt = sdf.format(new Date(System.currentTimeMillis())); // Store as String
         scriptData.put("createdAt", createdAt);       // Save createdAt as String
 
-
+        Intent intent_db = getIntent();
+        scriptId = intent_db.getStringExtra("SCRIPT_ID");
+        ArrayList<String> questions = intent_db.getStringArrayListExtra("QUESTIONS");
+        ArrayList<String> answers = intent_db.getStringArrayListExtra("ANSWERS");
 
         // Reference to the user's scripts collection
         DocumentReference userDocRef = db.collection("users").document(currentUser.getUid());
@@ -138,6 +145,9 @@ public class ScriptDisplayActivity extends AppCompatActivity {
                 .addOnSuccessListener(documentReference -> {
                     // Navigate to another activity after saving
                     Intent intent = new Intent(ScriptDisplayActivity.this, ScriptReadyNotification.class);
+                    intent.putExtra("SCRIPT_ID", scriptId); // Pass the script ID
+                    intent.putStringArrayListExtra("QUESTIONS", questions); // Use the questions array directly
+                    intent.putStringArrayListExtra("ANSWERS", answers); // Use the answers array directly
                     startActivity(intent);
                     finish();
                 })
