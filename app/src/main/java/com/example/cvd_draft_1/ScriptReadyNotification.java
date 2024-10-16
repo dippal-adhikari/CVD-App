@@ -13,7 +13,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+
 public class ScriptReadyNotification extends AppCompatActivity {
+
+    // Firebase-related fields
+    private FirebaseFirestore db;
+    private FirebaseUser currentUser;
+    private String scriptId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +41,22 @@ public class ScriptReadyNotification extends AppCompatActivity {
         Button btnRecordNow = findViewById(R.id.btnRecordNow);
         TextView btnRecordLater = findViewById(R.id.tvRecordLater);
 
+        Intent intent_db = getIntent();
+        scriptId = intent_db.getStringExtra("SCRIPT_ID");
+        ArrayList<String> questions = intent_db.getStringArrayListExtra("QUESTIONS");
+        ArrayList<String> answers = intent_db.getStringArrayListExtra("ANSWERS");
+
         // Handle Back Button Click
         btnBack.setOnClickListener(v -> finish());  // Close current activity and go back
 
         btnRecordNow.setOnClickListener(v -> {
             Intent intent = new Intent(ScriptReadyNotification.this, CreateVideoActivity.class);
+            intent.putExtra("SCRIPT_ID", scriptId); // Pass the script ID
+            intent.putStringArrayListExtra("QUESTIONS", questions); // Use the questions array directly
+            intent.putStringArrayListExtra("ANSWERS", answers); // Use the answers array directly
             startActivity(intent);
         });
+
 
         btnRecordLater.setOnClickListener(v -> {
             Toast.makeText(ScriptReadyNotification.this, "Script saved successfully!", Toast.LENGTH_SHORT).show();
