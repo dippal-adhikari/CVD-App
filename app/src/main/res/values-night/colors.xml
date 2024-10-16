@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Theme Color -->
+    <!--    <color name="colorPrimary">#009689</color> &lt;!&ndash; Primary color everywhere &ndash;&gt;-->
+    <color name="colorPrimary">#00796B</color> <!-- Primary color everywhere -->
+
+    <color name="colorPrimaryDark">#000000</color> <!-- Darker shade of primary color -->
+    <color name="colorAccent">#009689</color> <!-- Accent color (same as primary) -->
+
+    <!-- Background Colors -->
+    <color name="backgroundDark">#212121</color> <!-- Dark background -->
+
+    <!-- Text Colors -->
+    <color name="textColorPrimary">#FFFFFF</color> <!-- Primary text color (White) -->
+    <color name="textColorSecondary">#B3B3B3</color> <!-- Secondary text color (Light Gray) -->
+
+    <!-- Button Colors -->
+    <color name="buttonText">#00796B</color> <!-- White text on buttons -->
+</resources>

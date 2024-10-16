@@ -5,13 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@android:color/white">
+    android:background="?android:attr/windowBackground"
+> <!-- Use theme-aware background color -->
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        >
 
         <!-- Back Button -->
         <!-- Title -->
@@ -29,13 +32,13 @@
             android:src="@drawable/back_key" />
 
         <TextView
+            android:textColor="@color/textColorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Get started"
             android:textSize="20dp"
             android:gravity="center"
             android:layout_marginBottom="16dp"
-            android:textColor="@android:color/black"
             android:fontFamily="@font/dmsans_regular"/>
 
 
@@ -62,8 +65,9 @@
             android:padding="16dp"
             android:layout_marginTop="-40dp"
             android:text="Create professional \nvideos of yourself easily \nwith CVD"
-            android:textColor="@android:color/black"
-            android:textSize="26dp" />
+            android:textSize="26dp"
+            android:textColor="@color/textColorPrimary"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -71,16 +75,17 @@
             android:gravity="center"
             android:padding="16dp"
             android:text="The app helps you generate a script and edits the video following your preferences."
-            android:textColor="@android:color/black"
             android:textSize="14sp"
-            android:fontFamily="@font/dmsans_medium"/>
+            android:fontFamily="@font/dmsans_medium"
+            android:textColor="@color/textColorPrimary"
+            />
 
         <Button
             android:id="@+id/btnSignup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/theme"
+            android:backgroundTint="@color/colorPrimary"
             android:text="Sign Up"
             android:background="@drawable/rounded_button"
             android:layout_marginStart="16dp"
@@ -93,7 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/theme"
+            android:backgroundTint="@color/colorPrimary"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:text="Already have an account? Login"
@@ -108,7 +113,9 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             android:text="Our Partners"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textColor="@color/textColorPrimary"
+            /> <!-- Use theme-aware text color -->/>
 
 
         <ImageView

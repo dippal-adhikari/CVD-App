@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?android:attr/windowBackground"
     android:padding="16dp">
 
     <LinearLayout
@@ -20,8 +22,6 @@
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/dmsans_bold"
             android:text="@string/how_it_works"
-            android:textColor="@color/textColorSecondary"
-
             android:textSize="32sp" />
 
         <!-- Horizontal Divider -->
@@ -46,7 +46,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="18dp"
-            android:backgroundTint="@color/theme"
+            android:backgroundTint="@color/colorPrimary"
             android:text="@string/looking_for_a_job"
             android:textColor="@android:color/white"
             android:background="@drawable/rounded_button" />
@@ -59,7 +59,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="18dp"
-            android:backgroundTint="@color/theme"
+            android:backgroundTint="@color/colorPrimary"
             android:text="@string/change_language"
             android:background="@drawable/rounded_button"
             android:textColor="@android:color/white" />
@@ -71,7 +71,8 @@
             android:layout_height="wrap_content"
             android:text="Switch To Dark Mode"
             android:layout_marginTop="16dp"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:textColor="@android:color/white"/>
 
         <!-- TextView for Displaying Partners Section -->
         <TextView

@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="16dp"
-    android:background="@android:color/white">
+    android:background="?android:attr/windowBackground"
+    >
 
     <!-- Back Button and Profile Title (Fixed at the top) -->
     <RelativeLayout
@@ -330,7 +331,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Change Language"
-                android:textColor="@color/theme"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"/>
@@ -349,7 +350,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Contact Us"
-                android:textColor="@color/theme"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:clickable="true"
                 android:focusable="true"
@@ -362,7 +363,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Privacy Policy"
-                android:textColor="@color/theme"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"/>
@@ -373,7 +374,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:text="End-User License Agreement"
-                android:textColor="@color/theme"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
@@ -398,7 +399,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/theme"
+            android:backgroundTint="@color/colorPrimary"
             android:drawableLeft="@android:drawable/ic_menu_delete"
             android:text="Clear storage"
             android:background="@drawable/rounded_button"
@@ -412,7 +413,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="Logout"
-            android:backgroundTint="@color/backgroundColor"
+            android:backgroundTint="@color/backgroundLight"
             android:textColor="#880808"
             android:background="@drawable/rounded_button"
             app:strokeColor="@color/black"

@@ -3,7 +3,8 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="16dp"
-    android:background="@android:color/white">
+    android:background="?android:attr/windowBackground"
+    >
 
     <!-- Image Back Button -->
     <ImageButton
@@ -28,7 +29,7 @@
         android:layout_marginTop="8dp"
         android:padding="8dp"
         android:text="Add new"
-        android:textColor="@color/theme"
+        android:textColor="@color/colorPrimary"
         android:textSize="16sp" />
 
     <!-- Title -->

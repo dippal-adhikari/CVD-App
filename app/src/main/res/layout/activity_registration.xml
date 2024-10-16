@@ -5,7 +5,8 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    >
 
 
     <!-- Registration Title -->
@@ -90,7 +91,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/rounded_button"
-        android:backgroundTint="@color/theme" />
+        android:backgroundTint="@color/colorPrimary" />
 
 
     <!-- Sign Up -->

@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@color/backgroundColor">
+    android:background="?android:attr/windowBackground"
+    >
 
     <!-- Top Bar -->
     <RelativeLayout
@@ -100,7 +101,7 @@
         android:layout_height="1dp"
         android:layout_below="@+id/progressSection"
         android:layout_marginTop="16dp"
-        android:background="@color/gray"
+        android:background="@color/textColorSecondary"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"/>
 
@@ -134,7 +135,7 @@
             android:elevation="4dp"
             android:padding="16dp"
             app:cardCornerRadius="8dp"
-            android:background="@color/backgroundColor">
+            android:background="@color/backgroundLight">
 
             <RelativeLayout
                 android:id="@+id/btnScripts"
@@ -163,7 +164,7 @@
                     android:layout_marginBottom="20dp"
                     android:fontFamily="@font/dmsans_regular"
                     android:text="Create new scripts and edit \nexisting ones"
-                    android:textColor="@color/gray" />
+                    android:textColor="@color/textColorSecondary" />
 
                 <ImageView
                     android:id="@+id/iconScripts"
@@ -186,7 +187,7 @@
             android:elevation="4dp"
             android:padding="16dp"
             app:cardCornerRadius="8dp"
-            android:background="@color/backgroundColor">
+            android:background="@color/backgroundLight">
 
             <!-- Using a horizontal LinearLayout to align text and image horizontally -->
             <LinearLayout
@@ -220,7 +221,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="20dp"
                         android:text="Create new videos and\nedit existing ones"
-                        android:textColor="@color/gray"
+                        android:textColor="@color/textColorSecondary"
                         android:fontFamily="@font/dmsans_regular"/>
                 </LinearLayout>
 
@@ -295,7 +296,7 @@
         android:layout_marginEnd="0dp"
         app:menu="@menu/bottom_navigation_menu"
 
-        android:background="@color/backgroundColor"/>
+        android:background="@color/backgroundLight"/>
 
 
 

@@ -7,9 +7,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:ignore="ExtraText">
-    android:src="@drawable/osky"
-    android:contentDescription="OSKY Logo"/>
+    tools:ignore="ExtraText"
+    android:background="?android:attr/windowBackground"
+    >
+
 
 
 
@@ -109,7 +110,7 @@
         android:background="@drawable/rounded_button"
         android:textColor="@color/white"
 
-        android:backgroundTint="@color/theme"
+        android:backgroundTint="@color/colorPrimary"
         android:text="Login" />
 
     <TextView
