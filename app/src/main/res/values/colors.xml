@@ -1,43 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Light Theme Colors -->
-    <color name="backgroundColor">#fffefa</color> <!-- Off-white background for light theme -->
-    <color name="gray">#919191</color>
-    <color name="theme">#009689</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFF</color>
-    <color name="primaryColor">#6200EE</color>
-    <color name="primaryLightColor">#BB86FC</color>
-    <color name="primaryDarkColor">#3700B3</color>
-    <color name="secondaryColor">#03DAC5</color>
-    <color name="secondaryLightColor">#66FFF9</color>
-    <color name="secondaryDarkColor">#00A896</color>
-    <color name="textColorPrimary">#212121</color>
-    <color name="textColorSecondary">#757575</color>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <!-- Primary Theme Color -->
+    <color name="colorPrimary">#009689</color> <!-- Primary color everywhere -->
+    <color name="colorPrimaryDark">#00796B</color> <!-- Darker shade of primary color -->
+    <color name="colorAccent">#009689</color> <!-- Accent color (same as primary) -->
 
-    <!-- Updated Background Colors -->
-    <color name="backgroundLight">#F0F0F0</color> <!-- Light gray for light theme -->
-    <color name="backgroundDark">#212121</color> <!-- Updated to a dark gray for dark theme -->
+    <!-- Background Colors -->
+    <color name="backgroundLight">#FFFEFA</color> <!-- Light background -->
 
     <!-- Text Colors -->
-    <color name="textPrimary">#0a0a0a</color> <!-- Dark color for primary text -->
-    <color name="textSecondary">#757575</color> <!-- Gray for secondary text -->
-    <color name="textWhite">#FFFFFF</color> <!-- White text for dark backgrounds -->
+    <color name="textColorPrimary">#000000</color> <!-- Primary text color (Black) -->
+    <color name="textColorSecondary">#757575</color> <!-- Secondary text color (Gray) -->
 
     <!-- Button Colors -->
     <color name="buttonText">#FFFFFF</color> <!-- White text on buttons -->
-    <color name="buttonBackground">#FF5733</color> <!-- Orange button background -->
 
-    <!-- Additional Colors -->
-    <color name="colorSuccess">#4CAF50</color> <!-- Green for success messages -->
-    <color name="colorError">#F44336</color> <!-- Red for error messages -->
-    <color name="colorWarning">#FF9800</color> <!-- Orange for warnings -->
-    <color name="colorInfo">#2196F3</color> <!-- Blue for informational messages -->
-    <color name="teal_700">#00796B</color> <!-- Teal for theme accents -->
+    <color name="black">#070707</color> <!-- White text on buttons -->
+    <color name="white">#FFFFFF</color> <!-- White text on buttons -->
 
-    <!-- Newly Added Dark Gray Color -->
-    <color name="dark_gray">#212121</color> <!-- Custom dark gray for dark theme background -->
+
 </resources>
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<resources>-->
+<!--    &lt;!&ndash; Light Theme Colors &ndash;&gt;-->
+<!--    <color name="backgroundColor">#fffefa</color> &lt;!&ndash; Off-white background for light theme &ndash;&gt;-->
+<!--    <color name="gray">#919191</color>-->
+<!--    <color name="theme">#009689</color>-->
+<!--    <color name="black">#FF000000</color>-->
+<!--    <color name="white">#FFFFFF</color>-->
+<!--    <color name="primaryColor">#009689</color>-->
+<!--    <color name="primaryLightColor">#009689</color>-->
+<!--    <color name="primaryDarkColor">#009689</color>-->
+<!--    <color name="secondaryColor">#03DAC5</color>-->
+<!--    <color name="secondaryLightColor">#66FFF9</color>-->
+<!--    <color name="secondaryDarkColor">#00A896</color>-->
+<!--    <color name="textColorPrimary">#000000</color>-->
+<!--    <color name="textColorSecondary">#020000</color>-->
+<!--    <color name="colorPrimary">#009689</color>-->
+<!--    <color name="colorPrimaryDark">#009689</color>-->
+<!--    <color name="colorAccent">#03DAC5</color>-->
+
+<!--    &lt;!&ndash; Updated Background Colors &ndash;&gt;-->
+<!--    <color name="backgroundLight">#fffefa</color> &lt;!&ndash; Light gray for light theme &ndash;&gt;-->
+<!--    <color name="backgroundDark">#212121</color> &lt;!&ndash; Updated to a dark gray for dark theme &ndash;&gt;-->
+
+<!--    &lt;!&ndash; Text Colors &ndash;&gt;-->
+<!--    <color name="textPrimary">#0a0a0a</color> &lt;!&ndash; Dark color for primary text &ndash;&gt;-->
+<!--    <color name="textPrimaryLight">#0a0a0a</color> &lt;!&ndash; Dark color for primary text &ndash;&gt;-->
+<!--    <color name="textPrimaryDark">#FFFFFF</color> &lt;!&ndash; white color for primary text &ndash;&gt;-->
+
+<!--    <color name="textSecondary">#000000</color> &lt;!&ndash; Gray for secondary text &ndash;&gt;-->
+<!--    <color name="textWhite">#FFFFFF</color> &lt;!&ndash; White text for dark backgrounds &ndash;&gt;-->
+
+<!--    &lt;!&ndash; Button Colors &ndash;&gt;-->
+<!--    <color name="buttonText">#FFFFFF</color> &lt;!&ndash; White text on buttons &ndash;&gt;-->
+<!--    <color name="buttonBackground">#212121</color> &lt;!&ndash; grey button background &ndash;&gt;-->
+
+<!--     Additional Colors-->
+<!--    <color name="colorSuccess">#4CAF50</color> &lt;!&ndash; Green for success messages &ndash;&gt;-->
+<!--    <color name="colorError">#F44336</color> &lt;!&ndash; Red for error messages &ndash;&gt;-->
+<!--    <color name="colorWarning">#FF9800</color> &lt;!&ndash; Orange for warnings &ndash;&gt;-->
+<!--    <color name="colorInfo">#2196F3</color> &lt;!&ndash; Blue for informational messages &ndash;&gt;-->
+<!--    <color name="teal_700">#00796B</color> &lt;!&ndash; Teal for theme accents &ndash;&gt;-->
+
+<!--    &lt;!&ndash; Newly Added Dark Gray Color &ndash;&gt;-->
+<!--    <color name="dark_gray">#212121</color> &lt;!&ndash; Custom dark gray for dark theme background &ndash;&gt;-->
+<!--</resources>-->

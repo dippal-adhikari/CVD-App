@@ -1,8 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.CVDDraft1" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:colorBackground">@color/backgroundColor</item>
-        <item name="android:textColor">@color/textPrimary</item>
+    <style name="Theme.CVDDraft1" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Apply primary color to theme elements -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- Background and text colors -->
+        <item name="android:windowBackground">@color/backgroundLight</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+
+        <!-- Custom button style -->
+        <item name="android:buttonStyle">@style/Widget.Button.CVDDraft1</item>
     </style>
 
-
+    <!-- Custom Button Style -->
+    <style name="Widget.Button.CVDDraft1" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:backgroundTint">@color/colorPrimary</item> <!-- Primary color for buttons -->
+        <item name="android:textColor">@color/buttonText</item> <!-- White text on buttons -->
+    </style>
 </resources>
+
+
+    <!--<resources>-->
+<!--        <style name="Theme.CVDDraft1" parent="Theme.MaterialComponents.DayNight.NoActionBar">-->
+<!--            <item name="android:windowBackground">@color/backgroundLight</item> &lt;!&ndash; Light background color &ndash;&gt;-->
+<!--            <item name="android:textColorPrimary">@color/textColorPrimary</item>-->
+<!--            <item name="android:buttonStyle">@style/Widget.Button.CVDDraft1</item> &lt;!&ndash; Custom button style &ndash;&gt;-->
+<!--        </style>-->
+
+
+
+<!--    &lt;!&ndash; Custom Button Style for Light Theme &ndash;&gt;-->
+<!--    <style name="Widget.Button.CVDDraft1" parent="Widget.AppCompat.Button.Colored">-->
+<!--        <item name="android:backgroundTint">@color/buttonBackground</item> &lt;!&ndash; Orange background &ndash;&gt;-->
+<!--        <item name="android:textColor">@color/buttonText</item> &lt;!&ndash; White text &ndash;&gt;-->
+<!--&lt;!&ndash;        <item name="android:textColor">@color/textPrimaryLight</item>&ndash;&gt;-->
+<!--    </style>-->
+
+
+<!--</resources>-->

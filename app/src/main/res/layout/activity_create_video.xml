@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundColor"
+    android:background="@color/backgroundLight"
     tools:context=".CreateVideoActivity">
 
         <!-- Camera Preview -->
@@ -111,7 +111,6 @@
             android:contentDescription="@string/start_recording"
             android:src="@drawable/ic_record"
             android:tint="@android:color/white"
-            app:backgroundTint="@color/secondaryColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -140,9 +139,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:importantForAccessibility="yes"
             app:indicatorSize="80dp"
-            app:trackThickness="8dp"
-            app:indicatorColor="@color/secondaryColor"
-            app:trackColor="@color/primaryColor" />
+            app:trackThickness="8dp" />
 
         <!-- Button to Show Bottom Sheet -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -153,7 +150,6 @@
             android:contentDescription="@string/show_settings"
             android:src="@drawable/ic_settings"
             android:tint="@android:color/white"
-            app:backgroundTint="@color/secondaryColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintVertical_bias="0.8"
@@ -205,7 +201,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginBottom="16dp"
-                        android:backgroundTint="@color/secondaryColor"
                         android:contentDescription="@string/rotate_camera"
                         android:text="@string/rotate_camera"
                         android:textColor="@color/white"
@@ -217,7 +212,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginBottom="16dp"
-                        android:backgroundTint="@color/secondaryColor"
                         android:contentDescription="@string/flashlight"
                         android:text="@string/flashlight"
                         android:textColor="@color/white"
@@ -229,7 +223,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginBottom="16dp"
-                        android:backgroundTint="@color/secondaryColor"
                         android:contentDescription="@string/change_background"
                         android:text="@string/change_background"
                         android:textColor="@color/white"
@@ -241,7 +234,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginBottom="16dp"
-                        android:backgroundTint="@color/secondaryColor"
                         android:contentDescription="@string/video_quality"
                         android:importantForAccessibility="yes" />
 
@@ -261,8 +253,6 @@
                         android:layout_height="48dp"
                         android:layout_marginBottom="16dp"
                         android:max="100"
-                        android:progressTint="@color/secondaryColor"
-                        android:thumbTint="@color/primaryColor"
                         android:importantForAccessibility="yes" />
 
                     <!-- Zoom Level -->
@@ -282,8 +272,6 @@
                         android:layout_marginBottom="16dp"
                         android:max="100"
                         android:progress="0"
-                        android:progressTint="@color/secondaryColor"
-                        android:thumbTint="@color/primaryColor"
                         android:importantForAccessibility="yes" />
 
                     <Button
@@ -291,7 +279,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginBottom="16dp"
-                        android:backgroundTint="@color/secondaryColor"
                         android:contentDescription="@string/reset_zoom"
                         android:text="@string/reset_zoom"
                         android:textColor="@color/white"
@@ -313,8 +300,6 @@
                         android:layout_height="48dp"
                         android:layout_marginBottom="16dp"
                         android:max="100"
-                        android:progressTint="@color/secondaryColor"
-                        android:thumbTint="@color/primaryColor"
                         android:importantForAccessibility="yes" />
 
                     <Button
@@ -322,7 +307,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginBottom="16dp"
-                        android:backgroundTint="@color/secondaryColor"
                         android:contentDescription="@string/reset_exposure"
                         android:text="@string/reset_exposure"
                         android:textColor="@color/white"
@@ -334,7 +318,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginBottom="16dp"
-                        android:backgroundTint="@color/secondaryColor"
                         android:contentDescription="@string/stabilization"
                         android:text="@string/stabilization"
                         android:textColor="@color/white"
@@ -346,7 +329,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginBottom="16dp"
-                        android:backgroundTint="@color/secondaryColor"
                         android:contentDescription="@string/grid"
                         android:text="@string/grid"
                         android:textColor="@color/white"
@@ -358,7 +340,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginBottom="16dp"
-                        android:backgroundTint="@color/secondaryColor"
                         android:contentDescription="@string/timer"
                         android:text="@string/timer"
                         android:textColor="@color/white"

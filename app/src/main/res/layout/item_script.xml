@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:background="@drawable/rounded_edittext_border"
     android:padding="16dp"
-    android:layout_marginTop="16dp">
+    android:layout_marginTop="16dp"
+    >
 
     <!-- Script Created Date -->
     <TextView

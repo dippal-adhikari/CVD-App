@@ -1,22 +1,27 @@
 package com.example.cvd_draft_1;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 public class LauncherActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //        ThemeUtils.applySavedTheme(this);
+        // Apply the saved theme preference before setting the content view
+        applyThemePreference();
+        // ThemeUtils.applySavedTheme(this);
         setContentView(R.layout.activity_launcher);
 
         ImageButton backButton = findViewById(R.id.btnBack);
+
 
         // Back button action
          backButton.setOnClickListener(new View.OnClickListener() {
@@ -39,5 +44,15 @@ public class LauncherActivity extends AppCompatActivity {
             Intent intent = new Intent(LauncherActivity.this, LoginActivity.class);
             startActivity(intent);
         });
+    }
+    // Method to apply the saved theme preference
+    private void applyThemePreference() {
+        SharedPreferences prefs = getSharedPreferences("ThemePrefs", MODE_PRIVATE);
+        boolean isDarkMode = prefs.getBoolean("isDarkMode", false);
+        if (isDarkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 }

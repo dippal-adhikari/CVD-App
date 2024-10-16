@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.CVDDraft1" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Apply primary color to theme elements -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- Background and text colors -->
+        <item name="android:windowBackground">@color/backgroundDark</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+
+        <!-- Custom button style -->
+        <item name="android:buttonStyle">@style/Widget.Button.CVDDraft1</item>
+    </style>
+
+    <!-- Custom Button Style -->
+    <style name="Widget.Button.CVDDraft1" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:backgroundTint">@color/colorPrimary</item> <!-- Primary color for buttons -->
+        <item name="android:textColor">@color/buttonText</item> <!-- White text on buttons -->
+    </style>
+</resources>
+
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<resources>-->
+<!--    <style name="Theme.CVDDraft1" parent="Theme.AppCompat.DayNight.NoActionBar">-->
+<!--        <item name="android:windowBackground">@color/backgroundDark</item> &lt;!&ndash; Dark background color &ndash;&gt;-->
+<!--        <item name="android:textColorPrimary">@color/textColorPrimary</item>-->
+<!--        <item name="android:buttonStyle">@style/Widget.Button.CVDDraft1</item> &lt;!&ndash; Custom button style &ndash;&gt;-->
+<!--    </style>-->
+
+<!--    &lt;!&ndash; Custom Button Style for Dark Theme &ndash;&gt;-->
+<!--    <style name="Widget.Button.CVDDraft1" parent="Widget.AppCompat.Button.Colored">-->
+<!--        <item name="android:backgroundTint">@color/buttonBackground</item> &lt;!&ndash; Orange background &ndash;&gt;-->
+<!--        <item name="android:textColor">@color/buttonText</item> &lt;!&ndash; Black text on buttons &ndash;&gt;-->
+
+
+<!--&lt;!&ndash;        <item name="android:textColor">@color/textPrimaryDark</item>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <item name="android:colorBackground">@color/dark_gray</item>&ndash;&gt;-->
+<!--&lt;!&ndash;        <item name="colorPrimary">@color/gray</item>&ndash;&gt;-->
+<!--&lt;!&ndash;        <item name="colorPrimaryDark">@color/dark_gray</item>&ndash;&gt;-->
+<!--&lt;!&ndash;        <item name="colorAccent">@color/white</item>&ndash;&gt;-->
+<!--&lt;!&ndash;        <item name="android:windowBackground">@color/dark_gray</item> &lt;!&ndash; Use the new dark gray &ndash;&gt;&ndash;&gt;-->
+
+<!--    </style>-->
+
+<!--</resources>-->
