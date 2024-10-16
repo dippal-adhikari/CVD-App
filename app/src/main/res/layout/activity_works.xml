@@ -4,15 +4,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    >
+    android:padding="16dp">
 
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- Title TextView -->
         <TextView
             android:layout_width="341dp"
             android:layout_height="wrap_content"
@@ -21,28 +20,17 @@
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/dmsans_bold"
             android:text="@string/how_it_works"
-            android:textColor="@android:color/black"
+            android:textColor="@color/textColorSecondary"
+
             android:textSize="32sp" />
 
+        <!-- Horizontal Divider -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/darker_gray" />
 
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="@android:color/darker_gray" />
-
-        <!-- ViewPager2 for Swiping through images -->
-
-
-        <!-- Additional Options -->
-
-
+        <!-- ViewPager2 for Swiping through Images -->
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
@@ -50,6 +38,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp" />
 
+        <!-- Button to Navigate to Job Search -->
         <Button
             android:id="@+id/btnJob"
             android:layout_width="match_parent"
@@ -60,9 +49,9 @@
             android:backgroundTint="@color/theme"
             android:text="@string/looking_for_a_job"
             android:textColor="@android:color/white"
-            android:background="@drawable/rounded_button"
-            tools:ignore="HardcodedText" />
+            android:background="@drawable/rounded_button" />
 
+        <!-- Button to Change Language -->
         <Button
             android:id="@+id/btnChangeLanguage"
             android:layout_width="match_parent"
@@ -75,6 +64,16 @@
             android:background="@drawable/rounded_button"
             android:textColor="@android:color/white" />
 
+        <!-- Button to Toggle Theme -->
+        <Button
+            android:id="@+id/btnToggleTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Switch To Dark Mode"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center" />
+
+        <!-- TextView for Displaying Partners Section -->
         <TextView
             android:id="@+id/tvPartners"
             android:layout_width="wrap_content"
@@ -82,21 +81,19 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="12dp"
             android:text="Our Partners"
+            android:textColor="@color/textColorSecondary"
             android:textSize="16sp" />
 
-
+        <!-- ImageView for Partner Logo -->
         <ImageView
             android:id="@+id/osky_logo"
             android:layout_width="match_parent"
             android:layout_height="107dp"
-            android:layout_alignParentBottom="true"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="13dp"
             android:contentDescription="OSKY Logo"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
             android:src="@drawable/osky" />
 
-
     </LinearLayout>
+
 </androidx.core.widget.NestedScrollView>

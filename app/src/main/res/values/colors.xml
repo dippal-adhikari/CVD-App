@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="backgroundColor">#fffefa</color>
+    <!-- Light Theme Colors -->
+    <color name="backgroundColor">#fffefa</color> <!-- Off-white background for light theme -->
     <color name="gray">#919191</color>
     <color name="theme">#009689</color>
     <color name="black">#FF000000</color>
@@ -17,25 +18,26 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
-    <!-- Background colors -->
-    <color name="backgroundLight">#F0F0F0</color>
-    <color name="backgroundDark">#333333</color>
+    <!-- Updated Background Colors -->
+    <color name="backgroundLight">#F0F0F0</color> <!-- Light gray for light theme -->
+    <color name="backgroundDark">#212121</color> <!-- Updated to a dark gray for dark theme -->
 
-    <!-- Text colors -->
-    <color name="textPrimary">#333333</color>
-    <color name="textSecondary">#666666</color>
-    <color name="textWhite">#FFFFFF</color>
+    <!-- Text Colors -->
+    <color name="textPrimary">#0a0a0a</color> <!-- Dark color for primary text -->
+    <color name="textSecondary">#757575</color> <!-- Gray for secondary text -->
+    <color name="textWhite">#FFFFFF</color> <!-- White text for dark backgrounds -->
 
-    <!-- Button colors -->
-    <color name="buttonText">#FFFFFF</color>
-    <color name="buttonBackground">#FF5733</color>
+    <!-- Button Colors -->
+    <color name="buttonText">#FFFFFF</color> <!-- White text on buttons -->
+    <color name="buttonBackground">#FF5733</color> <!-- Orange button background -->
 
-    <!-- Additional colors -->
-    <color name="colorSuccess">#4CAF50</color>
-    <color name="colorError">#F44336</color>
-    <color name="colorWarning">#FF9800</color>
-    <color name="colorInfo">#2196F3</color>
-    <color name="teal_700">#00796B</color>
+    <!-- Additional Colors -->
+    <color name="colorSuccess">#4CAF50</color> <!-- Green for success messages -->
+    <color name="colorError">#F44336</color> <!-- Red for error messages -->
+    <color name="colorWarning">#FF9800</color> <!-- Orange for warnings -->
+    <color name="colorInfo">#2196F3</color> <!-- Blue for informational messages -->
+    <color name="teal_700">#00796B</color> <!-- Teal for theme accents -->
 
-
+    <!-- Newly Added Dark Gray Color -->
+    <color name="dark_gray">#212121</color> <!-- Custom dark gray for dark theme background -->
 </resources>
