@@ -3,6 +3,7 @@ package com.example.cvd_draft_1;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +37,7 @@ public class ScriptReadyNotification extends AppCompatActivity {
         });
 
 
-        TextView btnBack = findViewById(R.id.btnBack);
+        ImageButton btnBack = findViewById(R.id.btnBack);
         Button btnRecordNow = findViewById(R.id.btnRecordNow);
         TextView btnRecordLater = findViewById(R.id.tvRecordLater);
 

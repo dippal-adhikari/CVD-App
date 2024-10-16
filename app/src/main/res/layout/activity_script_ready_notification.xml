@@ -1,22 +1,37 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="16dp"
     android:id="@+id/main">
 
 <!-- Back Button -->
-<TextView
-    android:id="@+id/btnBack"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:padding="8dp"
-    android:text="←"
-    android:textColor="@color/theme"
-    android:textSize="16sp"
-    android:layout_alignParentStart="true" />
+    <!-- Image Back Button -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        tools:ignore="TouchTargetSizeCheck"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Back"
+        android:padding="0dp"
+        android:scaleType="centerInside"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/back_key" />
 
-<!-- Profile Title -->
+    <!-- Check Mark Icon -->
+    <ImageView
+        android:id="@+id/checkIcon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ready"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center"
+        android:contentDescription="Check Icon" />
+
+    <!-- Profile Title -->
     <TextView
         android:id="@+id/tvReview"
         android:layout_width="match_parent"
@@ -28,12 +43,16 @@
         android:gravity="center"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_below="@id/btnBack" />
 
 
 
 
-<!-- Fixed Next Button at the bottom -->
+
+
+    <!-- Fixed Next Button at the bottom -->
 <Button
     android:id="@+id/btnRecordNow"
     android:layout_width="match_parent"
@@ -41,6 +60,8 @@
     android:text="Record Now"
     android:layout_marginTop="50px"
     android:textSize="20sp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
 
     android:textColor="@android:color/white"
     android:background="@drawable/rounded_button"
@@ -58,6 +79,8 @@
         android:autoLink="all"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_below="@id/btnBack" />
 </LinearLayout>
 

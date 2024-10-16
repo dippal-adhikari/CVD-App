@@ -13,6 +13,7 @@ public class LauncherActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //        ThemeUtils.applySavedTheme(this);
         setContentView(R.layout.activity_launcher);
 
         ImageButton backButton = findViewById(R.id.btnBack);
