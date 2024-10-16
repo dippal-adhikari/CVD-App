@@ -2,14 +2,27 @@ package com.example.cvd_draft_1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class VideoActivity extends AppCompatActivity {
+    private RecyclerView recyclerView;
+    private VideoAdapter videoAdapter;
+    private List<StorageReference> videoList;
+    private StorageReference userVideoStorageRef;
     ImageButton btnBack;  // Declare the back button
 
 
@@ -35,6 +48,33 @@ public class VideoActivity extends AppCompatActivity {
             }
         });
 
+        // Initialize RecyclerView
+        recyclerView = findViewById(R.id.recyclerViewVideos);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        videoList = new ArrayList<>();
+        videoAdapter = new VideoAdapter(videoList, this);
+        recyclerView.setAdapter(videoAdapter);
+
+        // Get the current user's UID
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        // Reference to the user's video folder in Firebase Storage
+        userVideoStorageRef = FirebaseStorage.getInstance().getReference().child("users/" + userId + "/videos");
+
+        // Fetch list of videos
+        fetchVideoList();
+    }
+
+    private void fetchVideoList() {
+        userVideoStorageRef.listAll().addOnSuccessListener(listResult -> {
+            videoList.clear();
+            videoList.addAll(listResult.getItems());
+            videoAdapter.notifyDataSetChanged();
+        }).addOnFailureListener(e -> {
+            Log.e("Firebase", "Failed to fetch videos: " + e.getMessage());
+        });
     }
 }
+
+

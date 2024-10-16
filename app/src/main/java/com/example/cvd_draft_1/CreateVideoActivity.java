@@ -15,11 +15,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -38,6 +40,7 @@ import com.arthenica.ffmpegkit.ReturnCode;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -101,6 +104,8 @@ public class CreateVideoActivity extends AppCompatActivity {
     private int scrollSpeed = 5; // Adjust scroll speed as needed
     private ScrollView scriptScrollView; // ScrollView for the script
 
+    private VideoView videoView;
+
 
     TextView speedPercentageView;
 
@@ -120,6 +125,9 @@ public class CreateVideoActivity extends AppCompatActivity {
                     Manifest.permission.READ_EXTERNAL_STORAGE
             }, 1);
         }
+
+        // Initialize VideoView
+        videoView = findViewById(R.id.videoView);
 
         // Initialize Firebase Storage
         videoStorageReference = FirebaseStorage.getInstance().getReference().child("videos");
@@ -338,6 +346,85 @@ public class CreateVideoActivity extends AppCompatActivity {
             return; // Exit if file is not valid
         }
 
+        // Play the recorded clip using VideoView
+        videoView.setVisibility(View.VISIBLE);  // Show the VideoView
+        Uri videoUri = Uri.fromFile(clipFile);
+        videoView.setVideoURI(videoUri);
+        videoView.start(); // Start playback automatically
+
+        // Media controller for VideoView
+        MediaController mediaController = new MediaController(this);
+        mediaController.setAnchorView(videoView);
+        videoView.setMediaController(mediaController);
+
+        // Completion listener to ask for user input after the video finishes playing
+        videoView.setOnCompletionListener(mp -> {
+            new AlertDialog.Builder(this)
+                    .setTitle("Review Clip")
+                    .setMessage("Do you want to redo this clip or move to the next?")
+                    .setPositiveButton("Redo", (dialog, which) -> {
+                        redoClip(clipFile);
+                    })
+                    .setNegativeButton("Next", (dialog, which) -> {
+                        processClipForTextAddition(clipFile);
+                    })
+                    .setCancelable(false)
+                    .show();
+        });
+//
+//        Log.d("FFmpeg", "Processing recorded clip: " + clipFile.getAbsolutePath());
+//        String outputFileName = "clip_" + currentClipIndex + "_with_text.mp4";
+//        File modifiedClip = new File(getExternalFilesDir(null), outputFileName);
+//
+//        addTextToClip(clipFile.getAbsolutePath(), modifiedClip.getAbsolutePath(), questions.get(currentClipIndex), () -> {
+//            Log.d("FFmpeg", "Text added successfully to clip: " + modifiedClip.getAbsolutePath());
+//
+//            // Replace the original clip with the modified one
+//            // Use add instead of set
+//            if (currentClipIndex < recordedClips.size()) {
+//                recordedClips.set(currentClipIndex, modifiedClip);
+//            } else {
+//                recordedClips.add(modifiedClip);
+//            }
+//
+//            // Update UI and state
+//            currentClipIndex++;
+//            displayNextScript();
+//
+//            // If all clips are recorded and processed, merge them
+//            if (currentClipIndex >= questions.size()) {
+//                try {
+//                    String fileListPath = createFileList(getClipPaths());
+//                    String mergedOutputPath = getExternalFilesDir(null) + "/final_merged_video_" + System.currentTimeMillis() + ".mp4";
+//                    mergeClips(fileListPath, mergedOutputPath, () -> {
+//                        Toast.makeText(this, "Final video created successfully at " + mergedOutputPath, Toast.LENGTH_LONG).show();
+//                    });
+//                } catch (IOException e) {
+//                    Log.e("FFmpeg", "Error creating final merged video file list.", e);
+//                    Toast.makeText(this, "Error creating final merged video.", Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        });
+    }
+
+    // Method to redo the current clip by deleting it and restarting the recording
+    private void redoClip(File clipFile) {
+        if (clipFile.exists()) {
+            boolean deleted = clipFile.delete();
+            if (deleted) {
+                Log.d("File", "Deleted clip for redo: " + clipFile.getAbsolutePath());
+                currentClipIndex--; // Move back to redo the same clip index
+            } else {
+                Log.e("File", "Failed to delete clip for redo: " + clipFile.getAbsolutePath());
+            }
+        }
+        // Restart the recording for the same clip index
+        startRecording();
+    }
+
+
+    // Method to add text to the clip after the user confirms moving to the next
+    private void processClipForTextAddition(File clipFile) {
         Log.d("FFmpeg", "Processing recorded clip: " + clipFile.getAbsolutePath());
         String outputFileName = "clip_" + currentClipIndex + "_with_text.mp4";
         File modifiedClip = new File(getExternalFilesDir(null), outputFileName);
@@ -346,7 +433,6 @@ public class CreateVideoActivity extends AppCompatActivity {
             Log.d("FFmpeg", "Text added successfully to clip: " + modifiedClip.getAbsolutePath());
 
             // Replace the original clip with the modified one
-            // Use add instead of set
             if (currentClipIndex < recordedClips.size()) {
                 recordedClips.set(currentClipIndex, modifiedClip);
             } else {
@@ -372,6 +458,8 @@ public class CreateVideoActivity extends AppCompatActivity {
             }
         });
     }
+
+
     private void stopRecording() {
         if (recording != null) {
             recording.stop();
@@ -541,6 +629,9 @@ public class CreateVideoActivity extends AppCompatActivity {
                 if (renamed) {
                     Log.d("FFmpeg", "Merged file renamed to: " + renamedMergedFile.getAbsolutePath());
 
+                    // Upload the final video to Firebase Storage
+                    uploadFinalVideoToFirebase(renamedMergedFile);
+
                     // Delete unmerged clips
                     deleteUnmergedClips();
                     if (onMergeComplete != null) {
@@ -555,6 +646,38 @@ public class CreateVideoActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void uploadFinalVideoToFirebase(File finalVideoFile) {
+        if (finalVideoFile.exists()) {
+            Uri fileUri = Uri.fromFile(finalVideoFile);
+
+            // Get the current user's UID from Firebase Authentication
+            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+            // Use the user's UID to create a unique path for each user's videos
+            StorageReference userVideoRef = FirebaseStorage.getInstance().getReference()
+                    .child("users/" + userId + "/videos/" + finalVideoFile.getName());
+
+            userVideoRef.putFile(fileUri)
+                    .addOnSuccessListener(taskSnapshot -> {
+                        // File successfully uploaded
+                        Toast.makeText(CreateVideoActivity.this, "Final video uploaded successfully!", Toast.LENGTH_SHORT).show();
+                        userVideoRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                            // You can retrieve the download URL here if needed
+                            Log.d("Firebase", "Download URL: " + uri.toString());
+                        });
+                    })
+                    .addOnFailureListener(e -> {
+                        // Handle any errors during the upload
+                        Toast.makeText(CreateVideoActivity.this, "Failed to upload final video: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+        } else {
+            Log.e("Firebase", "Final video file does not exist for upload.");
+        }
+    }
+
+
+
 
     private String getTempOutputFilePath() {
         return getExternalFilesDir(null) + "/temp_merged_video.mp4";
@@ -616,7 +739,6 @@ public class CreateVideoActivity extends AppCompatActivity {
         }
         return paths;
     }
-
 }
 
 
