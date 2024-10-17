@@ -85,6 +85,18 @@ public class ScriptDisplayActivity extends AppCompatActivity {
 
     // Method to add an EditText for each question and answer
     private void addScriptEditText(String question, String answer) {
+        // Create a container for each question-answer block
+        LinearLayout questionAnswerContainer = new LinearLayout(this);
+        questionAnswerContainer.setOrientation(LinearLayout.VERTICAL);
+        questionAnswerContainer.setPadding(16, 16, 16, 16);
+        questionAnswerContainer.setBackground(getResources().getDrawable(R.drawable.box_background));
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        params.setMargins(0, 16, 0, 16);  // Add space between question-answer blocks
+        questionAnswerContainer.setLayoutParams(params);
+
         // Create a TextView for the question label
         TextView questionLabel = new TextView(this);
         questionLabel.setText(question);  // Display the question as a label
@@ -96,14 +108,19 @@ public class ScriptDisplayActivity extends AppCompatActivity {
         editText.setText(answer);  // Set the answer as the initial text
         editText.setTextSize(16);
         editText.setPadding(16, 16, 16, 16);
+        editText.setBackground(null);  // Remove the default underline
 
         // Add the EditText reference to the list
         answerFields.add(editText);
 
-        // Add the question label and the editable answer field to the layout
-        scriptContainer.addView(questionLabel);
-        scriptContainer.addView(editText);
+        // Add the question label and the editable answer field to the questionAnswerContainer
+        questionAnswerContainer.addView(questionLabel);
+        questionAnswerContainer.addView(editText);
+
+        // Add the container to the main scriptContainer layout
+        scriptContainer.addView(questionAnswerContainer);
     }
+
 
     // Method to update the answersList with edited values
     private void updateAnswersList() {
