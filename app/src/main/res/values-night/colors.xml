@@ -10,6 +10,9 @@
     <!-- Background Colors -->
     <color name="backgroundDark">#212121</color> <!-- Dark background -->
 
+    <color name="colorRoundedBackground">#424242</color> <!-- Secondary text color (Gray) -->
+
+
     <!-- Text Colors -->
     <color name="textColorPrimary">#FFFFFF</color> <!-- Primary text color (White) -->
     <color name="textColorSecondary">#B3B3B3</color> <!-- Secondary text color (Light Gray) -->
