@@ -95,7 +95,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
 
         Button buttonReg = findViewById(R.id.btnReg);
-        buttonReg.setOnClickListener(view -> register());
 
         GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.client_id))
@@ -138,6 +137,7 @@ public class RegistrationActivity extends AppCompatActivity {
         buttonReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                register();
                 String email = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
                 String username = editTextUsername.getText().toString();  // Collect username input
@@ -191,10 +191,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                                                     .update(updatedFields)
                                                                     .addOnSuccessListener(aVoid -> {
                                                                         Toast.makeText(RegistrationActivity.this, "Fields updated successfully.", Toast.LENGTH_SHORT).show();
-                                                                        // Navigate to main activity
-                                                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                                                        startActivity(intent);
-                                                                        finish();
+
                                                                     })
                                                                     .addOnFailureListener(e -> {
                                                                         Toast.makeText(RegistrationActivity.this, "Failed to update fields.", Toast.LENGTH_SHORT).show();
@@ -217,6 +214,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                                                 .set(userData)
                                                                 .addOnSuccessListener(aVoid -> {
                                                                     Toast.makeText(RegistrationActivity.this, "Registration successful.", Toast.LENGTH_SHORT).show();
+                                                                    navigateToMain();
                                                                 })
                                                                 .addOnFailureListener(e -> {
                                                                     Toast.makeText(RegistrationActivity.this, "Unsuccessful registration.", Toast.LENGTH_SHORT).show();
@@ -339,25 +337,30 @@ public class RegistrationActivity extends AppCompatActivity {
         }
     });
 
-    private void register() {
-        String email = editTextEmail.getText().toString();
-        String password = editTextPassword.getText().toString();
+//    private void register() {
+//        String email = editTextEmail.getText().toString();
+//        String password = editTextPassword.getText().toString();
+//
+//        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+//            Toast.makeText(RegistrationActivity.this, "Enter email and password", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//
+//        mAuth.createUserWithEmailAndPassword(email, password)
+//                .addOnCompleteListener(this, task -> {
+//                    if (task.isSuccessful()) {
+//                        // Registration success, navigate to MainActivity
+//                        Toast.makeText(RegistrationActivity.this, "Registration successful.", Toast.LENGTH_SHORT).show();
+//                        FirebaseUser user = mAuth.getCurrentUser();
+//                        navigateToMain();
+//                    } else {
+//                        // Task failed, log the exception message
+//                        String errorMessage = task.getException() != null ? task.getException().getMessage() : "Unknown error";
+//                        Toast.makeText(RegistrationActivity.this, "Registration failed: " + errorMessage, Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//    }
 
-        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-            Toast.makeText(RegistrationActivity.this, "Enter email and password", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        navigateToMain();
-                    } else {
-                        Toast.makeText(RegistrationActivity.this, "Registration failed.", Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
 
     private void navigateToMain() {
         Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);

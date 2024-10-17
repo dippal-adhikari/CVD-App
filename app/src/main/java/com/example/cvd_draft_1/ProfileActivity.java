@@ -2,6 +2,8 @@ package com.example.cvd_draft_1;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +31,7 @@ import androidx.annotation.NonNull;
 
 
 import java.net.URI;
+import java.util.Locale;
 
 public class ProfileActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
@@ -56,6 +59,7 @@ public class ProfileActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         Button btnLogout = findViewById(R.id.btnLogout);
+        Button btnDeleteAccount = findViewById(R.id.btnDeleteAccount);
         EditText etEmail = findViewById(R.id.etEmail);
         EditText etName = findViewById(R.id.etName);
         EditText etAddress = findViewById(R.id.etAddress);
@@ -194,16 +198,99 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        TextView tvToggleTheme = findViewById(R.id.tvToggleTheme);
+        tvToggleTheme.setOnClickListener(view -> {
+            boolean isDarkModeEnabled = ThemeUtils.isDarkMode(this);
+            ThemeUtils.saveThemeState(this, !isDarkModeEnabled); // Toggle and save the new theme state
+            ThemeUtils.applyTheme(this); // Apply the new theme
+            recreate(); // Recreate the activity to apply the new theme
+        });
+
+        TextView tvLanguage = findViewById(R.id.tvLanguage);
+        tvLanguage.setOnClickListener(view -> {
+            final String[] languages = {"English", "français", "deutsch", "Italiano"};
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+            mBuilder.setTitle("Choose Language");
+            mBuilder.setSingleChoiceItems(languages, -1, (dialogInterface, i) -> {
+                if (i == 0) {
+                    setLocale("");
+                    recreate();
+                } else if (i == 1) {
+                    setLocale("fr");
+                    recreate();
+                } else if (i == 2) {
+                    setLocale("nl");
+                    recreate();
+                } else if (i == 3) {
+                    setLocale("it");
+                    recreate();
+                }
+            });
+            mBuilder.create();
+            mBuilder.show();
+        });
+
+
         // Handle Logout
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent intent = new Intent(getApplicationContext(), WorksActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
+
+        // Handle delete account
+        btnDeleteAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Show confirmation dialog for deleting the account
+                new AlertDialog.Builder(ProfileActivity.this)
+                        .setTitle("Delete Account")
+                        .setMessage("Are you sure you want to delete your account? This action cannot be undone.")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Proceed with account deletion
+                                if (firebaseUser != null) {
+                                    firebaseUser.delete()
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Toast.makeText(ProfileActivity.this, "Account deleted successfully.", Toast.LENGTH_SHORT).show();
+                                                        FirebaseAuth.getInstance().signOut();
+                                                        Intent intent = new Intent(getApplicationContext(), WorksActivity.class);
+                                                        startActivity(intent);
+                                                        finish();
+                                                    } else {
+                                                        Toast.makeText(ProfileActivity.this, "Failed to delete account. Please log in again and try.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+                                } else {
+                                    Toast.makeText(ProfileActivity.this, "User not signed in.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, null)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+            }
+        });
+
+    }
+
+    private void setLocale(String language) {
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.setLocale(locale);
+        getBaseContext().getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("Language", language);
+        editor.apply();
     }
 
     // Method to show a confirmation dialog for resetting the password

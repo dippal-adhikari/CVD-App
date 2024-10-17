@@ -16,4 +16,6 @@
 
     <!-- Button Colors -->
     <color name="buttonText">#00796B</color> <!-- White text on buttons -->
+    <color name="red">#B80202</color>
+
 </resources>

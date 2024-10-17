@@ -10,6 +10,8 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.google.firebase.auth.FirebaseUser;
+
 public class LauncherActivity extends AppCompatActivity {
 
     @Override

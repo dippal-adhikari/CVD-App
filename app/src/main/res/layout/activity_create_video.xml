@@ -21,12 +21,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
-    <!-- Grid view Layout -->
-    <com.example.cvd_draft_1.GridLinesView
-        android:id="@+id/grid_lines_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone" />
+<!--    &lt;!&ndash; Grid view Layout &ndash;&gt;-->
+<!--    <com.example.cvd_draft_1.GridLinesView-->
+<!--        android:id="@+id/grid_lines_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:visibility="gone" />-->
 
         <!-- Teleprompter Layout -->
     <ScrollView
@@ -65,7 +65,6 @@
                     android:id="@+id/btn_decrease_speed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_background"
                     android:contentDescription="@string/decrease_speed"
                     android:text="-"
                     android:textColor="@color/white"
@@ -79,14 +78,14 @@
                     android:text="50%"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:textColor="@color/white"
                     android:textSize="17sp"
+                    android:textColor="@color/white"
+
                     />
 
                 <Button
                     android:id="@+id/btn_increase_speed"
                     android:layout_width="wrap_content"
-                    android:background="@drawable/rounded_background"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/increase_speed"
                     android:text="+"
@@ -127,12 +126,12 @@
             android:layout_margin="16dp"
             android:contentDescription="@string/start_recording"
             android:src="@drawable/ic_record"
-            android:tint="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintVertical_bias="0.9"
-            android:importantForAccessibility="yes" />
+            android:importantForAccessibility="yes"
+            />
 
 
 
@@ -168,7 +167,6 @@
             android:layout_margin="16dp"
             android:contentDescription="@string/show_settings"
             android:src="@drawable/ic_settings"
-            android:tint="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintVertical_bias="0.8"

@@ -18,6 +18,9 @@
     <color name="black">#070707</color> <!-- White text on buttons -->
     <color name="white">#FFFFFF</color> <!-- White text on buttons -->
     <color name="grey">#808080</color> <!-- White text on buttons -->
+    <color name="red">#B80202</color>
+
+
 
 
 </resources>
