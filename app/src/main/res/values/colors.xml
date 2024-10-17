@@ -7,10 +7,15 @@
 
     <!-- Background Colors -->
     <color name="backgroundLight">#FFFEFA</color> <!-- Light background -->
+    <color name="backgroundDark">#212121</color> <!-- Dark background -->
+
 
     <!-- Text Colors -->
     <color name="textColorPrimary">#000000</color> <!-- Primary text color (Black) -->
     <color name="textColorSecondary">#757575</color> <!-- Secondary text color (Gray) -->
+
+    <color name="colorRoundedBackground">#FFFFFF</color> <!-- Secondary text color (Gray) -->
+
 
     <!-- Button Colors -->
     <color name="buttonText">#FFFFFF</color> <!-- White text on buttons -->
