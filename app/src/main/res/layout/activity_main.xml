@@ -62,7 +62,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Creating your video"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#009689"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="14sp" />
 
             <TextView
@@ -72,7 +72,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Answer questions and generate your script"
                 android:textSize="16dp"
-                android:textColor="@color/black"
+                android:textColor="@color/textColorPrimary"
                 android:fontFamily="@font/dmsans_regular"/>
 
             <ProgressBar
@@ -124,7 +124,7 @@
             android:text="Library"
             android:textSize="20sp"
             android:fontFamily="@font/dmsans_medium"
-            android:textColor="@color/black"/>
+            android:textColor="@color/textColorPrimary"/>
 
         <!-- Scripts Section -->
         <androidx.cardview.widget.CardView
@@ -152,7 +152,7 @@
                     android:layout_marginTop="20dp"
                     android:text="Scripts"
                     android:textSize="20sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textColorPrimary"
                     android:fontFamily="@font/dmsans_regular"/>
 
                 <TextView
@@ -164,7 +164,7 @@
                     android:layout_marginBottom="20dp"
                     android:fontFamily="@font/dmsans_regular"
                     android:text="Create new scripts and edit \nexisting ones"
-                    android:textColor="@color/textColorSecondary" />
+                    android:textColor="@color/textColorPrimary" />
 
                 <ImageView
                     android:id="@+id/iconScripts"
@@ -212,7 +212,7 @@
                         android:layout_marginTop="20dp"
                         android:text="Videos"
                         android:textSize="20sp"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/textColorPrimary"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -221,7 +221,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="20dp"
                         android:text="Create new videos and\nedit existing ones"
-                        android:textColor="@color/textColorSecondary"
+                        android:textColor="@color/textColorPrimary"
                         android:fontFamily="@font/dmsans_regular"/>
                 </LinearLayout>
 
@@ -267,7 +267,7 @@
                 android:fontFamily="@font/dmsans_bold"
                 android:text="Profile"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/black" />
+                android:textColor="@color/textColorPrimary" />
 
             <Button
                 android:id="@+id/btnViewEditProfile"
@@ -280,7 +280,7 @@
                 android:fontFamily="@font/dmsans_bold"
                 android:text="View &amp; Edit"
                 android:layout_marginVertical="15dp"
-                android:textColor="@color/black"
+                android:textColor="@color/textColorPrimary"
                 android:padding="12dp"/>
         </RelativeLayout>
     </LinearLayout>
@@ -296,7 +296,7 @@
         android:layout_marginEnd="0dp"
         app:menu="@menu/bottom_navigation_menu"
 
-        android:background="@color/backgroundLight"/>
+       />
 
 
 
