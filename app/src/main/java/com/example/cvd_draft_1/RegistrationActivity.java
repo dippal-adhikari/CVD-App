@@ -104,7 +104,7 @@ public class RegistrationActivity extends AppCompatActivity {
         googleSignInClient = GoogleSignIn.getClient(RegistrationActivity.this, options);
 
         // google sign in
-        SignInButton googleSignInButton = findViewById(R.id.sign_in_button);
+        Button googleSignInButton = findViewById(R.id.sign_in_button);
         googleSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

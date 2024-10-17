@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(view -> loginWithEmail());
 
         // Google sign-in button setup
-        SignInButton googleSignInButton = findViewById(R.id.sign_in_button);
+        Button googleSignInButton = findViewById(R.id.sign_in_button);
         GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.client_id)) // Ensure this is the correct client ID
                 .requestEmail()

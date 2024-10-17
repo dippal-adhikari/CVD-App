@@ -136,13 +136,26 @@
 
 
 
-    <com.google.android.gms.common.SignInButton
+    <Button
         android:id="@+id/sign_in_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvSignUp"
         android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:text="Sign in"
+        android:drawableLeft="@drawable/google_icon"
+        android:padding="10dp"
+        android:drawablePadding="8dp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/textColorSecondary"/>
+
+
+
+
+
+
+
 
 
     <!-- Partner Logos -->
@@ -155,15 +168,11 @@
         android:gravity="center"
         android:layout_marginTop="16dp">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/linkedin_icon"/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/google_icon"/>
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/google_icon"/>-->
 
 
     </LinearLayout>
