@@ -111,12 +111,9 @@
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/script_scroll_view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="gone" /> <!-- Initially hidden -->
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_gravity="center" /> <!-- Initially hidden -->
 
     <!-- Floating Action Button for Recording -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
