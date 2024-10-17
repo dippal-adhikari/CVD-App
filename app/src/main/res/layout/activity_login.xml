@@ -65,6 +65,7 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/rounded_edittext_border"
         android:hint="Insert email address"
+        android:textColorHint="@color/grey"
         android:inputType="textEmailAddress"
         android:padding="12dp" />
     <!-- Password Label -->
@@ -88,6 +89,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Insert your password"
+        android:textColorHint="@color/grey"
         android:inputType="textPassword"
         android:layout_below="@id/tvPasswordLabel"
         android:layout_marginTop="8dp"
@@ -109,20 +111,27 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/rounded_button"
         android:textColor="@color/white"
-
         android:backgroundTint="@color/colorPrimary"
         android:text="Login" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvForgotPassword"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/i_forgot_my_password"-->
+<!--        android:layout_below="@id/btnLogin"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:backgroundTint="@color/textColorPrimary"/>-->
 
     <TextView
         android:id="@+id/tvForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/i_forgot_my_password"
+        android:text="I forgot my password"
         android:layout_below="@id/btnLogin"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"/>
-
-
 
     <!-- Sign Up -->
     <TextView
