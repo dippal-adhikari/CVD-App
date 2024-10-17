@@ -67,6 +67,7 @@
         android:hint="Insert email address"
         android:textColorHint="@color/grey"
         android:inputType="textEmailAddress"
+        android:textColor="@color/black"
         android:padding="12dp" />
     <!-- Password Label -->
     <TextView
@@ -91,6 +92,7 @@
         android:hint="Insert your password"
         android:textColorHint="@color/grey"
         android:inputType="textPassword"
+        android:textColor="@color/black"
         android:layout_below="@id/tvPasswordLabel"
         android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"

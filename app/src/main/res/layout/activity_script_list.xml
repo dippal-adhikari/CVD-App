@@ -46,7 +46,7 @@
         android:textSize="32sp"
         android:textStyle="bold"
         android:layout_marginStart="16dp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/textColorPrimary"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvScripts"
