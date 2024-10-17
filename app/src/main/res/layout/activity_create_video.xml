@@ -21,6 +21,13 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
+    <!-- Grid view Layout -->
+    <com.example.cvd_draft_1.GridLinesView
+        android:id="@+id/grid_lines_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
         <!-- Teleprompter Layout -->
     <ScrollView
         android:id="@+id/script_scroll_view"
