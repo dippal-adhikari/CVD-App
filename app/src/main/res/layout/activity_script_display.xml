@@ -1,9 +1,8 @@
-<?xml
-    version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="16dp"
     android:background="?android:attr/windowBackground"
@@ -22,6 +21,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/back_key" />
+
     <!-- Profile Title -->
     <TextView
         android:id="@+id/tvReview"
@@ -45,7 +45,8 @@
             android:id="@+id/scriptContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"/>
+            android:orientation="vertical" />
+
     </ScrollView>
 
     <!-- Fixed Next Button at the bottom -->
@@ -59,4 +60,3 @@
         android:backgroundTint="@color/colorPrimary" />
 
 </LinearLayout>
-
