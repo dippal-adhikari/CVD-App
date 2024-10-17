@@ -1,11 +1,12 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="8dp"
-    android:background="@android:color/white"
-    android:elevation="2dp"
-    android:layout_marginBottom="8dp">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/rounded_edittext_border"
+    android:padding="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp">
 
     <!-- Video Title -->
     <TextView
@@ -13,14 +14,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Video Title"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:fontFamily="@font/dmsans_bold"
+        android:textColor="@color/black"
+        android:layout_alignParentStart="true" />
 
-    <!-- Buttons -->
+    <!-- Delete Button -->
+    <ImageView
+        android:id="@+id/btnDeleteVideo"
+        tools:ignore="TouchTargetSizeCheck"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/delete"
+        android:scaleType="centerInside"
+        android:contentDescription="Delete"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:padding="0dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@id/videoTitle" />
+
+    <!-- Container for buttons (View and Download) -->
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/buttonContainer"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_below="@id/videoTitle"
         android:layout_marginTop="8dp">
 
         <!-- View Button -->
@@ -28,7 +48,10 @@
             android:id="@+id/btnView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="View" />
+            android:text="View"
+            android:textColor="#008577"
+            android:padding="11dp"
+            android:background="@drawable/rounded_green_border" />
 
         <!-- Download Button -->
         <Button
@@ -36,7 +59,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Download"
+            android:textColor="#008577"
+            android:padding="11dp"
+            android:background="@drawable/rounded_green_border"
             android:layout_marginStart="16dp" />
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

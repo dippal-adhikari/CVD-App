@@ -92,6 +92,8 @@ public class RegistrationActivity extends AppCompatActivity {
         editTextEmail = findViewById(R.id.etEmail);
         editTextPassword = findViewById(R.id.etPassword);
 
+
+
         Button buttonReg = findViewById(R.id.btnReg);
         buttonReg.setOnClickListener(view -> register());
 
@@ -110,18 +112,14 @@ public class RegistrationActivity extends AppCompatActivity {
                 activityResultLauncher.launch(intent);
             }
         });
-        if (mAuth.getCurrentUser() != null) {
-            Glide.with(RegistrationActivity.this).load(Objects.requireNonNull(mAuth.getCurrentUser()).getPhotoUrl()).into(imageView);
-            name.setText(mAuth.getCurrentUser().getDisplayName());
-            mail.setText(mAuth.getCurrentUser().getEmail());
-        }
 
-// Back button
-        ImageButton btnBack = findViewById(R.id.btnBack);
-        // Initialize the ImageButton for the back button
+//        if (mAuth.getCurrentUser() != null) {
+//            Glide.with(RegistrationActivity.this).load(Objects.requireNonNull(mAuth.getCurrentUser()).getPhotoUrl()).into(imageView);
+//            name.setText(mAuth.getCurrentUser().getDisplayName());
+//            mail.setText(mAuth.getCurrentUser().getEmail());
+//        }
+
         btnBack = findViewById(R.id.btnBack);
-
-        // Set click listener for the back button to finish the current activity
         btnBack.setOnClickListener(v -> finish());
 
 
