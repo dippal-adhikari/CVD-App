@@ -39,22 +39,23 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     @Override
     public void onBindViewHolder(@NonNull VideoViewHolder holder, int position) {
         StorageReference videoRef = videoList.get(position);
+
         holder.videoTitle.setText(videoRef.getName());
 
-//        // Fetch and display the timestamp
-//        videoRef.getMetadata().addOnSuccessListener(metadata -> {
-//            String timestamp = metadata.getCustomMetadata("timestamp");
-//
-//            if (timestamp != null) {
-//                long timestampLong = Long.parseLong(timestamp);
-//                String formattedDate = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date(timestampLong));
-//                holder.videoTimestamp.setText("Uploaded on: " + formattedDate);
-//            } else {
-//                holder.videoTimestamp.setText("No timestamp available");
-//            }
-//        }).addOnFailureListener(e -> {
-//            holder.videoTimestamp.setText("Error fetching timestamp");
-//        });
+        // Fetch and display the timestamp
+        videoRef.getMetadata().addOnSuccessListener(metadata -> {
+            String timestamp = metadata.getCustomMetadata("timestamp");
+
+            if (timestamp != null) {
+                long timestampLong = Long.parseLong(timestamp);
+                String formattedDate = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date(timestampLong));
+                holder.videoTimeStamp.setText("Uploaded on: " + formattedDate);
+            } else {
+                holder.videoTimeStamp.setText("No timestamp available");
+            }
+        }).addOnFailureListener(e -> {
+            holder.videoTitle.setText("Error fetching timestamp");
+        });
 
         // View video button click listener
         holder.btnView.setOnClickListener(v -> videoRef.getDownloadUrl().addOnSuccessListener(uri -> {
@@ -89,13 +90,14 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     }
 
     public static class VideoViewHolder extends RecyclerView.ViewHolder {
-        TextView videoTitle;
+        TextView videoTitle, videoTimeStamp;
         Button btnView, btnDownload;
         ImageView btnDelete; // Change from Button to ImageView to match your layout
 
         public VideoViewHolder(@NonNull View itemView) {
             super(itemView);
             videoTitle = itemView.findViewById(R.id.videoTitle);
+            videoTimeStamp = itemView.findViewById(R.id.videoTimeStamp);
             btnView = itemView.findViewById(R.id.btnView);
             btnDownload = itemView.findViewById(R.id.btnDownload);
             btnDelete = itemView.findViewById(R.id.btnDeleteVideo); // Delete button
