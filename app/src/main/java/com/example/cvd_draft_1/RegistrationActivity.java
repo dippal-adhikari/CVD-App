@@ -55,8 +55,6 @@ import java.util.Objects;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-
-
     EditText editTextEmail, editTextPassword, editTextUsername;
     Button buttonReg;
     FirebaseAuth mAuth;
@@ -119,7 +117,15 @@ public class RegistrationActivity extends AppCompatActivity {
 //        }
 
         btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(v -> finish());
+        // Back button action
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegistrationActivity.this, LauncherActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
 
         // Navigate to LoginActivity
