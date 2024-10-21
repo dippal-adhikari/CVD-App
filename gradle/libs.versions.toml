@@ -12,6 +12,8 @@ firebaseAuth = "23.0.0"
 firebaseFirestore = "25.1.0"
 firebaseStorage = "21.0.0"
 play-services-auth = "20.4.1"
+visionCommon = "17.3.0"
+segmentationSelfie = "16.0.0-beta6"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -25,6 +27,8 @@ firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 firebase-storage = { group = "com.google.firebase", name = "firebase-storage", version.ref = "firebaseStorage" }
 play-services-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "play-services-auth" }
+vision-common = { group = "com.google.mlkit", name = "vision-common", version.ref = "visionCommon" }
+segmentation-selfie = { group = "com.google.mlkit", name = "segmentation-selfie", version.ref = "segmentationSelfie" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

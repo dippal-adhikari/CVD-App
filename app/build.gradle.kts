@@ -74,7 +74,9 @@ dependencies {
     implementation("androidx.camera:camera-lifecycle:1.1.0")  // Lifecycle-aware components for CameraX
     implementation("androidx.camera:camera-view:1.1.0")  // View class for CameraX
     implementation("androidx.camera:camera-video:1.1.0")  // Video recording support for CameraX
-    implementation("androidx.camera:camera-extensions:1.1.0")  // Extensions for CameraX
+    implementation("androidx.camera:camera-extensions:1.1.0")
+    implementation(libs.vision.common)
+    implementation(libs.segmentation.selfie)  // Extensions for CameraX
 
     testImplementation("junit:junit:4.13.2")  // JUnit for unit testing
     androidTestImplementation("androidx.test.ext:junit:1.1.5")  // AndroidX JUnit extension for Android tests
