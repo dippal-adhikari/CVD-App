@@ -79,6 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal">
 
 
@@ -89,15 +90,17 @@
                     android:textColor="@color/white"
                     android:textSize="17sp"
                     />
+
                 <Button
                     android:id="@+id/btn_decrease_speed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_button"
                     android:contentDescription="@string/decrease_speed"
+                    android:importantForAccessibility="yes"
                     android:text="-"
                     android:textColor="@color/white"
-                    android:textSize="30sp"
-                    android:importantForAccessibility="yes" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/speed_percentage"
@@ -119,19 +122,21 @@
                     android:text="+"
                     android:textColor="@color/white"
                     android:textSize="30sp"
+                    android:background="@drawable/rounded_button"
                     android:importantForAccessibility="yes" />
             </LinearLayout>
+
             <TextView
                 android:id="@+id/script_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:accessibilityLiveRegion="polite"
                 android:gravity="center"
+                android:importantForAccessibility="yes"
                 android:padding="16dp"
                 android:text="@string/sample_script"
                 android:textColor="@color/white"
-                android:textSize="24sp"
-                android:importantForAccessibility="yes"
-                android:accessibilityLiveRegion="polite" />
+                android:textSize="24sp" />
         </LinearLayout>
     </ScrollView>
 
@@ -235,6 +240,7 @@
                         android:textColor="@color/white"
                         android:textSize="24sp"
                         android:textStyle="bold"
+                        android:layout_marginTop="25dp"
                         android:importantForAccessibility="yes" />
 
                     <!-- Rotate Camera Button -->
@@ -246,20 +252,23 @@
                         android:contentDescription="@string/rotate_camera"
                         android:text="@string/rotate_camera"
                         android:textColor="@color/white"
+                        android:background="@drawable/rounded_button"
                         android:importantForAccessibility="yes" />
 
                     <!-- Flashlight Toggle Button -->
+
+                    <!-- Change Background Button -->
                     <Button
                         android:id="@+id/toggle_flashlight"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginBottom="16dp"
                         android:contentDescription="@string/flashlight"
+                        android:importantForAccessibility="yes"
+                        android:background="@drawable/rounded_button"
                         android:text="@string/flashlight"
-                        android:textColor="@color/white"
-                        android:importantForAccessibility="yes" />
+                        android:textColor="@color/white" />
 
-                    <!-- Change Background Button -->
                     <Spinner
                         android:id="@+id/segmentationOptions"
                         android:layout_width="wrap_content"
