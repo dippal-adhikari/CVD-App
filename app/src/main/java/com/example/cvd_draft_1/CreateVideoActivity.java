@@ -154,6 +154,8 @@ public class CreateVideoActivity extends AppCompatActivity {
     PreviewView previewView;
     private ImageView recordingImageView;
 
+    private ExecutorService imageAnalysisExecutor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -210,6 +212,9 @@ public class CreateVideoActivity extends AppCompatActivity {
         zoomSeekBar = findViewById(R.id.zoomSeekBar);
         exposureSeekBar = findViewById(R.id.exposure_control);
         videoQualitySpinner = findViewById(R.id.video_quality);
+
+        // Initialize the ExecutorService for image analysis
+        imageAnalysisExecutor = Executors.newSingleThreadExecutor();
 
 
 
@@ -637,19 +642,18 @@ public class CreateVideoActivity extends AppCompatActivity {
                         .requireLensFacing(isBackCamera ? CameraSelector.LENS_FACING_BACK : CameraSelector.LENS_FACING_FRONT)
                         .build();
 
-                // Real-time Image Analysis setup for background segmentation
+                // Image Analysis setup with the dedicated executor
                 ImageAnalysis imageAnalysis = new ImageAnalysis.Builder()
-                        .setTargetResolution(new Size(640, 480))
-                        .setTargetRotation(rotation)
+                        .setTargetResolution(new Size(320, 240)) // Set the resolution for the image analysis
                         .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                         .build();
 
-                imageAnalysis.setAnalyzer(cameraExecutor, imageProxy -> {
-                    // Process each frame for segmentation
-                    processImageProxy(imageProxy);
+                // Set the analyzer with the imageAnalysisExecutor
+                imageAnalysis.setAnalyzer(imageAnalysisExecutor, imageProxy -> {
+                    // image processing for background changes
+                    processImageProxy(imageProxy); // existing method to process the image
+                    imageProxy.close();
                 });
-
-
 
                 // Video Capture setup
                 Recorder recorder = new Recorder.Builder()
@@ -1209,6 +1213,14 @@ public class CreateVideoActivity extends AppCompatActivity {
             paths.add(clip.getAbsolutePath());
         }
         return paths;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (imageAnalysisExecutor != null) {
+            imageAnalysisExecutor.shutdown();
+        }
     }
 }
 
