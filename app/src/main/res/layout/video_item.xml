@@ -20,6 +20,7 @@
         android:textColor="@color/textColorPrimary"
         android:layout_alignParentStart="true" />
 
+
     <!-- Delete Button -->
     <ImageView
         android:id="@+id/btnDeleteVideo"
@@ -34,13 +35,25 @@
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@id/videoTitle" />
 
+    <!-- Timestamp -->
+    <TextView
+        android:id="@+id/videoTimeStamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Uploaded on:"
+        android:textSize="14sp"
+        android:textColor="#888888"
+        android:layout_below="@id/videoTitle"
+        android:layout_alignStart="@id/videoTitle"
+        android:layout_marginTop="4dp" />
+
     <!-- Container for buttons (View and Download) -->
     <LinearLayout
         android:id="@+id/buttonContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/videoTitle"
+        android:layout_below="@id/videoTimeStamp"
         android:layout_marginTop="8dp">
 
         <!-- View Button -->
