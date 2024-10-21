@@ -29,7 +29,9 @@ public class LauncherActivity extends AppCompatActivity {
          backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();  // Closes this activity and goes back to the previous one
+                Intent intent = new Intent(LauncherActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

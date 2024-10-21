@@ -83,7 +83,15 @@ public class LoginActivity extends AppCompatActivity {
 
         // Back button
         ImageButton btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(v -> finish());
+        // Back button action
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, LauncherActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         // Navigate to RegistrationActivity
         TextView textViewRegister = findViewById(R.id.tvSignUp);

@@ -34,8 +34,15 @@ public class VideoActivity extends AppCompatActivity {
         // Initialize the ImageButton for the back button
         btnBack = findViewById(R.id.btnBack);
 
-        // Set click listener for the back button to finish the current activity
-        btnBack.setOnClickListener(v -> finish());
+        // Back button action
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(VideoActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         // Handle add new button click
         TextView btnAddNew = findViewById(R.id.btnAddNew);

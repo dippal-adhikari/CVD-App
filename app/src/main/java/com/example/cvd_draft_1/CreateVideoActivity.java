@@ -192,7 +192,6 @@ public class CreateVideoActivity extends AppCompatActivity {
         });
 
 
-
         handler = new Handler(Looper.getMainLooper());
         updateRecordingTimeRunnable = new Runnable() {
             @Override
@@ -606,7 +605,7 @@ public class CreateVideoActivity extends AppCompatActivity {
                 boolean renamed = mergedFile.renameTo(renamedMergedFile);
                 if (renamed) {
                     Log.d("FFmpeg", "Merged file renamed to: " + renamedMergedFile.getAbsolutePath());
-                    uploadFinalVideoToFirebase(mergedFile);
+                    uploadFinalVideoToFirebase(renamedMergedFile);
                     //
 //                    // Re-encode the merged file before uploading
 //                    File reEncodedFile = new File(getExternalFilesDir(null), renamedMergedFile.getName());

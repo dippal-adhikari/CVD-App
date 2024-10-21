@@ -49,10 +49,15 @@ public class ProfileActivity extends AppCompatActivity {
         // Initialize the ImageButton for the back button
        ImageButton btnBack = findViewById(R.id.btnBack);
 
-        // Set click listener for the back button to finish the current activity
-        btnBack.setOnClickListener(v -> finish());
-
-
+        // Back button action
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         // Initialize Firebase Auth and Firestore
         firebaseAuth = FirebaseAuth.getInstance();

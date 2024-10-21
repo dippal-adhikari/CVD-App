@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,8 +50,16 @@ public class ProfileEditActivity extends AppCompatActivity {
         // Handle Save button click
         btnSaveChanges.setOnClickListener(v -> saveUserDetails());
 
-        // Handle back button
-        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+        ImageButton btnBack = findViewById(R.id.btnBack);
+        // Back button action
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileEditActivity.this, ProfileActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void saveUserDetails() {

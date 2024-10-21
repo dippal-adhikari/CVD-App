@@ -2,6 +2,7 @@ package com.example.cvd_draft_1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,8 +43,15 @@ public class ScriptListActivity extends AppCompatActivity {
         // Initialize the ImageButton for the back button
         btnBack = findViewById(R.id.btnBack);
 
-        // Set click listener for the back button to finish the current activity
-        btnBack.setOnClickListener(v -> finish());
+        // Back button action
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ScriptListActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         // Initialize Firebase Firestore and Auth
         db = FirebaseFirestore.getInstance();

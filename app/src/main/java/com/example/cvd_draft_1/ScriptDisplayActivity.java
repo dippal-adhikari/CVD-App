@@ -36,7 +36,6 @@ public class ScriptDisplayActivity extends AppCompatActivity {
     // Firebase-related fields
     private String scriptId;
 
-    ImageButton btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
