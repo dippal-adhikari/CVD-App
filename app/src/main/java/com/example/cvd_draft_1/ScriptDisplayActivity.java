@@ -107,6 +107,10 @@ public class ScriptDisplayActivity extends AppCompatActivity {
         EditText editText = new EditText(this);
         editText.setText(answer);  // Set the answer as the initial text
         editText.setTextSize(16);
+
+        // Set the text color to black(naya)
+        editText.setTextColor(getResources().getColor(R.color.textColorPrimary));
+
 //        editText.setTextColor(int)
         editText.setPadding(16, 16, 16, 16);
         editText.setBackground(null);  // Remove the default underline
