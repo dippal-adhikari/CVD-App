@@ -379,9 +379,16 @@ public class CreateVideoActivity extends AppCompatActivity {
     }
 
     private void startRecording() {
-        if (recording != null) {
-            Toast.makeText(this, "Another recording is in progress.", Toast.LENGTH_SHORT).show();
-            return; // Prevent multiple recordings from starting simultaneously
+        // Check if a recording is already in progress
+        if (isRecording) {
+            // Stop the current recording if it is still in progress
+            if (recording != null) {
+                recording.stop(); // Stop the ongoing recording
+                recording = null; // Reset the recording object
+                isRecording = false; // Reset the flag
+            }
+            Toast.makeText(this, "Previous recording is stopping. Please wait.", Toast.LENGTH_SHORT).show();
+            return;
         }
 
         String fileName = "clip_" + currentClipIndex + ".mp4";
@@ -484,40 +491,81 @@ public class CreateVideoActivity extends AppCompatActivity {
     }
 
 
+//    // Method to add text to the clip after the user confirms moving to the next
+//    private void processClipForTextAddition(File clipFile) {
+//        Log.d("FFmpeg", "Processing recorded clip: " + clipFile.getAbsolutePath());
+//        String outputFileName = "clip_" + currentClipIndex + "_with_text.mp4";
+//        File modifiedClip = new File(getExternalFilesDir(null), outputFileName);
+//
+//        addTextToClip(clipFile.getAbsolutePath(), modifiedClip.getAbsolutePath(), questions.get(currentClipIndex), () -> {
+//            Log.d("FFmpeg", "Text added successfully to clip: " + modifiedClip.getAbsolutePath());
+//
+//            // Replace the original clip with the modified one
+//            if (currentClipIndex < recordedClips.size()) {
+//                recordedClips.set(currentClipIndex, modifiedClip);
+//            } else {
+//                recordedClips.add(modifiedClip);
+//            }
+//
+//            // Update UI and state
+//            currentClipIndex++;
+//            displayNextScript();
+//
+//            // If all clips are recorded and processed, merge them
+//            if (currentClipIndex >= questions.size()) {
+//                try {
+//                    String fileListPath = createFileList(getClipPaths());
+//                    String mergedOutputPath = getExternalFilesDir(null) + "/final_merged_video_" + System.currentTimeMillis() + ".mp4";
+//                    mergeClips(fileListPath, mergedOutputPath, () -> {
+//                        Toast.makeText(this, "Final video created successfully at " + mergedOutputPath, Toast.LENGTH_LONG).show();
+//                    });
+//                } catch (IOException e) {
+//                    Log.e("FFmpeg", "Error creating final merged video file list.", e);
+//                    Toast.makeText(this, "Error creating final merged video.", Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        });
+//    }
+
     // Method to add text to the clip after the user confirms moving to the next
     private void processClipForTextAddition(File clipFile) {
         Log.d("FFmpeg", "Processing recorded clip: " + clipFile.getAbsolutePath());
         String outputFileName = "clip_" + currentClipIndex + "_with_text.mp4";
         File modifiedClip = new File(getExternalFilesDir(null), outputFileName);
 
-        addTextToClip(clipFile.getAbsolutePath(), modifiedClip.getAbsolutePath(), questions.get(currentClipIndex), () -> {
-            Log.d("FFmpeg", "Text added successfully to clip: " + modifiedClip.getAbsolutePath());
+        // Start processing in a separate thread
+        new Thread(() -> {
+            addTextToClip(clipFile.getAbsolutePath(), modifiedClip.getAbsolutePath(), questions.get(currentClipIndex), () -> {
+                Log.d("FFmpeg", "Text added successfully to clip: " + modifiedClip.getAbsolutePath());
 
-            // Replace the original clip with the modified one
-            if (currentClipIndex < recordedClips.size()) {
-                recordedClips.set(currentClipIndex, modifiedClip);
-            } else {
-                recordedClips.add(modifiedClip);
-            }
-
-            // Update UI and state
-            currentClipIndex++;
-            displayNextScript();
-
-            // If all clips are recorded and processed, merge them
-            if (currentClipIndex >= questions.size()) {
-                try {
-                    String fileListPath = createFileList(getClipPaths());
-                    String mergedOutputPath = getExternalFilesDir(null) + "/final_merged_video_" + System.currentTimeMillis() + ".mp4";
-                    mergeClips(fileListPath, mergedOutputPath, () -> {
-                        Toast.makeText(this, "Final video created successfully at " + mergedOutputPath, Toast.LENGTH_LONG).show();
-                    });
-                } catch (IOException e) {
-                    Log.e("FFmpeg", "Error creating final merged video file list.", e);
-                    Toast.makeText(this, "Error creating final merged video.", Toast.LENGTH_LONG).show();
+                // Replace the original clip with the modified one
+                if (currentClipIndex < recordedClips.size()) {
+                    recordedClips.set(currentClipIndex, modifiedClip);
+                } else {
+                    recordedClips.add(modifiedClip);
                 }
-            }
-        });
+
+                // If all clips are recorded and processed, merge them
+                if (currentClipIndex >= questions.size()) {
+                    try {
+                        String fileListPath = createFileList(getClipPaths());
+                        String mergedOutputPath = getExternalFilesDir(null) + "/final_merged_video_" + System.currentTimeMillis() + ".mp4";
+                        mergeClips(fileListPath, mergedOutputPath, () -> {
+                            Toast.makeText(this, "Final video created successfully at " + mergedOutputPath, Toast.LENGTH_LONG).show();
+                        });
+                    } catch (IOException e) {
+                        Log.e("FFmpeg", "Error creating final merged video file list.", e);
+                        runOnUiThread(() -> {
+                            Toast.makeText(this, "Error creating final merged video.", Toast.LENGTH_LONG).show();
+                        });
+                    }
+                }
+            });
+        }).start();
+
+        // Proceed to the next clip immediately
+        currentClipIndex++;
+        displayNextScript();
     }
 
 
@@ -574,19 +622,15 @@ public class CreateVideoActivity extends AppCompatActivity {
         recordingImageView.setVisibility(View.GONE);
         ListenableFuture<ProcessCameraProvider> cameraProviderFuture = ProcessCameraProvider.getInstance(this);
         // Conditional Segmentation Setup
-        Log.d("Segmentation", "camera start");
-
 
         cameraProviderFuture.addListener(() -> {
             try {
                 ProcessCameraProvider cameraProvider = cameraProviderFuture.get();
                 int rotation = previewView.getDisplay().getRotation();
 
-
                 // Preview setup
                 Preview preview = new Preview.Builder().setTargetRotation(rotation).build();
                 preview.setSurfaceProvider(previewView.getSurfaceProvider());
-
 
                 // Setup the camera selector (front or back camera)
                 cameraSelector = new CameraSelector.Builder()
@@ -616,10 +660,11 @@ public class CreateVideoActivity extends AppCompatActivity {
                 // Bind all use cases to the camera
                 cameraProvider.unbindAll();
                 camera = cameraProvider.bindToLifecycle(
-                        this, cameraSelector, preview, imageAnalysis);
-//                cameraProvider.bindToLifecycle(
-//                        this, cameraSelector,videoCapture, preview, imageAnalysis // Not supported more than three bind may support in another device.
-//                );
+                        this, cameraSelector, videoCapture, preview, imageAnalysis);
+
+                //cameraProvider.bindToLifecycle(
+                        //this, cameraSelector,videoCapture, preview, imageAnalysis // Not supported more than three bind may support in another device.
+                //);
 
 //                if (isSegmentationEnabled) {
 //                    // Bind imageAnalysis to enable segmentation
