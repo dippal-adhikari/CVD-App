@@ -300,21 +300,13 @@
                         android:textSize="16sp"
                         android:importantForAccessibility="yes" />
 
-                    <SeekBar
-                        android:id="@+id/manual_focus"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:layout_marginBottom="16dp"
-                        android:max="100"
-                        android:importantForAccessibility="yes" />
-
                     <!-- Zoom Level -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:text="@string/zoom_level"
-                        android:textColor="@color/textColorPrimary"
+                        android:textColor="@color/white"
                         android:textSize="16sp"
                         android:importantForAccessibility="yes" />
 
@@ -333,7 +325,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:text="@string/exposure_control"
-                        android:textColor="@color/textColorPrimary"
+                        android:textColor="@color/white"
                         android:textSize="16sp"
                         android:importantForAccessibility="yes" />
 
