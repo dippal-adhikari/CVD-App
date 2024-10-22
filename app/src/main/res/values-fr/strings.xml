@@ -35,6 +35,23 @@
     <string name="already_have_an_account_login">Vous avez déjà un compte ? Connectez-vous</string>
     <string name="our_partners">Nos partenaires</string>
 
+    <string name="profile">Profil</string>
+    <string name="personal_details">Données personnelles</string>
+    <string name="name">nom</string>
+    <string name="email">Messagerie électronique</string>
+    <string name="phone">Téléphone</string>
+    <string name="address">Adresse</string>
+    <string name="password">Mot de passe</string>
+    <string name="role">Rôle</string>
+    <string name="change_theme">Changer de thème</string>
+    <string name="contact_us">Contactez-nous</string>
+    <string name="privacy_policy">Politique de confidentialité</string>
+    <string name="end_user_license_agreement">Contrat de licence de l’utilisateur final</string>
+    <string name="logout">Déconnexion</string>
+    <string name="delete_account">Supprimer le compte</string>
+    <string name="job_seeker">Chercheur d’emploi</string>
+
+
 
 
     <!--    launcher.xml-->
