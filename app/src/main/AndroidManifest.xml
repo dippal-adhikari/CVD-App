@@ -44,9 +44,6 @@
             android:name=".ScriptDisplayActivity"
             android:exported="false" />
         <activity
-            android:name=".TestActivity"
-            android:exported="false" />
-        <activity
             android:name=".WorksActivity"
             android:exported="true">
             <intent-filter>
