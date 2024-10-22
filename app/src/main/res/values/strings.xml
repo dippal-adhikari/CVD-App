@@ -71,7 +71,22 @@
     <string name="recording_saved" translatable="false">Recording saved: %1$s</string>
     <string name="recording_error" translatable="false">Recording error: %1$s</string>
     <string name="camera_permission_denied" translatable="false">Camera permission denied</string>
-    <string name="this_app_creates">This app creates</string>
+
+    <string name="profile">Profile</string>
+    <string name="personal_details">Personal details</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="address">Address</string>
+    <string name="password">Password</string>
+    <string name="role">Role</string>
+    <string name="change_theme">Change Theme</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="end_user_license_agreement">End-User License Agreement</string>
+    <string name="logout">Logout</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="job_seeker">Job Seeker</string>
 
 
     <string-array name="video_quality_options">

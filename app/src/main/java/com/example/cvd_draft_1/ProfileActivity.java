@@ -44,6 +44,9 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Ensure the locale is applied before setting the content view
+//        loadLocale();
+
         setContentView(R.layout.activity_profile);
 
         // Initialize the ImageButton for the back button
