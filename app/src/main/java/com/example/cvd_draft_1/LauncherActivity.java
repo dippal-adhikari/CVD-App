@@ -29,7 +29,7 @@ public class LauncherActivity extends AppCompatActivity {
          backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LauncherActivity.this, MainActivity.class);
+                Intent intent = new Intent(LauncherActivity.this, WorksActivity.class);
                 startActivity(intent);
                 finish();
             }

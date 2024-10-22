@@ -18,6 +18,7 @@ import android.graphics.Rect;
 import android.graphics.YuvImage;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
+import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -162,10 +163,19 @@ public class CreateVideoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_video);
 
-        // Request external storage permissions (required for saving files and FFmpeg operations)
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+// Check all required permissions (camera, audio, and storage)
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+
+            // If all permissions are granted, start the camera
+            startCamera();
+        } else {
+            // Request the necessary permissions all at once
             ActivityCompat.requestPermissions(this, new String[]{
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.RECORD_AUDIO,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.READ_EXTERNAL_STORAGE
             }, 1);
@@ -314,6 +324,39 @@ public class CreateVideoActivity extends AppCompatActivity {
         });
 
 
+        zoomSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (camera != null) {
+                    float maxZoomRatio = camera.getCameraInfo().getZoomState().getValue().getMaxZoomRatio();
+                    float zoomRatio = progress / 100.0f * (maxZoomRatio - 1) + 1;
+                    camera.getCameraControl().setZoomRatio(zoomRatio);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        exposureSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (camera != null) {
+                    float exposureCompensation = (progress - 50) / 50.0f; // Assuming the range is -1 to 1
+                    camera.getCameraControl().setExposureCompensationIndex((int) (exposureCompensation * camera.getCameraInfo().getExposureState().getExposureCompensationRange().getUpper()));
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
         // segmentation spinner
         // Set up segmentation options (e.g., grayscale, colored overlay)
         Spinner segmentationOptions = findViewById(R.id.segmentationOptions);
@@ -401,8 +444,19 @@ public class CreateVideoActivity extends AppCompatActivity {
         originalClips.add(clipFile);  // Track the original clip
         Log.d("Recording", "Starting new recording: " + clipFile.getAbsolutePath());
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         recording = videoCapture.getOutput()
                 .prepareRecording(this, new FileOutputOptions.Builder(clipFile).build())
+                .withAudioEnabled()
                 .start(ContextCompat.getMainExecutor(this), videoRecordEvent -> {
                     if (videoRecordEvent instanceof VideoRecordEvent.Start) {
                         isRecording = true;
@@ -494,45 +548,50 @@ public class CreateVideoActivity extends AppCompatActivity {
         // Restart the recording for the same clip index
         displayNextScript();
     }
-
-
+//
+//
 //    // Method to add text to the clip after the user confirms moving to the next
 //    private void processClipForTextAddition(File clipFile) {
 //        Log.d("FFmpeg", "Processing recorded clip: " + clipFile.getAbsolutePath());
 //        String outputFileName = "clip_" + currentClipIndex + "_with_text.mp4";
 //        File modifiedClip = new File(getExternalFilesDir(null), outputFileName);
 //
-//        addTextToClip(clipFile.getAbsolutePath(), modifiedClip.getAbsolutePath(), questions.get(currentClipIndex), () -> {
-//            Log.d("FFmpeg", "Text added successfully to clip: " + modifiedClip.getAbsolutePath());
+//        // Start processing in a separate thread
+//        new Thread(() -> {
+//            addTextToClip(clipFile.getAbsolutePath(), modifiedClip.getAbsolutePath(), questions.get(currentClipIndex), () -> {
+//                Log.d("FFmpeg", "Text added successfully to clip: " + modifiedClip.getAbsolutePath());
 //
-//            // Replace the original clip with the modified one
-//            if (currentClipIndex < recordedClips.size()) {
-//                recordedClips.set(currentClipIndex, modifiedClip);
-//            } else {
-//                recordedClips.add(modifiedClip);
-//            }
-//
-//            // Update UI and state
-//            currentClipIndex++;
-//            displayNextScript();
-//
-//            // If all clips are recorded and processed, merge them
-//            if (currentClipIndex >= questions.size()) {
-//                try {
-//                    String fileListPath = createFileList(getClipPaths());
-//                    String mergedOutputPath = getExternalFilesDir(null) + "/final_merged_video_" + System.currentTimeMillis() + ".mp4";
-//                    mergeClips(fileListPath, mergedOutputPath, () -> {
-//                        Toast.makeText(this, "Final video created successfully at " + mergedOutputPath, Toast.LENGTH_LONG).show();
-//                    });
-//                } catch (IOException e) {
-//                    Log.e("FFmpeg", "Error creating final merged video file list.", e);
-//                    Toast.makeText(this, "Error creating final merged video.", Toast.LENGTH_LONG).show();
+//                // Replace the original clip with the modified one
+//                if (currentClipIndex < recordedClips.size()) {
+//                    recordedClips.set(currentClipIndex, modifiedClip);
+//                } else {
+//                    recordedClips.add(modifiedClip);
 //                }
-//            }
-//        });
+//
+//                // If all clips are recorded and processed, merge them
+//                if (currentClipIndex >= questions.size()) {
+//                    try {
+//                        String fileListPath = createFileList(getClipPaths());
+//                        String mergedOutputPath = getExternalFilesDir(null) + "/final_merged_video_" + System.currentTimeMillis() + ".mp4";
+//                        mergeClips(fileListPath, mergedOutputPath, () -> {
+//                            Toast.makeText(this, "Final video created successfully at " + mergedOutputPath, Toast.LENGTH_LONG).show();
+//                        });
+//                    } catch (IOException e) {
+//                        Log.e("FFmpeg", "Error creating final merged video file list.", e);
+//                        runOnUiThread(() -> {
+//                            Toast.makeText(this, "Error creating final merged video.", Toast.LENGTH_LONG).show();
+//                        });
+//                    }
+//                }
+//            });
+//        }).start();
+//
+//        // Proceed to the next clip immediately
+//        currentClipIndex++;
+//        displayNextScript();
 //    }
 
-    // Method to add text to the clip after the user confirms moving to the next
+
     private void processClipForTextAddition(File clipFile) {
         Log.d("FFmpeg", "Processing recorded clip: " + clipFile.getAbsolutePath());
         String outputFileName = "clip_" + currentClipIndex + "_with_text.mp4";
@@ -543,12 +602,12 @@ public class CreateVideoActivity extends AppCompatActivity {
             addTextToClip(clipFile.getAbsolutePath(), modifiedClip.getAbsolutePath(), questions.get(currentClipIndex), () -> {
                 Log.d("FFmpeg", "Text added successfully to clip: " + modifiedClip.getAbsolutePath());
 
-                // Replace the original clip with the modified one
-                if (currentClipIndex < recordedClips.size()) {
-                    recordedClips.set(currentClipIndex, modifiedClip);
-                } else {
-                    recordedClips.add(modifiedClip);
-                }
+                // Add the modified clip to the recordedClips list
+                recordedClips.add(modifiedClip);
+
+                // Proceed to the next clip
+                currentClipIndex++;
+                displayNextScript();
 
                 // If all clips are recorded and processed, merge them
                 if (currentClipIndex >= questions.size()) {
@@ -556,7 +615,9 @@ public class CreateVideoActivity extends AppCompatActivity {
                         String fileListPath = createFileList(getClipPaths());
                         String mergedOutputPath = getExternalFilesDir(null) + "/final_merged_video_" + System.currentTimeMillis() + ".mp4";
                         mergeClips(fileListPath, mergedOutputPath, () -> {
-                            Toast.makeText(this, "Final video created successfully at " + mergedOutputPath, Toast.LENGTH_LONG).show();
+                            // Upload the final merged video
+                            uploadFinalVideoToFirebase(new File(mergedOutputPath));
+                            Toast.makeText(this, "Final video created and uploaded successfully.", Toast.LENGTH_LONG).show();
                         });
                     } catch (IOException e) {
                         Log.e("FFmpeg", "Error creating final merged video file list.", e);
@@ -567,12 +628,7 @@ public class CreateVideoActivity extends AppCompatActivity {
                 }
             });
         }).start();
-
-        // Proceed to the next clip immediately
-        currentClipIndex++;
-        displayNextScript();
     }
-
 
     private void stopRecording() {
         if (recording != null) {
@@ -633,27 +689,29 @@ public class CreateVideoActivity extends AppCompatActivity {
                 ProcessCameraProvider cameraProvider = cameraProviderFuture.get();
                 int rotation = previewView.getDisplay().getRotation();
 
+
                 // Preview setup
                 Preview preview = new Preview.Builder().setTargetRotation(rotation).build();
                 preview.setSurfaceProvider(previewView.getSurfaceProvider());
+
 
                 // Setup the camera selector (front or back camera)
                 cameraSelector = new CameraSelector.Builder()
                         .requireLensFacing(isBackCamera ? CameraSelector.LENS_FACING_BACK : CameraSelector.LENS_FACING_FRONT)
                         .build();
 
-                // Image Analysis setup with the dedicated executor
+                // Real-time Image Analysis setup for background segmentation
                 ImageAnalysis imageAnalysis = new ImageAnalysis.Builder()
-                        .setTargetResolution(new Size(320, 240)) // Set the resolution for the image analysis
+                        .setTargetResolution(new Size(640, 480))
+                        .setTargetRotation(rotation)
                         .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                         .build();
 
-                // Set the analyzer with the imageAnalysisExecutor
-                imageAnalysis.setAnalyzer(imageAnalysisExecutor, imageProxy -> {
-                    // image processing for background changes
-                    processImageProxy(imageProxy); // existing method to process the image
-                    imageProxy.close();
+                imageAnalysis.setAnalyzer(cameraExecutor, imageProxy -> {
+                    // Process each frame for segmentation
+                    processImageProxy(imageProxy);
                 });
+
 
                 // Video Capture setup
                 Recorder recorder = new Recorder.Builder()
@@ -665,10 +723,9 @@ public class CreateVideoActivity extends AppCompatActivity {
                 cameraProvider.unbindAll();
                 camera = cameraProvider.bindToLifecycle(
                         this, cameraSelector, videoCapture, preview, imageAnalysis);
-
-                //cameraProvider.bindToLifecycle(
-                        //this, cameraSelector,videoCapture, preview, imageAnalysis // Not supported more than three bind may support in another device.
-                //);
+//                cameraProvider.bindToLifecycle(
+//                        this, cameraSelector,videoCapture, preview, imageAnalysis // Not supported more than three bind may support in another device.
+//                );
 
 //                if (isSegmentationEnabled) {
 //                    // Bind imageAnalysis to enable segmentation
@@ -935,6 +992,11 @@ public class CreateVideoActivity extends AppCompatActivity {
     private Bitmap rotateBitmapToPortrait(Bitmap bitmap, int currentRotation) {
         Matrix matrix = new Matrix();
         matrix.postRotate(-90);
+
+
+
+
+
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
     }
 
