@@ -1,5 +1,7 @@
 package com.example.cvd_draft_1;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -38,6 +40,8 @@ public class WorksActivity extends AppCompatActivity {
             "Follow the editing steps to refine the script",
             "Record your video pitch with the generated script"
     };
+    private ImagePagerAdapter adapter; // Declare the adapter here
+
 
 
     @Override
@@ -55,6 +59,22 @@ public class WorksActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Initialize the step titles and descriptions using string resources
+        stepTitles = new String[] {
+                getString(R.string.step_1_title),
+                getString(R.string.step_2_title),
+                getString(R.string.step_3_title)
+        };
+
+        // Load the saved language
+        loadLocale();
+
+        stepDescriptions = new String[] {
+                getString(R.string.step_1_description),
+                getString(R.string.step_2_description),
+                getString(R.string.step_3_description)
+        };
 
         // Apply the saved theme preference using ThemeUtils
         ThemeUtils.applyTheme(this);
@@ -90,6 +110,21 @@ public class WorksActivity extends AppCompatActivity {
         });
     }
 
+    // Method to load the step data based on the current language
+    private void loadStepData() {
+        stepTitles = new String[]{
+                getString(R.string.step_1_title),
+                getString(R.string.step_2_title),
+                getString(R.string.step_3_title)
+        };
+
+        stepDescriptions = new String[]{
+                getString(R.string.step_1_description),
+                getString(R.string.step_2_description),
+                getString(R.string.step_3_description)
+        };
+    }
+
     private void toggleTheme() {
         // Use ThemeUtils to toggle the theme
         boolean isDarkModeEnabled = ThemeUtils.isDarkMode(this);
@@ -101,9 +136,9 @@ public class WorksActivity extends AppCompatActivity {
     private void updateThemeButtonText() {
         boolean isDarkMode = ThemeUtils.isDarkMode(this);
         if (isDarkMode) {
-            btnToggleTheme.setText("Switch To Light Mode");
+            btnToggleTheme.setText(getString(R.string.switch_to_light_mode));
         } else {
-            btnToggleTheme.setText("Switch To Dark Mode");
+            btnToggleTheme.setText(getString(R.string.switch_to_dark_mode));
         }
     }
 
@@ -119,7 +154,7 @@ public class WorksActivity extends AppCompatActivity {
                 setLocale("fr");
                 recreate();
             } else if (i == 2) {
-                setLocale("nl");
+                setLocale("de");
                 recreate();
             } else if (i == 3) {
                 setLocale("it");
@@ -128,6 +163,12 @@ public class WorksActivity extends AppCompatActivity {
         });
         mBuilder.create();
         mBuilder.show();
+    }
+
+    private void recreateActivity() {
+        loadStepData(); // Reload the steps data
+        adapter.notifyDataSetChanged(); // Refresh the adapter to reflect the changes
+        recreate(); // Recreate the activity to apply the new language
     }
 
     private void setLocale(String language) {
@@ -140,6 +181,13 @@ public class WorksActivity extends AppCompatActivity {
         editor.putString("Language", language);
         editor.apply();
     }
+
+    private void loadLocale() {
+        SharedPreferences preferences = getSharedPreferences("Settings", MODE_PRIVATE);
+        String language = preferences.getString("Language", "");
+        setLocale(language); // Apply the saved language
+    }
+
 
     private class ImagePagerAdapter extends RecyclerView.Adapter<ImagePagerAdapter.ViewHolder> {
         private int[] images;
@@ -195,6 +243,7 @@ public class WorksActivity extends AppCompatActivity {
         }
     }
 }
+
 
 
 

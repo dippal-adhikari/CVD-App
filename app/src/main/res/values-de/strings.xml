@@ -5,26 +5,17 @@
     <string name="looking_for_a_job">looking for a job</string>
     <string name="switch_to_dark_mode">Switch To Dark Mode</string>
 
+    <string-array name="step_titles">
+        <item>Step 1</item>
+        <item>Step 2</item>
+        <item>Step 3</item>
+    </string-array>
 
-    <string name="step_1_title">Step 1</string>
-    <string name="step_2_title">Step 2</string>
-    <string name="step_3_title">Step 3</string>
-
-    <string name="step_1_description">Answer your chosen questions for an AI to generate a script that fits your needs</string>
-    <string name="step_2_description">Follow the editing steps to refine the script</string>
-    <string name="step_3_description">Record your video pitch with the generated script</string>
-
-<!--    <string-array name="step_titles">-->
-<!--        <item>Step 1</item>-->
-<!--        <item>Step 2</item>-->
-<!--        <item>Step 3</item>-->
-<!--    </string-array>-->
-
-<!--    <string-array name="step_descriptions">-->
-<!--        <item>Answer your chosen questions for an AI to generate a script that fits your needs</item>-->
-<!--        <item>Follow the editing steps to refine the script</item>-->
-<!--        <item>Record your video pitch with the generated script</item>-->
-<!--    </string-array>-->
+    <string-array name="step_descriptions">
+        <item>Answer your chosen questions for an AI to generate a script that fits your needs</item>
+        <item>Follow the editing steps to refine the script</item>
+        <item>Record your video pitch with the generated script</item>
+    </string-array>
 
     <string name="switch_to_light_mode">Switch To Light Mode</string>
     <string name="i_forgot_my_password">I forgot my password</string>
@@ -33,13 +24,6 @@
     <string name="sign_up">Sign Up</string>
     <string name="already_have_an_account_login">Already have an account? Login</string>
     <string name="our_partners" >Our Partners</string>
-
-
-
-
-<!--    launcher.xml-->
-    <string name="launcher_des">The app helps you generate a script and edits the video following your preferences.</string>
-
 
 
     <string name="client_id" translatable="false">318479227048-26r85giu4825cs9al5mmglrdl8vfegj9.apps.googleusercontent.com</string>
@@ -71,7 +55,7 @@
     <string name="recording_saved" translatable="false">Recording saved: %1$s</string>
     <string name="recording_error" translatable="false">Recording error: %1$s</string>
     <string name="camera_permission_denied" translatable="false">Camera permission denied</string>
-    <string name="this_app_creates">This app creates</string>
+
 
 
     <string-array name="video_quality_options">

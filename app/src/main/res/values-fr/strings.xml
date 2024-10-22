@@ -1,8 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">CVD - Draft -1</string>
-    <string name="change_language">Change Language</string>
-    <string name="how_it_works">How it works</string>
-    <string name="looking_for_a_job">looking for a job</string>
-    <string name="i_forgot_my_password" />
+    <string name="change_language">Changer la langue</string>
+    <string name="how_it_works">Comment ça marche</string>
+    <string name="looking_for_a_job">à la recherche d’un emploi</string>
+    <string name="switch_to_dark_mode">Passer en mode sombre</string>
+
+    <string name="step_1_title">Étape 1</string>
+    <string name="step_2_title">Étape 2</string>
+    <string name="step_3_title">Étape 3</string>
+
+    <string name="step_1_description">Répondez aux questions que vous avez choisies pour qu’une IA génère un script qui correspond à vos besoins</string>
+    <string name="step_2_description">Suivez les étapes d’édition pour affiner le script</string>
+    <string name="step_3_description">Enregistrez votre pitch vidéo avec le script généré</string>
+
+<!--    <string-array name="step_titles">-->
+<!--        <item>Step 1</item>-->
+<!--        <item>Step 2</item>-->
+<!--        <item>Step 3</item>-->
+<!--    </string-array>-->
+
+<!--    <string-array name="step_descriptions">-->
+<!--        <item>Answer your chosen questions for an AI to generate a script that fits your needs</item>-->
+<!--        <item>Follow the editing steps to refine the script</item>-->
+<!--        <item>Record your video pitch with the generated script</item>-->
+<!--    </string-array>-->
+
+    <string name="switch_to_light_mode">Passer en mode lumière</string>
+    <string name="i_forgot_my_password">J’ai oublié mon mot de passe</string>
+    <string name="back">Précédent</string>
+    <string name="get_started">Démarrer</string>
+    <string name="sign_up">S’enregistrer</string>
+    <string name="already_have_an_account_login">Vous avez déjà un compte ? Connectez-vous</string>
+    <string name="our_partners">Nos partenaires</string>
+
+
+
+    <!--    launcher.xml-->
+    <string name="launcher_des">French maa The app helps you generate a script and edits the video following your preferences.</string>
+
+
 </resources>

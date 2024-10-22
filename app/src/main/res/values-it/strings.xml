@@ -4,5 +4,21 @@
     <string name="change_language">Change Language</string>
     <string name="how_it_works">How it works</string>
     <string name="looking_for_a_job">looking for a job</string>
-    <string name="i_forgot_my_password" />
+    <string name="switch_to_dark_mode">Switch To Dark Mode</string>
+
+    <string name="step_1_title">Step 1</string>
+    <string name="step_2_title">Step 2</string>
+    <string name="step_3_title">Step 3</string>
+
+    <string name="step_1_description">Answer your chosen questions for an AI to generate a script that fits your needs</string>
+    <string name="step_2_description">Follow the editing steps to refine the script</string>
+    <string name="step_3_description">Record your video pitch with the generated script</string>
+    <string name="switch_to_light_mode">Switch To Light Mode</string>
+    <string name="i_forgot_my_password">I forgot my password</string>
+    <string name="back">Back</string>
+    <string name="get_started">Get started</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="already_have_an_account_login">Already have an account? Login</string>
+    <string name="our_partners" >Our Partners</string>
+
 </resources>
