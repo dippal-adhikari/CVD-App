@@ -8,7 +8,7 @@ import retrofit2.http.POST;
 public interface OpenAIAPIService {
     @Headers({
             "Content-Type: application/json",
-            "Authorization: Bearer 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" })
+            "Authorization: Bearer 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" })
     @POST("v1/chat/completions")  // Updated to the correct endpoint for chat models
     Call<OpenAIResponse> createCompletion(@Body OpenAIRequest body);
 }

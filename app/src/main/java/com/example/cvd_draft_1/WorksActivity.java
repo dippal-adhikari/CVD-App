@@ -143,7 +143,7 @@ public class WorksActivity extends AppCompatActivity {
     }
 
     private void changeLanguage() {
-        final String[] languages = {"English", "français", "deutsch", "Italiano"};
+        final String[] languages = {"English", "français"};
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
         mBuilder.setTitle("Choose Language");
         mBuilder.setSingleChoiceItems(languages, -1, (dialogInterface, i) -> {
@@ -152,12 +152,6 @@ public class WorksActivity extends AppCompatActivity {
                 recreate();
             } else if (i == 1) {
                 setLocale("fr");
-                recreate();
-            } else if (i == 2) {
-                setLocale("de");
-                recreate();
-            } else if (i == 3) {
-                setLocale("it");
                 recreate();
             }
         });
